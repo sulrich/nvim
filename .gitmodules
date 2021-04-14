@@ -1,0 +1,3 @@
+[submodule "site/pack/default/start/nvim-ghost"]
+	path = site/pack/default/start/nvim-ghost
+	url = https://github.com/subnut/nvim-ghost.nvim.git

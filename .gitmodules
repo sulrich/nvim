@@ -1,6 +1,0 @@
-[submodule "site/pack/default/start/nvim-miniyank"]
-	path = site/pack/default/start/nvim-miniyank
-	url = https://github.com/bfredl/nvim-miniyank.git
-[submodule "site/pack/default/start/vim-ghost"]
-	path = site/pack/default/start/vim-ghost
-	url = https://github.com/raghur/vim-ghost.git

@@ -1,7 +1,14 @@
 HOME = os.getenv("HOME")
+
+-- bootstrap packer if we're not installed
+ local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+   packer_bootstrap = vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+ end
+ 
+require('plugins')
 require('keybindings')
 require('lsp-configs')
-require('plugins')
 
 vim.o.encoding = "utf-8" -- self-explanatory
 vim.o.textwidth = 80     -- where to wrap
@@ -170,22 +177,3 @@ if vim.fn.has("gui_running") == 1 then
 else
   vim.g.loaded_ghost = 0
 end
-
--- bootstrap
--- local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
--- if vim.fn.empty(fn.glob(install_path)) > 0 then
---   packer_bootstrap = vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
--- end
--- 
--- return require('packer').startup(function(use)
---   -- My plugins here
---   -- use 'foo1/bar1.nvim'
---   -- use 'foo2/bar2.nvim'
--- 
---   -- Automatically set up your configuration after cloning packer.nvim
---   -- Put this at the end after all plugins
---   if packer_bootstrap then
---     require('packer').sync()
---   end
--- end)
-

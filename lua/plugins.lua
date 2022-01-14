@@ -1,11 +1,14 @@
--- iron REPL config
-local iron = require('iron')
-iron.core.set_config {
-  preferred = {
-    python = "ipython",
-  },
-  repl_open_cmd = 'bo 20 split'
-}
+-- return require('packer').startup(function(use)
+--   -- My plugins here
+--   -- use 'foo1/bar1.nvim'
+--   -- use 'foo2/bar2.nvim'
+-- 
+--   -- Automatically set up your configuration after cloning packer.nvim
+--   -- Put this at the end after all plugins
+--   if packer_bootstrap then
+--     require('packer').sync()
+--   end
+-- end)
 
 -- packer setup
 return require('packer').startup(function()
@@ -127,6 +130,12 @@ return require('packer').startup(function()
 
   -- -- You can alias plugin names
   -- use {'dracula/vim', as = 'dracula'}
+
+  -- Automatically set up your configuration after cloning packer.nvim
+  -- Put this at the end after all plugins
+  if packer_bootstrap then
+	  require('packer').sync()
+  end
 end)
 
 

@@ -9,6 +9,7 @@ HOME = os.getenv("HOME")
 require('plugins')
 require('keybindings')
 require('lsp-configs')
+require('misc')
 
 vim.o.encoding = "utf-8" -- self-explanatory
 vim.o.textwidth = 80     -- where to wrap

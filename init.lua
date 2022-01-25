@@ -67,13 +67,13 @@ vim.o.hlsearch = true --  highlight the search
 
 -- misc. vim support files and settings. swap, backup, etc.
 vim.o.swapfile = true
-vim.o.directory = HOME .. "/.vim/swap//"
+vim.o.directory = HOME .. "/.config/nvim/swap//"
 vim.o.writebackup = false                  -- set for coc integration
 vim.o.backup = false                       -- but do not persist backup after successful write
 vim.o.backupcopy = "auto"                  -- use rename-and-write-new method whenever safe
-vim.o.backupdir = HOME .. "/.vim/backup//"
+vim.o.backupdir = HOME .. "/.config/nvim/backup//"
 vim.o.undofile = true                      -- persist the undo tree for each file
-vim.o.undodir = HOME .. "/.vim/undo//"
+vim.o.undodir = HOME .. "/.config/nvim/undo//"
 
 -- mode specific settings below
 -- ---------------------------------------------------------------------------

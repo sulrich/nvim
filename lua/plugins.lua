@@ -1,15 +1,3 @@
--- return require('packer').startup(function(use)
---   -- My plugins here
---   -- use 'foo1/bar1.nvim'
---   -- use 'foo2/bar2.nvim'
--- 
---   -- Automatically set up your configuration after cloning packer.nvim
---   -- Put this at the end after all plugins
---   if packer_bootstrap then
---     require('packer').sync()
---   end
--- end)
-
 -- packer setup
 return require('packer').startup(function()
   -- packer can manage itself
@@ -40,6 +28,8 @@ return require('packer').startup(function()
   use 'mzlogin/vim-markdown-toc'
   use 'dense-analysis/ale'
   use 'psf/black'                  -- python formatting
+  use 'tpope/vim-rhubarb'
+
   -- reasonable wiki/markdown editing
   use { 'raghur/vim-ghost', run = ":GhostInstall" } 
 
@@ -49,6 +39,7 @@ return require('packer').startup(function()
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-cmdline'
   use 'hrsh7th/nvim-cmp'
+  use 'quangnguyen30192/cmp-nvim-ultisnips'
 
   -- new hotness plugins
   use {

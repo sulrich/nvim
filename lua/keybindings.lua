@@ -17,7 +17,7 @@ vimp.nnoremap({'silent'}, '<leader>r', '1z=')
 vimp.nnoremap('<leader><space>', ':nohlsearch<cr>')
 
 -- open markdown files in marked2
-vimp.nnoremap('<leader>m', [[:silent !open -a Marked2.app '%:p'<cr>]])
+vimp.nnoremap({'silent'}, '<leader>m', [[:!open -a 'Marked 2.app' "%:p"<cr>]])
 
 -- dash documentation - search for what the cursor is over
 vimp.nmap({'silent'}, '<leader>d', '<Plug>DashSearch')

@@ -29,6 +29,7 @@ return require('packer').startup(function()
   use 'dense-analysis/ale'
   use 'psf/black'                  -- python formatting
   use 'tpope/vim-rhubarb'
+  use 'junegunn/vim-peekaboo'
 
   -- reasonable wiki/markdown editing
   use { 'raghur/vim-ghost', run = ":GhostInstall" } 

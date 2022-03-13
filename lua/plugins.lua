@@ -16,7 +16,6 @@ return require('packer').startup(function()
   use 'editorconfig/editorconfig-vim'
   use 'vim-airline/vim-airline'
   use 'vim-airline/vim-airline-themes'
-  use 'mattn/gist-vim'
   use 'rizzatti/dash.vim'
   use 'SirVer/ultisnips'
   use 'honza/vim-snippets'
@@ -48,6 +47,12 @@ return require('packer').startup(function()
     requires = { {'nvim-lua/plenary.nvim'} }
   }
 
+  use {
+    'mattn/gist-vim',
+    requires = {
+      'mattn/webapi-vim'
+    },
+  }
   -- replacement for vimscript gitgutter
   use {
     'lewis6991/gitsigns.nvim',
@@ -63,6 +68,14 @@ return require('packer').startup(function()
   -- Post-install/update hook with neovim command
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
+
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons', -- optional, for file icon
+    },
+    config = function() require'nvim-tree'.setup {} end
+}
   -- load on a combination of conditions: specific filetypes or commands
   -- also run code after load (see the "config" key)
   -- use {

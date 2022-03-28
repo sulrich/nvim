@@ -34,7 +34,7 @@ vim.o.showcmd = true  -- show selection info
 
 vim.o.termguicolors = true
 vim.o.background = "dark" 
-vim.g.solarized_italics = 0 
+-- vim.g.solarized_italics = 0 
 
 -- vim.o.comments = b:#,:%,n:>,fb:[-],fb:- -- see 'help: comments'
 -- folding settings
@@ -109,7 +109,8 @@ vim.g.airline_enable_branch = 1
 vim.g.airline_powerline_fonts = 1            --  requires powerline fonts
 vim.g['airline#extensions#ale#enabled'] = 1  --  show ale errors on statusline
 vim.g.airline_extensions = {"ale", "branch", "netrw", "virtualenv"}
-vim.g.airline_theme='solarized'
+-- vim.g.airline_theme='solarized'
+vim.g.airline_theme='nord_minimal'
 
 -- spell check configuration
 vim.o.spelllang = "en_us"
@@ -121,7 +122,8 @@ vim.o.spellcapcheck = ""       -- ignore capitalization
 vim.o.diffopt = "filler,iwhite"     -- ignore all whitespace and sync
 
 -- all the pretty lights
-vim.cmd("colorscheme solarized8")
+-- vim.cmd("colorscheme solarized8")
+vim.cmd("colorscheme nord")
 vim.o.colorcolumn = "80"
 
 -- for vim-table-mode use markdown stule corners

@@ -7,7 +7,8 @@ return require('packer').startup(function()
 
   -- classic vim plugins
   use 'nathanalderson/yang.vim'
-  use 'lifepillar/vim-solarized8'
+  -- use 'lifepillar/vim-solarized8'
+  use 'shaunsingh/nord.nvim'
   use 'tpope/vim-surround'
   use 'tpope/vim-fugitive'
   use 'fatih/vim-go'
@@ -30,6 +31,13 @@ return require('packer').startup(function()
   use 'tpope/vim-rhubarb'
   use 'junegunn/vim-peekaboo'
 
+  use {
+    'mattn/gist-vim',
+    requires = {
+      'mattn/webapi-vim'
+    },
+  }
+
   -- reasonable wiki/markdown editing
   use { 'raghur/vim-ghost', run = ":GhostInstall" } 
 
@@ -47,12 +55,6 @@ return require('packer').startup(function()
     requires = { {'nvim-lua/plenary.nvim'} }
   }
 
-  use {
-    'mattn/gist-vim',
-    requires = {
-      'mattn/webapi-vim'
-    },
-  }
   -- replacement for vimscript gitgutter
   use {
     'lewis6991/gitsigns.nvim',
@@ -68,14 +70,19 @@ return require('packer').startup(function()
   -- Post-install/update hook with neovim command
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
+  -- use {
+  --   'kyazdani42/nvim-tree.lua',
+  --   requires = {
+  --     'kyazdani42/nvim-web-devicons', -- optional, for file icon
+  --   },
+  --   config = function() require'nvim-tree'.setup {} end
+  -- }
 
-  use {
-    'kyazdani42/nvim-tree.lua',
-    requires = {
-      'kyazdani42/nvim-web-devicons', -- optional, for file icon
-    },
-    config = function() require'nvim-tree'.setup {} end
-}
+  -- use {
+  --   'mrjones2014/dash.nvim',
+  --   run = 'make install',
+  -- }
+
   -- load on a combination of conditions: specific filetypes or commands
   -- also run code after load (see the "config" key)
   -- use {

@@ -36,9 +36,6 @@ vimp.nnoremap('<leader>fb', function() require('telescope.builtin').buffers() en
 vimp.nnoremap('<leader>fh', function() require('telescope.builtin').help_tags() end )
 vimp.nnoremap('<leader>gf', function() require('telescope.builtin').git_files() end )
 
--- nvim-tree
-vimp.nnoremap('<C-n>',  ':NvimTreeToggle<CR>')
-
 vim.cmd([[
 " this seems to cause problems when moved to lua native config
 " set spellfile = "~/iCloud/src/configs/aspell/aspell.en.pws"

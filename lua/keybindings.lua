@@ -13,6 +13,7 @@ vimp.nnoremap({'silent'}, '<leader>S', [[ea<C-X><C-S>]])
 -- replace the current word with the 1st suggestion.
 -- this works - most of the time
 vimp.nnoremap({'silent'}, '<leader>r', '1z=')
+vimp.imap({'silent'}, '<C-;>', '<Esc>[s1z=`]a')
 -- clear search highlights
 vimp.nnoremap('<leader><space>', ':nohlsearch<cr>')
 

@@ -1,4 +1,5 @@
 HOME = os.getenv("HOME")
+TMPDIR = os.getenv("TMPDIR")
 
 -- bootstrap packer if we're not installed
  local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
@@ -72,7 +73,9 @@ vim.o.writebackup = false                  -- set for coc integration
 vim.o.backup = false                       -- but do not persist backup after successful write
 vim.o.backupcopy = "auto"                  -- use rename-and-write-new method whenever safe
 vim.o.backupdir = HOME .. "/.config/nvim/backup//"
+-- vim.o.backupdir = TMPDIR .. "//"
 vim.o.undofile = true                      -- persist the undo tree for each file
+-- vim.o.undodir = TMPDIR .. "//"
 vim.o.undodir = HOME .. "/.config/nvim/undo//"
 
 -- mode specific settings below

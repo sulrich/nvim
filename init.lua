@@ -126,8 +126,8 @@ vim.o.diffopt = "filler,iwhite"     -- ignore all whitespace and sync
 
 -- all the pretty lights
 -- vim.cmd("colorscheme solarized8")
-vim.cmd("colorscheme nord")
-vim.o.colorcolumn = "80"
+vim.g.nord_italic = false 
+require('nord').set()
 
 -- for vim-table-mode use markdown stule corners
 vim.g.table_mode_corner='|'

@@ -30,6 +30,7 @@ return require('packer').startup(function()
   use 'psf/black'                  -- python formatting
   use 'tpope/vim-rhubarb'
   use 'junegunn/vim-peekaboo'
+  use 'mickael-menu/zk-nvim'
 
   use {
     'mattn/gist-vim',

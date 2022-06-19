@@ -10,15 +10,15 @@ autocmd BufNewFile,BufRead *.py
 
 " remove trailing whitespace for python files.
 " autocmd BufWritePre *.py :%s/\s\+$//e 
-autocmd BufWritePre *.py execute ':Black'
+" autocmd BufWritePre *.py execute ':Black'
 
 " check python files with flake8
-let b:ale_linters = ['flake8', 'pylint']
+" let b:ale_linters = ['flake8', 'pylint']
 
 " fix python files with black
-let b:ale_fixers = ['black']
+" let b:ale_fixers = ['black']
 
-let g:ale_sign_column_always = 1
+" let g:ale_sign_column_always = 1
 
 " i'm doing everything in python3 these days.
 let g:pymode_python = 'python3'

@@ -111,7 +111,8 @@ vim.g.UltiSnipsSnippetDirectories = {"UltiSnips", "custom-snippets"}
 vim.g.airline_enable_branch = 1
 vim.g.airline_powerline_fonts = 1            --  requires powerline fonts
 vim.g['airline#extensions#ale#enabled'] = 1  --  show ale errors on statusline
-vim.g.airline_extensions = {"ale", "branch", "netrw", "virtualenv"}
+vim.g.airline_extensions = { "branch", "netrw", "virtualenv"}
+-- vim.g.airline_extensions = {"ale", "branch", "netrw", "virtualenv"}
 -- vim.g.airline_theme='solarized'
 vim.g.airline_theme='nord_minimal'
 

@@ -1,5 +1,28 @@
 -- misc. plugin configuration
 
+-- nvim-zk configuration 
+-- require("zk").setup({
+--   -- can be "telescope", "fzf" or "select" (`vim.ui.select`)
+--   -- it's recommended to use "telescope" or "fzf"
+--   picker = "telescope",
+
+--   lsp = {
+--     -- `config` is passed to `vim.lsp.start_client(config)`
+--     config = {
+--       cmd = { "zk", "lsp" },
+--       name = "zk",
+--       -- on_attach = ...
+--       -- etc, see `:h vim.lsp.start_client()`
+--     },
+
+--     -- automatically attach buffers in a zk notebook that match the given filetypes
+--     auto_attach = {
+--       enabled = true,
+--       filetypes = { "markdown" },
+--     },
+--   },
+-- })
+
 -- iron REPL config
 local iron = require("iron.core")
 
@@ -19,8 +42,7 @@ iron.setup {
     -- how the REPL window will be opened, the default is opening
     -- a float window of height 40 at the bottom.
   },
-  -- Iron doesn't set keymaps by default anymore. Set them here
-  -- or use `should_map_plug = true` and map from you vim files
+  -- iron doesn't set keymaps by default anymore. set them here
   keymaps = {
     send_motion = "<space>sc",
     visual_send = "<space>sc",
@@ -35,9 +57,9 @@ iron.setup {
     exit = "<space>sq",
     clear = "<space>cl",
   },
-  -- If the highlight is on, you can change how it looks
-  -- For the available options, check nvim_set_hl
+  -- if the highlight is on, you can change how it looks
+  -- for the available options, check nvim_set_hl
   highlight = {
-    italic = true
+    italic = false
   }
 }

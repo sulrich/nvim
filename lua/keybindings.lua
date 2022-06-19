@@ -37,6 +37,15 @@ vimp.nnoremap('<leader>fb', function() require('telescope.builtin').buffers() en
 vimp.nnoremap('<leader>fh', function() require('telescope.builtin').help_tags() end )
 vimp.nnoremap('<leader>gf', function() require('telescope.builtin').git_files() end )
 
+-- trouble bindings
+vimp.nnoremap({'silent'}, "<leader>xx", "<cmd>Trouble<cr>")
+vimp.nnoremap({'silent'}, "<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>")
+vimp.nnoremap({'silent'}, "<leader>xd", "<cmd>Trouble document_diagnostics<cr>")
+vimp.nnoremap({'silent'}, "<leader>xl", "<cmd>Trouble loclist<cr>")
+vimp.nnoremap({'silent'}, "<leader>xq", "<cmd>Trouble quickfix<cr>")
+vimp.nnoremap({'silent'}, "gR", "<cmd>Trouble lsp_references<cr>")
+
+
 vim.cmd([[
 " this seems to cause problems when moved to lua native config
 " set spellfile = "~/iCloud/src/configs/aspell/aspell.en.pws"

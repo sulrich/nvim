@@ -26,11 +26,9 @@ return require('packer').startup(function()
   use 'shumphrey/fugitive-gitlab.vim'
   use 'dhruvasagar/vim-table-mode'
   use 'mzlogin/vim-markdown-toc'
-  use 'dense-analysis/ale'
-  use 'psf/black'                  -- python formatting
   use 'tpope/vim-rhubarb'
   use 'junegunn/vim-peekaboo'
-  use 'mickael-menu/zk-nvim'
+  -- use 'mickael-menu/zk-nvim'
 
   use {
     'mattn/gist-vim',
@@ -67,6 +65,17 @@ return require('packer').startup(function()
 
   -- easy language server protocol installation
   use 'neovim/nvim-lspconfig'
+  use { 'jose-elias-alvarez/null-ls.nvim' }
+
+  use {
+  "folke/trouble.nvim",
+  requires = "kyazdani42/nvim-web-devicons",
+  config = function()
+    require("trouble").setup {
+      -- future configuration comes here, this uses the defaults
+    }
+  end
+}
 
   -- Post-install/update hook with neovim command
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }

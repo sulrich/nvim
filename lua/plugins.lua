@@ -68,14 +68,20 @@ return require('packer').startup(function()
   use { 'jose-elias-alvarez/null-ls.nvim' }
 
   use {
-  "folke/trouble.nvim",
-  requires = "kyazdani42/nvim-web-devicons",
-  config = function()
-    require("trouble").setup {
-      -- future configuration comes here
-    }
-  end
-}
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {
+        -- future configuration comes here
+      }
+    end
+  }
+
+  -- a new folding plugin folks are raving about 
+  use {
+    'kevinhwang91/nvim-ufo', 
+    requires = 'kevinhwang91/promise-async'
+  }
 
   -- Post-install/update hook with neovim command
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }

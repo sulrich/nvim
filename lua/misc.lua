@@ -23,6 +23,17 @@
 --   },
 -- })
 
+
+-- folding plugin setup 
+-- ref: https://github.com/kevinhwang91/nvim-ufo#minimal-configuration
+-- tell the sever the capability of foldingRange
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true
+}
+require('ufo').setup()
+
 -- iron REPL config
 local iron = require("iron.core")
 

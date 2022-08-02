@@ -41,7 +41,8 @@ vim.o.background = "dark"
 -- folding settings
 -- vim.o.foldmethod = syntax      -- fold on syntax, always
 vim.o.foldcolumn = "0"      -- 2 lines of column for fold showing, always
-vim.o.foldlevelstart = 3    -- expand folds at start
+vim.o.foldlevelstart = 99    -- expand folds at start
+vim.o.foldenable = true
 
 vim.o.wildmode = "longest:full"
 vim.o.wildignore = "*.o,*~,.lo" -- ignore object files
@@ -121,6 +122,11 @@ vim.o.spelllang = "en_us"
 vim.o.spellcapcheck = ""       -- ignore capitalization
 -- personal word list
 -- vim.opt.spellfile = HOME .. "/iCloud/src/configs/aspell/aspell.en.pws"
+vim.cmd([[
+" this seems to cause problems when moved to lua native config
+" set spellfile = "~/iCloud/src/configs/aspell/aspell.en.pws"
+]])
+
 
 -- diff settings
 vim.o.diffopt = "filler,iwhite"     -- ignore all whitespace and sync

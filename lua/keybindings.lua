@@ -14,6 +14,7 @@ vimp.nnoremap({'silent'}, '<leader>S', [[ea<C-X><C-S>]])
 -- this works - most of the time
 vimp.nnoremap({'silent'}, '<leader>r', '1z=')
 vimp.imap({'silent'}, '<C-;>', '<Esc>[s1z=`]a')
+
 -- clear search highlights
 vimp.nnoremap('<leader><space>', ':nohlsearch<cr>')
 
@@ -22,10 +23,6 @@ vimp.nnoremap({'silent'}, '<leader>m', [[:!open -a 'Marked 2.app' "%:p"<cr>]])
 
 -- dash documentation - search for what the cursor is over
 vimp.nmap({'silent'}, '<leader>d', '<Plug>DashSearch')
-
--- move thru ALE errors
-vimp.nmap({'silent'}, '<C-k>', ':ALEPrevious<cr>')
-vimp.nmap({'silent'}, '<C-j>', ':ALENext<cr>')
 
 vimp.map('p', '<Plug>(miniyank-autoput)')
 vimp.map('P', '<Plug>(miniyank-autoPut)')
@@ -44,10 +41,3 @@ vimp.nnoremap({'silent'}, "<leader>xd", "<cmd>Trouble document_diagnostics<cr>")
 vimp.nnoremap({'silent'}, "<leader>xl", "<cmd>Trouble loclist<cr>")
 vimp.nnoremap({'silent'}, "<leader>xq", "<cmd>Trouble quickfix<cr>")
 vimp.nnoremap({'silent'}, "gR", "<cmd>Trouble lsp_references<cr>")
-
-
-vim.cmd([[
-" this seems to cause problems when moved to lua native config
-" set spellfile = "~/iCloud/src/configs/aspell/aspell.en.pws"
-]])
-

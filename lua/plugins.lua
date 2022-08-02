@@ -22,11 +22,11 @@ return require('packer').startup(function()
   use 'honza/vim-snippets'
   use 'tpope/vim-commentary'
   use 'bfredl/nvim-miniyank'
-  use 'svermeulen/vimpeccable'
+  use 'svermeulen/vimpeccable'  -- used for keybindings
   use 'shumphrey/fugitive-gitlab.vim'
   use 'dhruvasagar/vim-table-mode'
   use 'mzlogin/vim-markdown-toc'
-  use 'tpope/vim-rhubarb'
+  use 'tpope/vim-rhubarb'       -- open associated github URL
   use 'junegunn/vim-peekaboo'
   -- use 'mickael-menu/zk-nvim'
 

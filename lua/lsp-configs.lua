@@ -83,6 +83,8 @@ cmp.setup.cmdline(':', {
 })
 
 -- setup lspconfig
+-- TODO(sulrich): it kind of feels like i should merge this with the folding
+-- requirements in init.lua
 local lsp = require('lspconfig')
 servers = {
    'gopls',

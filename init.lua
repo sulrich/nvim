@@ -38,11 +38,28 @@ vim.o.background = "dark"
 -- vim.g.solarized_italics = 0 
 
 -- vim.o.comments = b:#,:%,n:>,fb:[-],fb:- -- see 'help: comments'
--- folding settings
--- vim.o.foldmethod = syntax      -- fold on syntax, always
+
+-- folding config start: using nvim-ufo
 vim.o.foldcolumn = "0"      -- 2 lines of column for fold showing, always
-vim.o.foldlevelstart = 99    -- expand folds at start
+vim.o.foldlevel = 99        -- nvim.ufo needs a large value
+vim.o.foldlevelstart = 99   -- 
 vim.o.foldenable = true
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true
+}
+local language_servers = {} -- like {'gopls', 'clangd'}
+for _, ls in ipairs(language_servers) do
+    require('lspconfig')[ls].setup({
+        capabilities = capabilities,
+        other_fields = ...
+    })
+end
+require('ufo').setup()
+-- folding config end
+
 
 vim.o.wildmode = "longest:full"
 vim.o.wildignore = "*.o,*~,.lo" -- ignore object files

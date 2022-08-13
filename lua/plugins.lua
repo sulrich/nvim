@@ -7,7 +7,6 @@ return require('packer').startup(function()
 
   -- classic vim plugins
   use 'nathanalderson/yang.vim'
-  -- use 'lifepillar/vim-solarized8'
   use 'shaunsingh/nord.nvim'
   use 'tpope/vim-surround'
   use 'tpope/vim-fugitive'
@@ -15,8 +14,6 @@ return require('packer').startup(function()
   use 'godlygeek/tabular'
   use 'hkupty/iron.nvim'  -- repl
   use 'editorconfig/editorconfig-vim'
-  use 'vim-airline/vim-airline'
-  use 'vim-airline/vim-airline-themes'
   use 'rizzatti/dash.vim'
   use 'SirVer/ultisnips'
   use 'honza/vim-snippets'
@@ -28,7 +25,6 @@ return require('packer').startup(function()
   use 'mzlogin/vim-markdown-toc'
   use 'tpope/vim-rhubarb'       -- open associated github URL
   use 'junegunn/vim-peekaboo'
-  -- use 'mickael-menu/zk-nvim'
 
   use {
     'mattn/gist-vim',
@@ -75,6 +71,12 @@ return require('packer').startup(function()
         -- future configuration comes here
       }
     end
+  }
+
+  -- let's give this a whirl
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
 
   -- a new folding plugin folks are raving about 

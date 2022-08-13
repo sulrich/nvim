@@ -1,28 +1,21 @@
 -- misc. plugin configuration
 
--- nvim-zk configuration 
--- require("zk").setup({
---   -- can be "telescope", "fzf" or "select" (`vim.ui.select`)
---   -- it's recommended to use "telescope" or "fzf"
---   picker = "telescope",
+-- all the pretty lights
+-- vim.cmd("colorscheme solarized8")
+vim.cmd([[colorscheme nord]])
+vim.g.nord_italic = false 
+-- vim.g.nord_disable_background = true
+require('nord').set()
 
---   lsp = {
---     -- `config` is passed to `vim.lsp.start_client(config)`
---     config = {
---       cmd = { "zk", "lsp" },
---       name = "zk",
---       -- on_attach = ...
---       -- etc, see `:h vim.lsp.start_client()`
---     },
 
---     -- automatically attach buffers in a zk notebook that match the given filetypes
---     auto_attach = {
---       enabled = true,
---       filetypes = { "markdown" },
---     },
---   },
--- })
-
+-- lualine configuration
+require('lualine').setup({
+  options = {
+    theme = 'nord',
+    -- section_separators = '',
+    -- component_separators = '',
+  }
+})
 
 -- folding plugin setup 
 -- ref: https://github.com/kevinhwang91/nvim-ufo#minimal-configuration

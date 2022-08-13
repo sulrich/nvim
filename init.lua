@@ -34,10 +34,7 @@ vim.o.showmode = true -- show the mode in the status line
 vim.o.showcmd = true  -- show selection info
 
 vim.o.termguicolors = true
-vim.o.background = "dark" 
--- vim.g.solarized_italics = 0 
-
--- vim.o.comments = b:#,:%,n:>,fb:[-],fb:- -- see 'help: comments'
+-- vim.o.background = "dark" 
 
 -- folding config start: using nvim-ufo
 vim.o.foldcolumn = "0"      -- 2 lines of column for fold showing, always
@@ -59,7 +56,6 @@ for _, ls in ipairs(language_servers) do
 end
 require('ufo').setup()
 -- folding config end
-
 
 vim.o.wildmode = "longest:full"
 vim.o.wildignore = "*.o,*~,.lo" -- ignore object files
@@ -125,15 +121,6 @@ vim.g.UltiSnipsJumpForwardTrigger='<C-j>'
 vim.g.UltiSnipsJumpBackwardTrigger='<C-k>'
 vim.g.UltiSnipsSnippetDirectories = {"UltiSnips", "custom-snippets"}
 
--- fancy status line.
-vim.g.airline_enable_branch = 1
-vim.g.airline_powerline_fonts = 1            --  requires powerline fonts
-vim.g['airline#extensions#ale#enabled'] = 1  --  show ale errors on statusline
-vim.g.airline_extensions = { "branch", "netrw", "virtualenv"}
--- vim.g.airline_extensions = {"ale", "branch", "netrw", "virtualenv"}
--- vim.g.airline_theme='solarized'
-vim.g.airline_theme='nord_minimal'
-
 -- spell check configuration
 vim.o.spelllang = "en_us"
 vim.o.spellcapcheck = ""       -- ignore capitalization
@@ -147,11 +134,6 @@ vim.cmd([[
 
 -- diff settings
 vim.o.diffopt = "filler,iwhite"     -- ignore all whitespace and sync
-
--- all the pretty lights
--- vim.cmd("colorscheme solarized8")
-vim.g.nord_italic = false 
-require('nord').set()
 
 -- for vim-table-mode use markdown stule corners
 vim.g.table_mode_corner='|'
@@ -169,10 +151,10 @@ autocmd FileType gitcommit let b:EditorConfig_disable = 1
 " https://github.com/dense-analysis/ale - see the FAQ
 " note, for the mac, i need to match on the expanded iCloud path.  this is
 " what's going on in the first dict entry here. 
-let g:ale_pattern_options = {
-\  '.*CloudDocs/notes/.*\.md$': {'ale_enabled': 0},
-\  '.*\.notes/.*\.md$': {'ale_enabled': 0},
-\}
+" let g:ale_pattern_options = {
+" \  '.*CloudDocs/notes/.*\.md$': {'ale_enabled': 0},
+" \  '.*\.notes/.*\.md$': {'ale_enabled': 0},
+" \}
 
 " personal abbreviations
 ab x70- ----------------------------------------------------------------------

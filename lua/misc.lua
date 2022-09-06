@@ -25,8 +25,17 @@ capabilities.textDocument.foldingRange = {
     dynamicRegistration = false,
     lineFoldingOnly = true
 }
+local language_servers = {} -- like {'gopls', 'clangd'}
+for _, ls in ipairs(language_servers) do
+    require('lspconfig')[ls].setup({
+        capabilities = capabilities,
+        other_fields = ...
+    })
+end
 require('ufo').setup()
 
+
+-- =================================================================
 -- iron REPL config
 local iron = require("iron.core")
 
@@ -42,7 +51,7 @@ iron.setup {
         command = {"zsh"}
       }
     },
-    repl_open_cmd = require('iron.view').curry.bottom(20),
+    repl_open_cmd = require('iron.view').bottom(20),
     -- how the REPL window will be opened, the default is opening
     -- a float window of height 40 at the bottom.
   },

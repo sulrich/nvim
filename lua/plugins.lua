@@ -86,6 +86,7 @@ return require('packer').startup(function()
   }
 
   -- Post-install/update hook with neovim command
+  -- updates treesitter parsers with packer automatically
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
   -- use {

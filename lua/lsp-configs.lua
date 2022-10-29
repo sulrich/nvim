@@ -2,11 +2,13 @@
 require'lspconfig'.pyright.setup{}
 require'lspconfig'.gopls.setup{}
 
+
 -- null-ls is used for non-LSP sources like linters, etc.
 local null_ls = require("null-ls")
 local null_sources = {
   null_ls.builtins.diagnostics.vale,
   null_ls.builtins.code_actions.gitsigns,
+  null_ls.builtins.formatting.isort,
   null_ls.builtins.formatting.black,
   null_ls.builtins.code_actions.shellcheck,
   null_ls.builtins.diagnostics.pylint,
@@ -90,7 +92,7 @@ servers = {
    'gopls',
    'pyright'
 }
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 for _, server in ipairs(servers) do
   lsp[server].setup( { on_attach=on_attach, capabilities = capabilities } )
 end

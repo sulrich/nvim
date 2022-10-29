@@ -6,25 +6,25 @@ return require('packer').startup(function()
   -- local plugins can be included
 
   -- classic vim plugins
-  use 'nathanalderson/yang.vim'
-  use 'shaunsingh/nord.nvim'
-  use 'tpope/vim-surround'
-  use 'tpope/vim-fugitive'
+  use 'SirVer/ultisnips'
+  use 'bfredl/nvim-miniyank'
+  use 'dhruvasagar/vim-table-mode'
+  use 'editorconfig/editorconfig-vim'
   use 'fatih/vim-go'
   use 'godlygeek/tabular'
   use 'hkupty/iron.nvim'  -- repl
-  use 'editorconfig/editorconfig-vim'
-  use 'rizzatti/dash.vim'
-  use 'SirVer/ultisnips'
   use 'honza/vim-snippets'
-  use 'tpope/vim-commentary'
-  use 'bfredl/nvim-miniyank'
-  use 'svermeulen/vimpeccable'  -- used for keybindings
-  use 'shumphrey/fugitive-gitlab.vim'
-  use 'dhruvasagar/vim-table-mode'
-  use 'mzlogin/vim-markdown-toc'
-  use 'tpope/vim-rhubarb'       -- open associated github URL
   use 'junegunn/vim-peekaboo'
+  use 'mzlogin/vim-markdown-toc'
+  use 'nathanalderson/yang.vim'
+  use 'rizzatti/dash.vim'
+  use 'shaunsingh/nord.nvim'
+  use 'shumphrey/fugitive-gitlab.vim'
+  use 'svermeulen/vimpeccable'  -- used for keybindings
+  use 'tpope/vim-commentary'
+  use 'tpope/vim-fugitive'
+  use 'tpope/vim-rhubarb'       -- open associated github URL
+  use 'tpope/vim-surround'
 
   use {
     'mattn/gist-vim',
@@ -60,7 +60,7 @@ return require('packer').startup(function()
   }
 
   -- easy language server protocol installation
-  use 'neovim/nvim-lspconfig'
+  use { 'neovim/nvim-lspconfig' }
   use { 'jose-elias-alvarez/null-ls.nvim' }
 
   use {

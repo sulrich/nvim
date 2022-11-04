@@ -3,10 +3,11 @@
 -- all the pretty lights
 -- vim.cmd("colorscheme solarized8")
 vim.cmd([[colorscheme nord]])
+vim.g.nord_contrast = true 
+vim.g.nord_borders = true 
 vim.g.nord_italic = false 
--- vim.g.nord_disable_background = true
+vim.g.nord_disable_background = true
 require('nord').set()
-
 
 -- lualine configuration
 require('lualine').setup({
@@ -20,19 +21,44 @@ require('lualine').setup({
 -- folding plugin setup 
 -- ref: https://github.com/kevinhwang91/nvim-ufo#minimal-configuration
 -- tell the sever the capability of foldingRange
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.foldingRange = {
-    dynamicRegistration = false,
-    lineFoldingOnly = true
+
+local ftMap = {
+    vim = 'indent',
+    python = {'lsp', 'indent'},
+    git = ''
 }
-local language_servers = {} -- like {'gopls', 'clangd'}
-for _, ls in ipairs(language_servers) do
-    require('lspconfig')[ls].setup({
-        capabilities = capabilities,
-        other_fields = ...
-    })
-end
-require('ufo').setup()
+require('ufo').setup({
+    open_fold_hl_timeout = 150,
+    close_fold_kinds = {'imports', 'comment'},
+    preview = {
+        win_config = {
+            border = {'', '─', '', '', '', '─', '', ''},
+            winhighlight = 'Normal:Folded',
+            winblend = 0
+        },
+        mappings = {
+            scrollU = '<C-u>',
+            scrollD = '<C-d>'
+        }
+    },
+    provider_selector = function(bufnr, filetype, buftype)
+        -- if you prefer treesitter provider rather than lsp,
+        -- return ftMap[filetype] or {'treesitter', 'indent'}
+        return ftMap[filetype]
+
+        -- refer to ./doc/example.lua for detail
+    end
+})
+vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+vim.keymap.set('n', 'zr', require('ufo').openFoldsExceptKinds)
+vim.keymap.set('n', 'zm', require('ufo').closeFoldsWith) -- closeAllFolds == closeFoldsWith(0)
+vim.keymap.set('n', 'K', function()
+    local winid = require('ufo').peekFoldedLinesUnderCursor()
+    if not winid then
+        vim.lsp.buf.hover()
+    end
+end)
 
 
 -- =================================================================

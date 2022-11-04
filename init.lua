@@ -8,9 +8,9 @@ TMPDIR = os.getenv("TMPDIR")
  end
  
 require('plugins')
-require('keybindings')
 require('lsp-configs')
 require('misc')
+require('keybindings')
 
 vim.o.encoding = "utf-8" -- self-explanatory
 vim.o.textwidth = 80     -- where to wrap
@@ -36,26 +36,11 @@ vim.o.showcmd = true  -- show selection info
 vim.o.termguicolors = true
 -- vim.o.background = "dark" 
 
--- folding config start: using nvim-ufo
-vim.o.foldcolumn = "0"      -- 2 lines of column for fold showing, always
+vim.o.foldcolumn = "3"      -- 2 lines of column for fold showing, always
 vim.o.foldlevel = 99        -- nvim.ufo needs a large value
 vim.o.foldlevelstart = 99   -- 
 vim.o.foldenable = true
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.foldingRange = {
-    dynamicRegistration = false,
-    lineFoldingOnly = true
-}
-local language_servers = {} -- like {'gopls', 'clangd'}
-for _, ls in ipairs(language_servers) do
-    require('lspconfig')[ls].setup({
-        capabilities = capabilities,
-        other_fields = ...
-    })
-end
-require('ufo').setup()
--- folding config end
+vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
 vim.o.wildmode = "longest:full"
 vim.o.wildignore = "*.o,*~,.lo" -- ignore object files

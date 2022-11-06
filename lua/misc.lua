@@ -21,10 +21,17 @@ require('lualine').setup({
 -- folding plugin setup 
 -- ref: https://github.com/kevinhwang91/nvim-ufo#minimal-configuration
 -- tell the sever the capability of foldingRange
+vim.o.foldcolumn = "5"      -- 2 lines of column for fold showing, always
+vim.o.foldlevel = 99        -- nvim.ufo needs a large value
+vim.o.foldlevelstart = 99   -- 
+vim.o.foldenable = true
+vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+
 
 local ftMap = {
     vim = 'indent',
-    python = {'lsp', 'indent'},
+    python = {'treesitter', 'indent'},
+    markdown = {'treesitter', 'indent'},
     git = ''
 }
 require('ufo').setup({

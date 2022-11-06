@@ -36,12 +36,6 @@ vim.o.showcmd = true  -- show selection info
 vim.o.termguicolors = true
 -- vim.o.background = "dark" 
 
-vim.o.foldcolumn = "3"      -- 2 lines of column for fold showing, always
-vim.o.foldlevel = 99        -- nvim.ufo needs a large value
-vim.o.foldlevelstart = 99   -- 
-vim.o.foldenable = true
-vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-
 vim.o.wildmode = "longest:full"
 vim.o.wildignore = "*.o,*~,.lo" -- ignore object files
 vim.o.wildmenu = true  -- menu has tab completion

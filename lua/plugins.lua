@@ -18,7 +18,6 @@ return require('packer').startup(function()
   use 'mzlogin/vim-markdown-toc'
   use 'nathanalderson/yang.vim'
   use 'rizzatti/dash.vim'
-  use 'shaunsingh/nord.nvim'
   use 'shumphrey/fugitive-gitlab.vim'
   use 'svermeulen/vimpeccable'  -- used for keybindings
   use 'tpope/vim-commentary'
@@ -56,7 +55,9 @@ return require('packer').startup(function()
     requires = {
       'nvim-lua/plenary.nvim'
     },
-    config = function() require('gitsigns').setup() end
+    config = function() 
+      require('gitsigns').setup() 
+    end
   }
 
   -- easy language server protocol installation
@@ -84,6 +85,11 @@ return require('packer').startup(function()
     'kevinhwang91/nvim-ufo', 
     requires = 'kevinhwang91/promise-async'
   }
+
+  use({
+    "shaunsingh/nord.nvim", -- colorscheme
+    -- commit = "78f5f001709b5b321a35dcdc44549ef93185e024",
+  })
 
   -- Post-install/update hook with neovim command
   -- updates treesitter parsers with packer automatically

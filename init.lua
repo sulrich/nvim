@@ -81,7 +81,7 @@ vim.g.vim_json_conceal=0
 -- filetype: markdown 
 vim.g.markdown_folding = 1
 vim.g.markdown_enable_folding = 1
-vim.g.markdown_fenced_languages = {'html', 'python', 'bash=sh', 'shell=sh'}
+vim.g.markdown_fenced_languages = {'html', 'python', 'javascript', 'bash=sh', 'shell=sh'}
 
 -- vim-markdown-toc elements
 vim.g.vmt_dont_insert_fence = 1
@@ -125,16 +125,6 @@ vim.cmd([[
 " editorconfig
 autocmd FileType gitcommit let b:EditorConfig_disable = 1
 
-" ALE configuration
-" ----------------------------------------------------------------------
-" https://github.com/dense-analysis/ale - see the FAQ
-" note, for the mac, i need to match on the expanded iCloud path.  this is
-" what's going on in the first dict entry here. 
-" let g:ale_pattern_options = {
-" \  '.*CloudDocs/notes/.*\.md$': {'ale_enabled': 0},
-" \  '.*\.notes/.*\.md$': {'ale_enabled': 0},
-" \}
-
 " personal abbreviations
 ab x70- ----------------------------------------------------------------------
 ab x70= ======================================================================
@@ -152,6 +142,7 @@ vim.cmd([[
 function! s:SetupGhostBuffer()
 if match(expand("%:a"), '\v/ghost-(partnerissue|gitlab|github|reddit).*-')
   set ft=markdown
+  set spell
 endif
 endfunction
 

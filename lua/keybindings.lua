@@ -27,6 +27,9 @@ vimp.nmap({'silent'}, '<leader>d', '<Plug>DashSearch')
 vimp.map('p', '<Plug>(miniyank-autoput)')
 vimp.map('P', '<Plug>(miniyank-autoPut)')
 
+-- search for the visual selection with //
+vimp.vnoremap({'silent'}, '//', [[y/\V<C-R>=escape(@",'/\')<CR><CR>]])
+
 -- telescope
 vimp.nnoremap('<leader>ff', function() require('telescope.builtin').find_files() end )
 vimp.nnoremap('<leader>fg', function() require('telescope.builtin').live_grep() end )

@@ -22,6 +22,7 @@ return require('packer').startup(function()
   use 'svermeulen/vimpeccable'  -- used for keybindings
   use 'tpope/vim-commentary'
   use 'tpope/vim-fugitive'
+  use 'rbong/vim-flog'
   use 'tpope/vim-rhubarb'       -- open associated github URL
   use 'tpope/vim-surround'
 

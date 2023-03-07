@@ -31,6 +31,11 @@ null_ls.setup({
     -- to "" in order to make sure that it isn't swallowed by the lsp.format() 
     vim.api.nvim_buf_set_option(bufnr, "formatexpr", "")
 
+    -- 20230307 (sulrich) - it might make sense to implement the following
+    -- workaround in the noted issue to be more selective about the setting of
+    -- the formatexpr.
+    -- https://github.com/jose-elias-alvarez/null-ls.nvim/issues/1131#issuecomment-1273843531
+
     -- the following is to address format on save behavior
     -- ref: https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Formatting-on-save
     -- you can reuse a shared lspconfig on_attach callback here

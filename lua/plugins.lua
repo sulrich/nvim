@@ -7,22 +7,19 @@ return require('packer').startup(function()
 
   -- classic vim plugins
   use 'SirVer/ultisnips'
-  use 'bfredl/nvim-miniyank'
   use 'dhruvasagar/vim-table-mode'
   use 'editorconfig/editorconfig-vim'
   use 'fatih/vim-go'
   use 'godlygeek/tabular'
-  use 'hkupty/iron.nvim'  -- repl
   use 'honza/vim-snippets'
   use 'junegunn/vim-peekaboo'
   use 'mzlogin/vim-markdown-toc'
   use 'nathanalderson/yang.vim'
+  use 'rbong/vim-flog'
   use 'rizzatti/dash.vim'
   use 'shumphrey/fugitive-gitlab.vim'
-  use 'svermeulen/vimpeccable'  -- used for keybindings
   use 'tpope/vim-commentary'
   use 'tpope/vim-fugitive'
-  use 'rbong/vim-flog'
   use 'tpope/vim-rhubarb'       -- open associated github URL
   use 'tpope/vim-surround'
 
@@ -35,6 +32,13 @@ return require('packer').startup(function()
 
   -- reasonable wiki/markdown editing
   use { 'raghur/vim-ghost', run = ":GhostInstall" } 
+
+  -- nvim / lua specific plugins below here
+  -- --------------------------------------------------------------
+  use 'bfredl/nvim-miniyank'
+  use 'svermeulen/vimpeccable'  -- used for keybindings
+  use 'axieax/urlview.nvim'     -- grabs all the URLs in a buffer, etc.
+  use 'hkupty/iron.nvim'  -- repl
 
   -- completion plugins
   use 'hrsh7th/cmp-nvim-lsp'

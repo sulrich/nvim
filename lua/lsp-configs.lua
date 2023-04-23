@@ -1,5 +1,4 @@
 -- python setup
-require'lspconfig'.pyright.setup{}
 require'lspconfig'.gopls.setup{}
 
 
@@ -8,15 +7,13 @@ local null_ls = require("null-ls")
 local null_sources = {
   -- diagnostics
   null_ls.builtins.diagnostics.vale,
-  null_ls.builtins.diagnostics.pylint,
-  null_ls.builtins.diagnostics.flake8,
   null_ls.builtins.diagnostics.yamllint,
   -- code 
   null_ls.builtins.code_actions.gitsigns,
   null_ls.builtins.code_actions.shellcheck,
   -- formatting
-  null_ls.builtins.formatting.isort,
   null_ls.builtins.formatting.black,
+  null_ls.builtins.formatting.ruff,
   -- null_ls.builtins.completion.spell
 }
 
@@ -97,13 +94,25 @@ cmp.setup.cmdline(':', {
   })
 })
 
+-- See: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#ruff_lsp
+-- For the default config, along with instructions on how to customize the settings
+require('lspconfig').ruff_lsp.setup {
+  on_attach = on_attach,
+  init_options = {
+    settings = {
+      -- Any extra CLI arguments for `ruff` go here.
+      args = {},
+    }
+  }
+}
+
+
 -- setup lspconfig
 -- TODO(sulrich): it kind of feels like i should merge this with the folding
 -- requirements in init.lua
 local lsp = require('lspconfig')
 servers = {
    'gopls',
-   'pyright'
 }
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 for _, server in ipairs(servers) do

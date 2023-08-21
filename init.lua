@@ -54,10 +54,10 @@ vim.o.splitright = true
 
 -- search settings
 -- ---------------------------------------------------------------------------
-vim.o.incsearch = true --  incremental search
-vim.o.ignorecase = true --  search ignoring case
-vim.o.smartcase = true --  search w/a capital is case-sensitive
-vim.o.hlsearch = true --  highlight the search
+vim.o.incsearch = true  -- incremental search
+vim.o.ignorecase = true -- search ignoring case
+vim.o.smartcase = true  -- search w/a capital is case-sensitive
+vim.o.hlsearch = true   -- highlight the search
 
 -- misc. vim support files and settings. swap, backup, etc.
 vim.o.swapfile = true
@@ -86,6 +86,9 @@ vim.g.markdown_fenced_languages = {'html', 'python', 'javascript', 'bash=sh', 's
 -- vim-markdown-toc elements
 vim.g.vmt_dont_insert_fence = 1
 vim.g.vmt_list_item_char = "-"
+
+-- vim python provider elements
+vim.g.python3_host_prog = HOME .. "/.pyenv/shims/python3"
 
 -- plugin settings below
 -- --------------------------------------------------------------------------

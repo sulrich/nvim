@@ -44,3 +44,7 @@ vimp.nnoremap({'silent'}, "<leader>xd", "<cmd>Trouble document_diagnostics<cr>")
 vimp.nnoremap({'silent'}, "<leader>xl", "<cmd>Trouble loclist<cr>")
 vimp.nnoremap({'silent'}, "<leader>xq", "<cmd>Trouble quickfix<cr>")
 vimp.nnoremap({'silent'}, "gR", "<cmd>Trouble lsp_references<cr>")
+
+-- gitsigns bindings
+vimp.nnoremap({'silent'}, "<leader>hs", ':Gitsigns stage_hunk<CR>')
+vimp.vnoremap({'silent'}, "<leader>hs", ':Gitsigns stage_hunk<CR>')

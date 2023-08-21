@@ -8,6 +8,7 @@ local null_sources = {
   -- diagnostics
   null_ls.builtins.diagnostics.vale,
   null_ls.builtins.diagnostics.yamllint,
+  null_ls.builtins.diagnostics.markdownlint,
   -- code 
   null_ls.builtins.code_actions.gitsigns,
   null_ls.builtins.code_actions.shellcheck,

@@ -38,7 +38,7 @@ return require('packer').startup(function()
   use 'bfredl/nvim-miniyank'
   use 'svermeulen/vimpeccable'  -- used for keybindings
   use 'axieax/urlview.nvim'     -- grabs all the URLs in a buffer, etc.
-  use 'hkupty/iron.nvim'  -- repl
+  use 'Vigemus/iron.nvim'  -- repl
 
   -- completion plugins
   use 'hrsh7th/cmp-nvim-lsp'

@@ -6,7 +6,7 @@ TMPDIR = os.getenv("TMPDIR")
  if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
    packer_bootstrap = vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
  end
- 
+
 require('plugins')
 require('lsp-configs')
 require('misc')
@@ -34,7 +34,7 @@ vim.o.showmode = true -- show the mode in the status line
 vim.o.showcmd = true  -- show selection info
 
 vim.o.termguicolors = true
--- vim.o.background = "dark" 
+vim.g.background = "auto" 
 
 vim.o.wildmode = "longest:full"
 vim.o.wildignore = "*.o,*~,.lo" -- ignore object files
@@ -121,6 +121,15 @@ vim.o.diffopt = "filler,iwhite"     -- ignore all whitespace and sync
 vim.g.table_mode_corner='|'
 vim.g.fugitive_gitlab_domains = {'https://gitlab.aristanetworks.com'}
 
+-- settings for neovide
+if vim.g.neovide then
+  vim.o.guifont = "JetBrainsMono Nerd Font Mono:h12"
+  vim.g.neovide_cursor_vfx_mode = ""
+  vim.g.neovide_cursor_animation_length = 0
+  -- vim.g.neovide_transparency = 0
+end
+
+ 
 -- start: imported vimrc
 vim.cmd([[
 " plugin config/remappings below
@@ -158,7 +167,8 @@ augroup END
 if vim.fn.has("gui_running") == 1 then
   -- only turn on ghost by default in a gui
   vim.g.ghost_autostart = 1
-  vim.g.ghost_darwin_app = 'VimR'
+  -- vim.g.ghost_darwin_app = 'VimR'
+  vim.g.ghost_darwin_app = 'Neovide'
 else
   vim.g.loaded_ghost = 0
 end

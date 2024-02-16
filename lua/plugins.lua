@@ -23,13 +23,6 @@ return require('packer').startup(function()
   use 'tpope/vim-rhubarb'       -- open associated github URL
   use 'tpope/vim-surround'
 
-  use {
-    'mattn/gist-vim',
-    requires = {
-      'mattn/webapi-vim'
-    },
-  }
-
   -- reasonable wiki/markdown editing
   use { 'raghur/vim-ghost', run = ":GhostInstall" } 
 
@@ -66,8 +59,23 @@ return require('packer').startup(function()
   }
 
   -- easy language server protocol installation
-  use { 'neovim/nvim-lspconfig' }
-  use { 'jose-elias-alvarez/null-ls.nvim' }
+  use {
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
+  }
+
+  use { 'mfussenegger/nvim-lint' }
+
+  -- uses the gh tool for gists.  
+  use {
+    "rawnly/gist.nvim",
+    config = function() require("gist").setup() end,
+    -- `GistsList` opens the selected gif in a terminal buffer, this plugin uses
+    -- neovim remote rpc functionality to open the gist in an actual buffer and
+    -- not have buffer inception
+    requires = { "samjwill/nvim-unception", setup = function()
+      vim.g.unception_block_while_host_edits = true end } }
 
   use {
     "folke/trouble.nvim",

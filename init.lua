@@ -167,8 +167,7 @@ augroup END
 if vim.fn.has("gui_running") == 1 then
   -- only turn on ghost by default in a gui
   vim.g.ghost_autostart = 1
-  -- vim.g.ghost_darwin_app = 'VimR'
-  vim.g.ghost_darwin_app = 'Neovide'
+  vim.g.ghost_darwin_app = 'VimR'
 else
   vim.g.loaded_ghost = 0
 end

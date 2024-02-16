@@ -1,54 +1,30 @@
--- python setup
+require("mason").setup()
+require("mason-lspconfig").setup()
+
+require('lint').linters_by_ft = {
+  markdown = {'vale', 'markdownlint',}
+}
+
+vim.api.nvim_create_autocmd({ "bufWritePost" }, {
+  callback = function()
+    require("lint").try_lint()
+  end,
+})
+
+-- go setup
 require'lspconfig'.gopls.setup{}
 
 
--- null-ls is used for non-LSP sources like linters, etc.
-local null_ls = require("null-ls")
-local null_sources = {
-  -- diagnostics
-  null_ls.builtins.diagnostics.vale,
-  null_ls.builtins.diagnostics.yamllint,
-  null_ls.builtins.diagnostics.markdownlint,
-  -- code 
-  null_ls.builtins.code_actions.gitsigns,
-  null_ls.builtins.code_actions.shellcheck,
-  -- formatting
-  null_ls.builtins.formatting.black,
-  null_ls.builtins.formatting.ruff,
-  -- null_ls.builtins.completion.spell
-}
+-- python misc.
 
-
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-null_ls.setup({ 
-  sources = null_sources,
-  -- some elements need to be overridden on buffer attachment. 
-  on_attach = function(client, bufnr) 
-    -- https://github.com/jose-elias-alvarez/null-ls.nvim/issues/1131
-    -- this seems to have changed in nvim 0.8, we'll need to set the formatexpr
-    -- to "" in order to make sure that it isn't swallowed by the lsp.format() 
-    vim.api.nvim_buf_set_option(bufnr, "formatexpr", "")
-
-    -- 20230307 (sulrich) - it might make sense to implement the following
-    -- workaround in the noted issue to be more selective about the setting of
-    -- the formatexpr.
-    -- https://github.com/jose-elias-alvarez/null-ls.nvim/issues/1131#issuecomment-1273843531
-
-    -- the following is to address format on save behavior
-    -- ref: https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Formatting-on-save
-    -- you can reuse a shared lspconfig on_attach callback here
-    if client.supports_method("textDocument/formatting") then
-      vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        group = augroup,
-        buffer = bufnr,
-        callback = function()
-          vim.lsp.buf.format({ bufnr = bufnr })
-        end,  -- end callback
-      })
-    end  -- end textDocument/formatting check
-  end,  -- end on_attach function
-}) 
+-- python: black format on save
+-- 20240105 disabled to clean up a couple of PRs
+-- local group = vim.api.nvim_create_augroup("Black", { clear = true })
+-- vim.api.nvim_create_autocmd("bufWritePost", {
+-- 	pattern = "*.py",
+-- 	command = "silent !black %",
+-- 	group = group,
+-- })
 
 -- setup nvim-cmp - from the installation docs
 local cmp = require'cmp'
@@ -97,26 +73,32 @@ cmp.setup.cmdline(':', {
 
 -- See: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#ruff_lsp
 -- For the default config, along with instructions on how to customize the settings
-require('lspconfig').ruff_lsp.setup {
+require('lspconfig').ruff_lsp.setup{
   on_attach = on_attach,
   init_options = {
     settings = {
-      -- Any extra CLI arguments for `ruff` go here.
+      -- any extra CLI arguments for `ruff` go here.
       args = {},
     }
   }
 }
-
 
 -- setup lspconfig
 -- TODO(sulrich): it kind of feels like i should merge this with the folding
 -- requirements in init.lua
 local lsp = require('lspconfig')
 servers = {
-   'gopls',
+   'gopls', 'pyright'
 }
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 for _, server in ipairs(servers) do
   lsp[server].setup( { on_attach=on_attach, capabilities = capabilities } )
 end
 
+ lsp.pyright.setup({
+      before_init = function(_, config)
+        config.settings.python.pythonPath = get_python_path(config.root_dir)
+      end,
+      -- on_attach = on_attach,
+      -- capabilities = capabilities,
+    })

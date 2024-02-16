@@ -49,12 +49,8 @@ vimp.nnoremap({'silent'}, "gR", "<cmd>Trouble lsp_references<cr>")
 vimp.nnoremap({'silent'}, "<leader>hs", ':Gitsigns stage_hunk<CR>')
 vimp.vnoremap({'silent'}, "<leader>hs", ':Gitsigns stage_hunk<CR>')
 
--- the following is to enable classic cut and paste in neovide
-if vim.g.neovide then
-  vim.keymap.set('n', '<M-s>', ':w<CR>') -- save
-  vim.keymap.set('v', '<M-c>', '"+y') -- copy
-  vim.keymap.set('n', '<M-v>', '"+P') -- paste normal mode
-  vim.keymap.set('v', '<M-v>', '"+P') -- paste visual mode
-  vim.keymap.set('c', '<M-v>', '<C-R>+') -- paste command mode
-  vim.keymap.set('i', '<M-v>', '<ESC>l"+Pli') -- paste insert mode
-end
+-- allow clipboard copy paste in neovim
+vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>',  { noremap = true, silent = true})
+vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true})

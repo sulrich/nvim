@@ -68,6 +68,21 @@ vim.keymap.set('n', 'K', function()
     end
 end)
 
+-- https://github.com/Rawnly/gist.nvim - suggested config. 
+require("gist").setup({
+  -- private = false, -- All gists will be private, you won't be prompted again,
+  -- personally, i like the prompt.
+  clipboard = "+", -- The registry to use for copying the Gist URL
+  list = {
+    -- If there are multiple files in a gist you can scroll them,
+    -- with vim-like bindings n/p next previous
+    mappings = {
+      next_file = "<C-n>",
+      prev_file = "<C-p>"
+    }
+  }
+})
+
 
 -- =================================================================
 -- iron REPL config

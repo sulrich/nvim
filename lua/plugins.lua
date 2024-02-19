@@ -99,10 +99,12 @@ return require('packer').startup(function()
     requires = 'kevinhwang91/promise-async'
   }
 
-  use({
-    "shaunsingh/nord.nvim", -- colorscheme
-    -- commit = "78f5f001709b5b321a35dcdc44549ef93185e024",
-  })
+  -- use({
+  --   "shaunsingh/nord.nvim", -- colorscheme
+  --   -- commit = "78f5f001709b5b321a35dcdc44549ef93185e024",
+  -- })
+
+  use ('Tsuzat/NeoSolarized.nvim')
 
   -- Post-install/update hook with neovim command
   -- updates treesitter parsers with packer automatically

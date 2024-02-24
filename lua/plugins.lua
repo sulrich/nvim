@@ -60,12 +60,15 @@ return require('packer').startup(function()
 
   -- easy language server protocol installation
   use {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
+    -- "williamboman/mason.nvim",
+    -- "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
   }
-
+  -- linter integration
   use { 'mfussenegger/nvim-lint' }
+
+  -- formatter integratoin 
+  use{ 'stevearc/conform.nvim' }
 
   -- uses the gh tool for gists.  
   use {

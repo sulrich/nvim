@@ -1,8 +1,6 @@
-require("mason").setup()
-require("mason-lspconfig").setup()
-
 require('lint').linters_by_ft = {
-  markdown = {'vale', 'markdownlint',}
+  markdown = { 'vale', 'markdownlint' },
+  python = { 'ruff' }
 }
 
 vim.api.nvim_create_autocmd({ "bufWritePost" }, {
@@ -11,20 +9,31 @@ vim.api.nvim_create_autocmd({ "bufWritePost" }, {
   end,
 })
 
+-- conform provides formatting hooks
+require("conform").setup({
+    formatters_by_ft = {
+        python = {
+          -- to fix lint errors.
+          "ruff_fix",
+          -- to run the ruff formatter.
+          "ruff_format",
+        },
+    },
+})
+
+
 -- go setup
-require'lspconfig'.gopls.setup{}
+require('lspconfig').gopls.setup{}
 
 
+-- disable this when working on misc. packages.
 -- python misc.
-
--- python: black format on save
--- 20240105 disabled to clean up a couple of PRs
--- local group = vim.api.nvim_create_augroup("Black", { clear = true })
--- vim.api.nvim_create_autocmd("bufWritePost", {
--- 	pattern = "*.py",
--- 	command = "silent !black %",
--- 	group = group,
--- })
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.py",
+  callback = function(args)
+    require("conform").format({ bufnr = args.buf })
+  end,
+})
 
 -- setup nvim-cmp - from the installation docs
 local cmp = require'cmp'
@@ -71,6 +80,7 @@ cmp.setup.cmdline(':', {
   })
 })
 
+
 -- See: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#ruff_lsp
 -- For the default config, along with instructions on how to customize the settings
 require('lspconfig').ruff_lsp.setup{
@@ -83,22 +93,18 @@ require('lspconfig').ruff_lsp.setup{
   }
 }
 
--- setup lspconfig
--- TODO(sulrich): it kind of feels like i should merge this with the folding
--- requirements in init.lua
-local lsp = require('lspconfig')
-servers = {
-   'gopls', 'pyright'
+require('lspconfig').pyright.setup {
+  on_attach = on_attach,
+  settings = {
+    pyright = {
+      -- using ruff's import organizer
+      disableOrganizeImports = true,
+    },
+    python = {
+      analysis = {
+        -- ignore all files for analysis to exclusively use ruff for linting
+        ignore = { '*' },
+      },
+    },
+  },
 }
-local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
-for _, server in ipairs(servers) do
-  lsp[server].setup( { on_attach=on_attach, capabilities = capabilities } )
-end
-
- lsp.pyright.setup({
-      before_init = function(_, config)
-        config.settings.python.pythonPath = get_python_path(config.root_dir)
-      end,
-      -- on_attach = on_attach,
-      -- capabilities = capabilities,
-    })

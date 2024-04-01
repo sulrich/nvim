@@ -7,6 +7,15 @@ TMPDIR = os.getenv("TMPDIR")
    packer_bootstrap = vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
  end
 
+ -- disable netrw at the very start of your init.lua 
+ -- this is in the service of nvim-tree.lua (see lua/misc.lua)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+
+vim.o.termguicolors = true -- enable 24-bit color
+vim.g.background = "auto" 
+
 require('plugins')
 require('lsp-configs')
 require('misc')
@@ -33,8 +42,6 @@ vim.o.ruler = true    -- show line # info, etc.
 vim.o.showmode = true -- show the mode in the status line
 vim.o.showcmd = true  -- show selection info
 
-vim.o.termguicolors = true
-vim.g.background = "auto" 
 
 vim.o.wildmode = "longest:full"
 vim.o.wildignore = "*.o,*~,.lo" -- ignore object files

@@ -78,7 +78,16 @@ return require('packer').startup(function()
     -- neovim remote rpc functionality to open the gist in an actual buffer and
     -- not have buffer inception
     requires = { "samjwill/nvim-unception", setup = function()
-      vim.g.unception_block_while_host_edits = true end } }
+      vim.g.unception_block_while_host_edits = true end 
+    } 
+  }
+
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional
+    },
+  }
 
   use {
     "folke/trouble.nvim",
@@ -101,11 +110,6 @@ return require('packer').startup(function()
     'kevinhwang91/nvim-ufo', 
     requires = 'kevinhwang91/promise-async'
   }
-
-  -- use({
-  --   "shaunsingh/nord.nvim", -- colorscheme
-  --   -- commit = "78f5f001709b5b321a35dcdc44549ef93185e024",
-  -- })
 
   use ('Tsuzat/NeoSolarized.nvim')
 

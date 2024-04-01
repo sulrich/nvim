@@ -59,6 +59,25 @@ vim.o.foldlevelstart = 99   --
 vim.o.foldenable = true
 vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
+-- nvim-tree setup
+-- empty setup using defaults
+-- require("nvim-tree").setup()
+
+-- OR setup with some options
+require("nvim-tree").setup({
+  sort = {
+    sorter = "case_sensitive",
+  },
+  view = {
+    width = 30,
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
+})
 
 local ftMap = {
     vim = 'indent',
@@ -68,7 +87,7 @@ local ftMap = {
 }
 require('ufo').setup({
     open_fold_hl_timeout = 150,
-    close_fold_kinds = {'imports', 'comment'},
+    close_fold_kinds_for_ft = {'imports', 'comment'},
     preview = {
         win_config = {
             border = {'', '─', '', '', '', '─', '', ''},

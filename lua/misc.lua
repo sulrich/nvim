@@ -133,6 +133,15 @@ require("gist").setup({
   }
 })
 
+-- vim-fugitive config
+-- https://vi.stackexchange.com/questions/38447/vim-fugitive-netrw-not-found-define-your-own-browse-to-use-gbrowse/43348#43348
+vim.api.nvim_create_user_command(
+  'Browse',
+  function (opts)
+    vim.fn.system { 'open', opts.fargs[1] }
+  end,
+  { nargs = 1 }
+)
 
 -- =================================================================
 -- iron REPL config

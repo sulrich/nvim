@@ -1,5 +1,5 @@
 require('lint').linters_by_ft = {
-  markdown = { 'vale', 'markdownlint' },
+  markdown = { 'markdownlint', 'vale' },
   python = { 'ruff' }
 }
 
@@ -12,12 +12,13 @@ vim.api.nvim_create_autocmd({ "bufWritePost" }, {
 -- conform provides formatting hooks
 require("conform").setup({
     formatters_by_ft = {
-        python = {
-          -- to fix lint errors.
-          "ruff_fix",
-          -- to run the ruff formatter.
-          "ruff_format",
-        },
+      python = function(bufnr)
+        if require("conform").get_formatter_info("ruff_format", bufnr).available then
+          return { "ruff_format" }
+        else
+          return { "isort", "black" }
+        end
+      end,
     },
 })
 

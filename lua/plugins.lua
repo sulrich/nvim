@@ -29,7 +29,6 @@ return require('packer').startup(function()
   -- nvim / lua specific plugins below here
   -- --------------------------------------------------------------
   use 'bfredl/nvim-miniyank'
-  use 'svermeulen/vimpeccable'  -- used for keybindings
   use 'axieax/urlview.nvim'     -- grabs all the URLs in a buffer, etc.
   use 'Vigemus/iron.nvim'  -- repl
 

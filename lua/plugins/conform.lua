@@ -13,6 +13,7 @@ return {
       desc = "Format buffer",
     },
   },
+
   -- This will provide type hinting with LuaLS
   ---@module "conform"
   ---@type conform.setupOpts
@@ -42,8 +43,19 @@ return {
       },
     },
   },
+
   init = function()
     -- If you want the formatexpr, here is the place to set it
     vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+
+    -- disable this when working on misc. packages.
+    -- python misc.
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      pattern = "*.py",
+      callback = function(args)
+        require("conform").format({ bufnr = args.buf })
+      end,
+    })
+
   end,
 }

@@ -56,16 +56,45 @@ return {
     },
     dependencies = { 'nvim-lua/plenary.nvim' }
   },
-  { 'SirVer/ultisnips', lazy = true },
-  { 'dhruvasagar/vim-table-mode', lazy = true },
-  { 'editorconfig/editorconfig-vim', lazy = true },
+  {
+    'dhruvasagar/vim-table-mode',
+    lazy = true,
+    init = function()
+      -- for vim-table-mode use markdown stule corners
+      vim.g.table_mode_corner='|'
+    end,
+  },
+  {
+    'editorconfig/editorconfig-vim',
+    lazy = true,
+    init = function()
+      vim.g.EditorConfig_exclude_patterns = {'fugitive://.*', 'scp://.*'}
+    end,
+  },
+
   { 'fatih/vim-go', lazy = true },
   { 'godlygeek/tabular', lazy = true },
-  { 'honza/vim-snippets', lazy = true },
   { 'junegunn/vim-peekaboo', lazy = true },
-  { 'mzlogin/vim-markdown-toc', lazy = true },
-  { 'nathanalderson/yang.vim', lazy = true },
-  { 'rbong/vim-flog', lazy = true },
+  {
+    'mzlogin/vim-markdown-toc',
+    ft = "markdown",
+    lazy = true,
+    init = function()
+      vim.g.vmt_dont_insert_fence = 1
+      vim.g.vmt_list_item_char = "-"
+    end,
+  },
+  {
+    'nathanalderson/yang.vim',
+    ft = "yang",
+    lazy = true
+  },
+  {
+    "rbong/vim-flog",
+    lazy = true,
+    cmd = { "Flog", "Flogsplit", "Floggit" },
+    dependencies = { "tpope/vim-fugitive", },
+  },
   { 'rizzatti/dash.vim',
      lazy = true,
      keys = {
@@ -74,9 +103,22 @@ return {
   },
 
   { 'tpope/vim-commentary', lazy = true },
-  { 'tpope/vim-fugitive', lazy = true },
-  { 'tpope/vim-rhubarb', lazy = true },
-  { 'tpope/vim-surround', lazy = true },
+  {
+    'tpope/vim-rhubarb',
+    lazy = true,
+    cmd = "GBrowse",
+    dependencies = { "tpope/vim-fugitive", },
+  },
+  {
+    'tpope/vim-fugitive',
+    lazy = true,
+    event = 'BufWinEnter',
+  },
+  {
+    'tpope/vim-surround',
+    lazy = true,
+    event = 'BufWinEnter',
+  },
   { 'bfredl/nvim-miniyank', lazy = false }, -- addresses some visual block pasting oddities
   { 'axieax/urlview.nvim', lazy = true }, -- enables urls within a buffer
 
@@ -109,9 +151,7 @@ return {
   {
     'lewis6991/gitsigns.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function()
-      require('gitsigns').setup()
-    end
+    opts = {}
   }
 
 

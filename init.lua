@@ -21,7 +21,6 @@ require('config.lazy')
 vim.o.termguicolors = true -- enable 24-bit color
 vim.g.background = "auto" 
 
--- require('plugins')
 -- require('lsp-configs')
 -- require('misc')
 require('keybindings')
@@ -30,7 +29,6 @@ vim.o.encoding = "utf-8" -- self-explanatory
 vim.o.textwidth = 80     -- where to wrap
 vim.o.shortmess = "at"   -- abbreviate and truncate file messages
 vim.o.showmatch = true   -- briefly flash to the matching element
-
 vim.o.visualbell = true  -- disable the beep
 vim.o.autoread = true    -- if a file changes externally, update buffer
 
@@ -85,15 +83,14 @@ vim.o.undodir = HOME .. "/.config/nvim/undo//"
 
 -- mode specific settings below
 -- ---------------------------------------------------------------------------
-
 -- filetype: json 
 -- disable quote concealing in json files
 vim.g.vim_json_conceal=0
 
 -- filetype: markdown 
--- vim.g.markdown_folding = 1
--- vim.g.markdown_enable_folding = 1
--- vim.g.markdown_fenced_languages = {'html', 'python', 'javascript', 'bash=sh', 'shell=sh'}
+vim.g.markdown_folding = 1
+vim.g.markdown_enable_folding = 1
+vim.g.markdown_fenced_languages = {'html', 'python', 'javascript', 'bash=sh', 'shell=sh'}
 
 -- vim-markdown-toc elements
 -- vim.g.vmt_dont_insert_fence = 1
@@ -102,18 +99,6 @@ vim.g.vim_json_conceal=0
 -- vim python provider elements
 vim.g.python3_host_prog = HOME .. "/.pyenv/shims/python3"
 
--- plugin settings below
--- --------------------------------------------------------------------------
--- editorconfig
--- vim.g.EditorConfig_exclude_patterns = {'fugitive://.*', 'scp://.*'}
---
--- snippets
--- vim.g.UltiSnipsExpandTrigger='<tab>'
--- -- shortcut to go to next position
--- vim.g.UltiSnipsJumpForwardTrigger='<C-j>'
--- -- shortcut to go to previous position
--- vim.g.UltiSnipsJumpBackwardTrigger='<C-k>'
--- vim.g.UltiSnipsSnippetDirectories = {"UltiSnips", "custom-snippets"}
 
 -- spell check configuration
 vim.o.spelllang = "en_us"
@@ -125,12 +110,8 @@ vim.cmd([[
 " set spellfile = "~/iCloud/src/configs/aspell/aspell.en.pws"
 ]])
 
-
 -- diff settings
 vim.o.diffopt = "filler,iwhite"     -- ignore all whitespace and sync
-
--- for vim-table-mode use markdown stule corners
--- vim.g.table_mode_corner='|'
 
 -- start: imported vimrc
 vim.cmd([[

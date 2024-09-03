@@ -1,31 +1,26 @@
 HOME = os.getenv("HOME")
 TMPDIR = os.getenv("TMPDIR")
 
--- bootstrap packer if we're not installed
- local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
- if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-   packer_bootstrap = vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
- end
-
- -- disable netrw at the very start of your init.lua 
- -- this is in the service of nvim-tree.lua (see lua/misc.lua)
+-- disable netrw at the very start of your init.lua 
+-- this is in the service of nvim-tree.lua (see lua/plugings/net-tree.lua)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- leader should be set prior to invoking the lazy.vim bootstrap process
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
+require('config.lazy') -- get plusins loaded via lazy.nvim
+require('keybindings') -- load non-plugin-specific keybindings
+
+-- interface elements
 vim.o.termguicolors = true -- enable 24-bit color
 vim.g.background = "auto" 
-
-require('plugins')
-require('lsp-configs')
-require('misc')
-require('keybindings')
 
 vim.o.encoding = "utf-8" -- self-explanatory
 vim.o.textwidth = 80     -- where to wrap
 vim.o.shortmess = "at"   -- abbreviate and truncate file messages
 vim.o.showmatch = true   -- briefly flash to the matching element
-
 vim.o.visualbell = true  -- disable the beep
 vim.o.autoread = true    -- if a file changes externally, update buffer
 
@@ -80,7 +75,6 @@ vim.o.undodir = HOME .. "/.config/nvim/undo//"
 
 -- mode specific settings below
 -- ---------------------------------------------------------------------------
-
 -- filetype: json 
 -- disable quote concealing in json files
 vim.g.vim_json_conceal=0
@@ -91,24 +85,11 @@ vim.g.markdown_enable_folding = 1
 vim.g.markdown_fenced_languages = {'html', 'python', 'javascript', 'bash=sh', 'shell=sh'}
 
 -- vim-markdown-toc elements
-vim.g.vmt_dont_insert_fence = 1
-vim.g.vmt_list_item_char = "-"
+-- vim.g.vmt_dont_insert_fence = 1
+-- vim.g.vmt_list_item_char = "-"
 
 -- vim python provider elements
 vim.g.python3_host_prog = HOME .. "/.pyenv/shims/python3"
-
--- plugin settings below
--- --------------------------------------------------------------------------
--- editorconfig
-vim.g.EditorConfig_exclude_patterns = {'fugitive://.*', 'scp://.*'}
-
--- snippets
-vim.g.UltiSnipsExpandTrigger='<tab>'
--- shortcut to go to next position
-vim.g.UltiSnipsJumpForwardTrigger='<C-j>'
--- shortcut to go to previous position
-vim.g.UltiSnipsJumpBackwardTrigger='<C-k>'
-vim.g.UltiSnipsSnippetDirectories = {"UltiSnips", "custom-snippets"}
 
 -- spell check configuration
 vim.o.spelllang = "en_us"
@@ -120,23 +101,11 @@ vim.cmd([[
 " set spellfile = "~/iCloud/src/configs/aspell/aspell.en.pws"
 ]])
 
-
 -- diff settings
 vim.o.diffopt = "filler,iwhite"     -- ignore all whitespace and sync
 
--- for vim-table-mode use markdown stule corners
-vim.g.table_mode_corner='|'
-vim.g.fugitive_gitlab_domains = {'https://gitlab.aristanetworks.com'}
+vim.g.EditorConfig_exclude_patterns = {'fugitive://.*', 'scp://.*', 'gitcommit'}
 
--- settings for neovide
-if vim.g.neovide then
-  vim.o.guifont = "JetBrainsMono Nerd Font Mono:h12"
-  vim.g.neovide_cursor_vfx_mode = ""
-  vim.g.neovide_cursor_animation_length = 0
-  -- vim.g.neovide_transparency = 0
-end
-
- 
 -- start: imported vimrc
 vim.cmd([[
 " plugin config/remappings below
@@ -144,37 +113,4 @@ vim.cmd([[
 " editorconfig
 autocmd FileType gitcommit let b:EditorConfig_disable = 1
 
-" personal abbreviations
-ab x70- ----------------------------------------------------------------------
-ab x70= ======================================================================
-
-" send stuff to pb - internal pb destination
-command! -range=% Pb :<line1>,<line2>w !curl -F c=@- pb
-
-" import any relevant API keys, etc. 
-source ~/.credentials/vim-api-keys
 ]])
--- end: imported vimrc
-
--- vim-ghost setup
-vim.cmd([[
-function! s:SetupGhostBuffer()
-if match(expand("%:a"), '\v/ghost-(partnerissue|gitlab|github|reddit).*-')
-  set ft=markdown
-  set spell
-endif
-endfunction
-
-augroup vim-ghost
-  au!
-  au User vim-ghost#connected call s:SetupGhostBuffer()
-augroup END
-]])
-
-if vim.fn.has("gui_running") == 1 then
-  -- only turn on ghost by default in a gui
-  vim.g.ghost_autostart = 1
-  vim.g.ghost_darwin_app = 'VimR'
-else
-  vim.g.loaded_ghost = 0
-end

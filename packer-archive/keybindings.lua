@@ -20,8 +20,33 @@ vim.keymap.set('n', '<leader><space>', ':nohlsearch<cr>', {noremap = true, silen
 -- open markdown files in marked2
 vim.keymap.set('n', '<leader>m', [[:!open -a 'Marked 2.app' "%:p"<cr>]], {noremap = true, silent = true})
 
+-- dash documentation - search for what the cursor is over
+vim.keymap.set('n', '<leader>d', '<Plug>DashSearch', {silent = true})
+
+vim.keymap.set('', 'p', '<Plug>(miniyank-autoput)', {silent = true})
+vim.keymap.set('', 'P', '<Plug>(miniyank-autoPut)', {silent = true})
+
 -- search for the visual selection with //
 vim.keymap.set('v', '//', [[y/\V<C-R>=escape(@",'/\')<CR><CR>]], {noremap = true, silent = true})
+
+-- telescope
+vim.keymap.set('n', '<leader>ff', function() require('telescope.builtin').find_files() end, {noremap = true})
+vim.keymap.set('n', '<leader>fg', function() require('telescope.builtin').live_grep() end, {noremap = true})
+vim.keymap.set('n', '<leader>fb', function() require('telescope.builtin').buffers() end, {noremap = true})
+vim.keymap.set('n', '<leader>fh', function() require('telescope.builtin').help_tags() end, {noremap = true})
+vim.keymap.set('n', '<leader>gf', function() require('telescope.builtin').git_files() end, {noremap = true})
+
+-- trouble bindings
+vim.keymap.set('n', '<leader>xx', '<cmd>Trouble<cr>', {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>xw', '<cmd>Trouble workspace_diagnostics<cr>', {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>xd', "<cmd>Trouble document_diagnostics<cr>", {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>xl', "<cmd>Trouble loclist<cr>", {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>xq', "<cmd>Trouble quickfix<cr>", {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>gR', "<cmd>Trouble lsp_references<cr>", {noremap = true, silent = true})
+
+-- -- gitsigns bindings
+vim.keymap.set('n', '<leader>hs', ':Gitsigns stage_hunk<CR>', {noremap = true, silent = true})
+vim.keymap.set('v', '<leader>hs', ':Gitsigns stage_hunk<CR>', {noremap = true, silent = true})
 
 -- allow clipboard copy paste in neovim
 vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>',  { noremap = true, silent = true})

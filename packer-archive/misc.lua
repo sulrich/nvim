@@ -10,45 +10,45 @@
 -- require('nord').set()
 
 
--- local ok_status, NeoSolarized = pcall(require, "NeoSolarized")
--- if not ok_status then
---   return
--- end
+local ok_status, NeoSolarized = pcall(require, "NeoSolarized")
+if not ok_status then
+  return
+end
+
+-- settings for NeoSolarized
+NeoSolarized.setup {
+  style = "dark", -- "dark" or "light"
+  transparent = false, -- true/false; Enable this to disable setting the background color
+  terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
+  enable_italics = false, -- Italics for different hightlight groups (eg. Statement, Condition, Comment, Include, etc.)
+  styles = {
+    -- Style to be applied to different syntax groups
+    comments = { italic = false },
+    keywords = { italic = false },
+    functions = { bold = true },
+    variables = {},
+    string = { italic = false },
+    underline = true, -- true/false; for global underline
+    undercurl = true, -- true/false; for global undercurl
+  },
+  -- add specific hightlight groups
+  -- on_highlights = function(highlights, colors) 
+  --    highlights.Include.fg = colors.red -- Using `red` foreground for Includes
+  -- end, 
+}
+
+-- lualine configuration
+require('lualine').setup({
+  options = {
+    -- theme = 'nord',
+    theme = 'NeoSolarized',
+    -- section_separators = '',
+    -- component_separators = '',
+  }
+})
 --
--- -- settings for NeoSolarized
--- NeoSolarized.setup {
---   style = "dark", -- "dark" or "light"
---   transparent = false, -- true/false; Enable this to disable setting the background color
---   terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
---   enable_italics = false, -- Italics for different hightlight groups (eg. Statement, Condition, Comment, Include, etc.)
---   styles = {
---     -- Style to be applied to different syntax groups
---     comments = { italic = false },
---     keywords = { italic = false },
---     functions = { bold = true },
---     variables = {},
---     string = { italic = false },
---     underline = true, -- true/false; for global underline
---     undercurl = true, -- true/false; for global undercurl
---   },
---   -- add specific hightlight groups
---   -- on_highlights = function(highlights, colors) 
---   --    highlights.Include.fg = colors.red -- Using `red` foreground for Includes
---   -- end, 
--- }
---
--- -- lualine configuration
--- require('lualine').setup({
---   options = {
---     -- theme = 'nord',
---     theme = 'NeoSolarized',
---     -- section_separators = '',
---     -- component_separators = '',
---   }
--- })
--- --
--- -- set colorscheme to NeoSolarized - needs to be done _after_ configuration
--- vim.cmd [[ colorscheme NeoSolarized ]]
+-- set colorscheme to NeoSolarized - needs to be done _after_ configuration
+vim.cmd [[ colorscheme NeoSolarized ]]
 
 -- folding plugin setup 
 -- ref: https://github.com/kevinhwang91/nvim-ufo#minimal-configuration
@@ -145,42 +145,42 @@ vim.api.nvim_create_user_command(
 
 -- =================================================================
 -- iron REPL config
--- local iron = require("iron.core")
---
--- iron.setup {
---   config = {
---     -- if iron should expose `<plug>(...)` mappings for the plugins
---     should_map_plug = false,
---     -- whether a repl should be discarded or not
---     scratch_repl = true,
---     -- your repl definitions come here
---     repl_definition = {
---       sh = {
---         command = {"zsh"}
---       }
---     },
---     repl_open_cmd = require('iron.view').bottom(20),
---     -- how the REPL window will be opened, the default is opening
---     -- a float window of height 40 at the bottom.
---   },
---   -- iron doesn't set keymaps by default anymore. set them here
---   keymaps = {
---     send_motion = "<space>sc",
---     visual_send = "<space>sc",
---     send_file = "<space>sf",
---     send_line = "<space>sl",
---     send_mark = "<space>sm",
---     mark_motion = "<space>mc",
---     mark_visual = "<space>mc",
---     remove_mark = "<space>md",
---     cr = "<space>s<cr>",
---     interrupt = "<space>s<space>",
---     exit = "<space>sq",
---     clear = "<space>cl",
---   },
---   -- if the highlight is on, you can change how it looks
---   -- for the available options, check nvim_set_hl
---   highlight = {
---     italic = false
---   }
--- }
+local iron = require("iron.core")
+
+iron.setup {
+  config = {
+    -- if iron should expose `<plug>(...)` mappings for the plugins
+    should_map_plug = false,
+    -- whether a repl should be discarded or not
+    scratch_repl = true,
+    -- your repl definitions come here
+    repl_definition = {
+      sh = {
+        command = {"zsh"}
+      }
+    },
+    repl_open_cmd = require('iron.view').bottom(20),
+    -- how the REPL window will be opened, the default is opening
+    -- a float window of height 40 at the bottom.
+  },
+  -- iron doesn't set keymaps by default anymore. set them here
+  keymaps = {
+    send_motion = "<space>sc",
+    visual_send = "<space>sc",
+    send_file = "<space>sf",
+    send_line = "<space>sl",
+    send_mark = "<space>sm",
+    mark_motion = "<space>mc",
+    mark_visual = "<space>mc",
+    remove_mark = "<space>md",
+    cr = "<space>s<cr>",
+    interrupt = "<space>s<space>",
+    exit = "<space>sq",
+    clear = "<space>cl",
+  },
+  -- if the highlight is on, you can change how it looks
+  -- for the available options, check nvim_set_hl
+  highlight = {
+    italic = false
+  }
+}

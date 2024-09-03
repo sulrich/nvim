@@ -56,6 +56,5 @@ return {
         require("conform").format({ bufnr = args.buf })
       end,
     })
-
   end,
 }

@@ -1,14 +1,8 @@
 HOME = os.getenv("HOME")
 TMPDIR = os.getenv("TMPDIR")
 
--- bootstrap packer if we're not installed
--- local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
--- if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
---   packer_bootstrap = vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
--- end
-
 -- disable netrw at the very start of your init.lua 
--- this is in the service of nvim-tree.lua (see lua/misc.lua)
+-- this is in the service of nvim-tree.lua (see lua/plugings/net-tree.lua)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
@@ -16,14 +10,12 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
-require('config.lazy')
+require('config.lazy') -- get plusins loaded via lazy.nvim
+require('keybindings') -- load non-plugin-specific keybindings
 
+-- interface elements
 vim.o.termguicolors = true -- enable 24-bit color
 vim.g.background = "auto" 
-
--- require('lsp-configs')
--- require('misc')
-require('keybindings')
 
 vim.o.encoding = "utf-8" -- self-explanatory
 vim.o.textwidth = 80     -- where to wrap
@@ -99,7 +91,6 @@ vim.g.markdown_fenced_languages = {'html', 'python', 'javascript', 'bash=sh', 's
 -- vim python provider elements
 vim.g.python3_host_prog = HOME .. "/.pyenv/shims/python3"
 
-
 -- spell check configuration
 vim.o.spelllang = "en_us"
 vim.o.spellcapcheck = ""       -- ignore capitalization
@@ -113,6 +104,8 @@ vim.cmd([[
 -- diff settings
 vim.o.diffopt = "filler,iwhite"     -- ignore all whitespace and sync
 
+vim.g.EditorConfig_exclude_patterns = {'fugitive://.*', 'scp://.*', 'gitcommit'}
+
 -- start: imported vimrc
 vim.cmd([[
 " plugin config/remappings below
@@ -120,13 +113,4 @@ vim.cmd([[
 " editorconfig
 autocmd FileType gitcommit let b:EditorConfig_disable = 1
 
-" personal abbreviations
-ab x70- ----------------------------------------------------------------------
-ab x70= ======================================================================
-
-" send stuff to pb - internal pb destination
-"command! -range=% Pb :<line1>,<line2>w !curl -F c=@- pb
-
-" import any relevant API keys, etc. 
-source ~/.credentials/vim-api-keys
 ]])

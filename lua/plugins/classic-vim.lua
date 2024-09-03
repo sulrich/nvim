@@ -44,6 +44,7 @@ return {
       }
     },
     { 'bfredl/nvim-miniyank', lazy = false }, -- addresses some visual block pasting oddities
+    { 'junegunn/vim-peekaboo', lazy = false },
     {
       'nvim-telescope/telescope.nvim', tag = '0.1.8',
       lazy = true,
@@ -65,21 +66,16 @@ return {
         vim.g.table_mode_corner='|'
       end,
     },
-    {
-      'editorconfig/editorconfig-vim',
-      lazy = true,
-      init = function()
-        vim.g.EditorConfig_exclude_patterns = {'fugitive://.*', 'scp://.*'}
-      end,
-    },
-
     { 
       'fatih/vim-go', 
       ft = "go",
       lazy = true 
     },
-    { 'godlygeek/tabular', lazy = true },
-    { 'junegunn/vim-peekaboo', lazy = true },
+    { 
+      'godlygeek/tabular', 
+      lazy = true,
+      cmd = "Tabularize",
+    },
     {
       'mzlogin/vim-markdown-toc',
       ft = "markdown",
@@ -106,7 +102,6 @@ return {
       { '<leader>d', '<Plug>DashSearch' },
     },
   },
-
   { 'tpope/vim-commentary', lazy = true },
   {
     'tpope/vim-rhubarb',

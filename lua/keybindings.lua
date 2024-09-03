@@ -20,16 +20,8 @@ vim.keymap.set('n', '<leader><space>', ':nohlsearch<cr>', {noremap = true, silen
 -- open markdown files in marked2
 vim.keymap.set('n', '<leader>m', [[:!open -a 'Marked 2.app' "%:p"<cr>]], {noremap = true, silent = true})
 
--- addresses some oddities in visual yank and paste
-vim.keymap.set('', 'p', '<Plug>(miniyank-autoput)', {silent = true})
-vim.keymap.set('', 'P', '<Plug>(miniyank-autoPut)', {silent = true})
-
 -- search for the visual selection with //
 vim.keymap.set('v', '//', [[y/\V<C-R>=escape(@",'/\')<CR><CR>]], {noremap = true, silent = true})
-
--- gitsigns bindings
-vim.keymap.set('n', '<leader>hs', ':Gitsigns stage_hunk<CR>', {noremap = true, silent = true})
-vim.keymap.set('v', '<leader>hs', ':Gitsigns stage_hunk<CR>', {noremap = true, silent = true})
 
 -- allow clipboard copy paste in neovim
 vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>',  { noremap = true, silent = true})

@@ -50,8 +50,10 @@ return {
     -- 20240909 (sulrich) 
     -- vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 
-    -- disable this when working on misc. packages.
-    -- python misc.
+    -- by default, format the buffer using black-ish formatting.  if i'm working
+    -- on a project where they have their own formatting specification, i should
+    -- stub a pyproject.toml file in place to suppress ruff operation, or
+    -- disable this function and format using the project's tooling.
     vim.api.nvim_create_autocmd("BufWritePre", {
       pattern = "*.py",
       callback = function(args)

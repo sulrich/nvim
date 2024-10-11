@@ -2,7 +2,7 @@ return {
   -- nvim-cmp configuration
   {
     'hrsh7th/nvim-cmp',
-    event = 'BufWinEnter',
+    event = { "InsertEnter", "CmdlineEnter" },
     lazy = true,
     dependencies = {
       'hrsh7th/cmp-nvim-lsp',
@@ -26,12 +26,28 @@ return {
           ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
           ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
           ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-          ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+          ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item()),
+          ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item()),
           ['<C-e>'] = cmp.mapping({
             i = cmp.mapping.abort(),
             c = cmp.mapping.close(),
           }),
-          -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          -- ref: https://github.com/hrsh7th/nvim-cmp/discussions/1498
+          -- basically the operation here is to use 'tab' to cycle through the
+          -- options with 'tab', then use <cr> to select one.
+          ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              local entries = cmp.get_entries()
+              cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+
+              if #entries == 1 then
+                cmp.confirm()
+              end
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+          -- accept currently selected item. set `select` to `false` to only confirm explicitly selected items.
           ['<CR>'] = cmp.mapping.confirm({ select = true }), 
         },
         sources = cmp.config.sources({

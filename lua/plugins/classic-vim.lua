@@ -104,21 +104,6 @@ return {
   },
   { 'axieax/urlview.nvim', lazy = true }, -- enables urls within a buffer
   {
-    "folke/trouble.nvim",
-    keys = {
-      -- trouble bindings
-      { '<leader>xx', '<cmd>Trouble<cr>'},
-      { '<leader>xw', '<cmd>Trouble workspace_diagnostics<cr>'},
-      { '<leader>xd', "<cmd>Trouble document_diagnostics<cr>" },
-      { '<leader>xl', "<cmd>Trouble loclist<cr>" },
-      { '<leader>xq', "<cmd>Trouble quickfix<cr>", },
-      { '<leader>gR', "<cmd>Trouble lsp_references<cr>" },
-    },
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    lazy = true,
-    opts = {}
-  },
-  {
     'lewis6991/gitsigns.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = {}

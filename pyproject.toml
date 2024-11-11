@@ -1,0 +1,10 @@
+[project]
+name = "neovim"
+dynamic = ["version"]
+dependencies = [
+  "ruff>=0.4.0",
+  "simplewebsocketserver", 
+  "slugify",
+  "neovim",
+  "pynvim",
+]

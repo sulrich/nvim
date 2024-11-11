@@ -89,7 +89,7 @@ vim.g.markdown_fenced_languages = {'html', 'python', 'javascript', 'bash=sh', 's
 -- vim.g.vmt_list_item_char = "-"
 
 -- vim python provider elements
-vim.g.python3_host_prog = HOME .. "/.pyenv/shims/python3"
+vim.g.python3_host_prog = HOME .. "/.config/nvim/.venv/bin/python3"
 
 -- spell check configuration
 vim.o.spelllang = "en_us"

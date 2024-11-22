@@ -1,8 +1,12 @@
+local is_mac = vim.loop.os_uname().sysname == "Darwin"
+
 return { 
   {
     'raghur/vim-ghost', 
     build = ":GhostInstall",
     lazy = false,
+    -- this should only be enabled on macos
+    enabled = is_mac,
     config = function()
       -- vim-ghost setup
       vim.cmd([[

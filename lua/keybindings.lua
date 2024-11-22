@@ -29,6 +29,12 @@ vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true}
 vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true})
 vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true})
 
+-- window resizing
+vim.keymap.set("n", "<leader><left>", ":vertical resize +20<cr>")
+vim.keymap.set("n", "<leader><right>", ":vertical resize -20<cr>")
+vim.keymap.set("n", "<leader><up>", ":resize +10<cr>")
+vim.keymap.set("n", "<leader><down>", ":resize -10<cr>")
+
 -- see: https://github.com/neovim/nvim-lspconfig/tree/54eb2a070a4f389b1be0f98070f81d23e2b1a715#suggested-configuration
 local opts = { noremap=true, silent=true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)

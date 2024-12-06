@@ -73,9 +73,10 @@ return {
         })
       })
     end,
-  },
+  }, -- end of nvim-cmp config
   {
     "garymjr/nvim-snippets",
+    dependencies = { "rafamadriz/friendly-snippets" },
     keys = {
       {
         "<Tab>",
@@ -122,11 +123,14 @@ return {
     dependencies = { "rafamadriz/friendly-snippets" },
     opts = {
       friendly_snippets = true, 
+      search_paths = { 
+        vim.fn.stdpath('config') .. '/snippets',
+        HOME ..'/.home/snippets',
+      },
     },
-  },
-
+  }, -- end of nvim-snippets setup
   { 
     "rafamadriz/friendly-snippets",
     lazy = true,
-  }
+  },
 } -- end of overall return 

@@ -12,7 +12,9 @@ return {
       init_options = {
         settings = {
           -- any extra CLI arguments for `ruff` go here.
-          args = {},
+          configurationPreference = "filesystemFirst",
+          lint = { },
+          args = { },
         }
       }
     }

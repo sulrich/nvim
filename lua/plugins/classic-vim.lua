@@ -44,7 +44,6 @@ return {
       }
     },
     { 'bfredl/nvim-miniyank', lazy = false }, -- addresses some visual block pasting oddities
-    { 'junegunn/vim-peekaboo', lazy = false },
     {
       'nvim-telescope/telescope.nvim', tag = '0.1.8',
       lazy = true,
@@ -96,11 +95,14 @@ return {
       { '<leader>d', '<Plug>DashSearch' },
     },
   },
-  { 'tpope/vim-commentary', lazy = true },
   {
-    'tpope/vim-surround',
-    lazy = true,
+    'kylechui/nvim-surround',
+    version = '*', -- use for stability; omit to use `main` branch for the latest features
+    lazy = 'true',
     event = 'BufWinEnter',
+    config = function()
+        require("nvim-surround").setup()
+    end
   },
   { 'axieax/urlview.nvim', lazy = true }, -- enables urls within a buffer
   {

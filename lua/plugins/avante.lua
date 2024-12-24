@@ -1,9 +1,12 @@
-local is_mac = vim.loop.os_uname().sysname == "Darwin"
+-- i need to wrap these checks into something more comprehensive, but i think
+-- this will do the trick immediately
+local is_mac = vim.uv.os_uname().sysname == "Darwin"
+local is_right_host = vim.uv.os_gethostname() == "waffletron"
 
 return {
   "yetone/avante.nvim",
   event = "VeryLazy",
-  enabled = is_mac,
+  enabled = is_right_host,
   lazy = false,
   version = false, -- set this if you want to always pull the latest change
   opts = {

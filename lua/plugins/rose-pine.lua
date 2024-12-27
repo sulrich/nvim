@@ -1,10 +1,10 @@
-local is_mac = vim.uv.os_uname().sysname == "Darwin"
+local is_linux = vim.uv.os_uname().sysname == "Linux"
 
 return { 
   "rose-pine/neovim", 
   lazy = false, -- make sure we load this during startup if it is your main colorscheme
   priority = 1000, -- make sure to load this before all the other start plugins
-  enabled = is_mac, -- should be disabled on mac os hosts, it's my remote theme
+  enabled = is_linux, -- should only be enabled on linux hosts, it's my remote theme
   dependencies = { 'nvim-lualine/lualine.nvim' },
   name = "rose-pine",
   config = function()
@@ -22,7 +22,7 @@ return {
 
         styles = {
           bold = true,
-          italic = true,
+          italic = false,
           transparency = false,
         },
 

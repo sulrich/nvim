@@ -1,13 +1,5 @@
 -- classic vim plugins
 return {
-    {
-      'nvim-lualine/lualine.nvim',
-      lazy = false,
-      dependencies = { 'nvim-tree/nvim-web-devicons' },
-      opts = {
-        theme = 'NeoSolarized',
-      }
-    },
     { 'bfredl/nvim-miniyank', lazy = false }, -- addresses some visual block pasting oddities
     { 'junegunn/vim-peekaboo', lazy = false },
     {

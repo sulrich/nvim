@@ -28,7 +28,7 @@ return {
       local ftMap = {
         vim = 'indent',
         python = {'treesitter', 'indent'},
-        markdown = {'treesitter', 'indent'},
+        markdown = {'indent'},
         git = ''
       }
       require('ufo').setup({

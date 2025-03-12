@@ -13,6 +13,10 @@ vim.g.maplocalleader = "\\"
 require('config.lazy') -- get plusins loaded via lazy.nvim
 require('keybindings') -- load non-plugin-specific keybindings
 
+-- disable unused providers
+vim.g.loaded_perl_provider = 0 
+vim.g.loaded_ruby_provider = 0 
+
 -- interface elements
 vim.o.termguicolors = true -- enable 24-bit color
 vim.g.background = "auto" 

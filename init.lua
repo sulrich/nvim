@@ -35,8 +35,8 @@ vim.o.tabstop = 2
 vim.o.expandtab = true
 
 -- interface configuration
-vim.o.cmdheight = 2   -- command line two lines high
-vim.o.laststatus = 2
+vim.o.cmdheight = 3   -- command line two lines high
+vim.o.laststatus = 3  -- recommended for avante operation
 vim.o.ruler = true    -- show line # info, etc.
 vim.o.showmode = true -- show the mode in the status line
 vim.o.showcmd = true  -- show selection info

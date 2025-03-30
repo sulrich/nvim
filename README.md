@@ -18,9 +18,9 @@ follows. (from this directory)
 ```shell
 uv venv  # this creates $CWD/.venv
 source .venv/bin/activate
-uv pip install neovim pynvim
+uv pip install neovim 
+uv pip install pynvim
 uv pip install ruff 
-uv pip install SimpleWebSocketServer slugify
 ```
 
 as there is a need to add python modules, etc. for packages, this virtual env

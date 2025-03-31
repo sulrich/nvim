@@ -10,7 +10,12 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
-require('config.lazy') -- get plusins loaded via lazy.nvim
+-- set augment working directories
+vim.g.augment_workspace_folders = {
+  HOME .. '/src/nexthop/hopperhelper',
+}
+
+require('config.lazy') -- get plugins loaded via lazy.nvim
 require('keybindings') -- load non-plugin-specific keybindings
 
 -- disable unused providers

@@ -58,6 +58,9 @@ return {
         latex = {
           enabled = false,
         },
+        html = {
+          enabled = false,
+        },
       },
       ft = { "Avante" },
     },

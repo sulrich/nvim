@@ -1,7 +1,8 @@
+black
+lazy-lock.json
+plugin/*packer*
 rplugin.vim 
 shada
-black
-undo
-plugin/*packer*
 spell
 swap
+undo

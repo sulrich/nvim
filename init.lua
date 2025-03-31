@@ -16,10 +16,12 @@ require('keybindings') -- load non-plugin-specific keybindings
 -- disable unused providers
 vim.g.loaded_perl_provider = 0 
 vim.g.loaded_ruby_provider = 0 
+vim.g.loaded_node_provider = 0
 
 -- interface elements
 vim.o.termguicolors = true -- enable 24-bit color
 vim.g.background = "auto" 
+vim.g.have_nerd_font = true
 
 vim.o.encoding = "utf-8" -- self-explanatory
 vim.o.textwidth = 80     -- where to wrap
@@ -107,8 +109,28 @@ vim.cmd([[
 
 -- diff settings
 vim.o.diffopt = "filler,iwhite"     -- ignore all whitespace and sync
-
 vim.g.EditorConfig_exclude_patterns = {'fugitive://.*', 'scp://.*', 'gitcommit'}
+
+-- autocommand group settings
+vim.api.nvim_create_augroup("nvim_ghost_user_autocommands", { clear = true })
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "*stackoverflow.com",
+  command = "setfiletype markdown | set spell",
+  group = "nvim_ghost_user_autocommands",
+})
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "*reddit.com",
+  command = "setfiletype markdown | set spell",
+  group = "nvim_ghost_user_autocommands",
+})
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "*github.com",
+  command = "setfiletype markdown | set spell",
+  group = "nvim_ghost_user_autocommands",
+})
 
 -- start: imported vimrc
 vim.cmd([[

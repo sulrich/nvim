@@ -125,7 +125,6 @@ return {
       friendly_snippets = true, 
       search_paths = { 
         vim.fn.stdpath('config') .. '/snippets',
-        HOME ..'/.home/snippets',
       },
     },
   }, -- end of nvim-snippets setup

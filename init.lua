@@ -17,6 +17,7 @@ vim.g.augment_workspace_folders = {
 
 require('config.lazy') -- get plugins loaded via lazy.nvim
 require('keybindings') -- load non-plugin-specific keybindings
+require('config.system_theme').setup({check_interval = 3 * 60 * 1000}) -- check system theme every 3 minutes
 
 -- disable unused providers
 vim.g.loaded_perl_provider = 0 
@@ -25,7 +26,7 @@ vim.g.loaded_node_provider = 0
 
 -- interface elements
 vim.o.termguicolors = true -- enable 24-bit color
-vim.g.background = "auto" 
+-- vim.g.background handled by system_theme.lua
 vim.g.have_nerd_font = true
 
 vim.o.encoding = "utf-8" -- self-explanatory

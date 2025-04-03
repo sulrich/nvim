@@ -1,8 +1,7 @@
 -- i need to wrap these checks into something more comprehensive, but i think
 -- this will do the trick immediately
 local is_mac = vim.uv.os_uname().sysname == "Darwin"
-local is_right_host = vim.uv.os_gethostname() == "neon" 
--- or vim.uv.os_gethostname() == "neon"
+local is_right_host = vim.uv.os_gethostname() == "waffletron" or vim.uv.os_gethostname() == "neon"
 
 return {
   "yetone/avante.nvim",
@@ -16,10 +15,17 @@ return {
     claude = {
       model = "claude-3-7-sonnet-20250219",
       max_tokens = 20480,
+      -- reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
+      -- the following should only be enabled when i'm using claude
+      behaviour = {
+        enable_cursor_planning_mode = true,
+        enable_claude_text_editor_tool_mode = true,
+      },
     },
-    behaviour = {
-      enable_cursor_planning_mode = true,
-      enable_claude_text_editor_tool_mode = true,
+    gemini = {
+      model = "gemini-2.5-pro-exp-03-25",
+      max_tokens = 20480,
+      -- reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
     },
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
@@ -30,10 +36,9 @@ return {
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
     --- the following dependencies are optional,
-    "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-    "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
-    "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-    "zbirenbaum/copilot.lua", -- for providers='copilot'
+    "nvim-telescope/telescope.nvim",
+    "hrsh7th/nvim-cmp",
+    "nvim-tree/nvim-web-devicons",
     {
       -- support for image pasting
       "HakonHarnes/img-clip.nvim",

@@ -1,11 +1,11 @@
-local is_right_host = vim.uv.os_gethostname() == "waffletron"
+-- local is_right_host = vim.uv.os_gethostname() == "waffletron"
 return {
   {
     'augmentcode/augment.vim',
     cmd = { "Augment", },
-    cond = is_right_host,
+    -- cond = is_right_host,
     lazy = true,
-    enabled = is_host,
+    enabled = false,
     keys = {
       { "<leader>ac", ":Augment chat<CR>", mode = "n", noremap = true, silent = true },
       { "<leader>ac", ":Augment chat<CR>", mode = "v", noremap = true, silent = true },

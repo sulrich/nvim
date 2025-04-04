@@ -1,6 +1,7 @@
+HOME = os.getenv("HOME")
 return {
   {
-    dir = "/Users/sulrich/src/personal/gist.nvim",
+    dir = HOME .. "/src/personal/gist.nvim",
     cmd = { "GistCreate", "GistCreateFromFile", "GistsList" },
     config = true,
     opts = {

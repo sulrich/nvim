@@ -2,6 +2,9 @@ HOME = os.getenv("HOME")
 return {
   {
     dir = HOME .. "/src/personal/gist.nvim",
+    dev = true,
+    -- 'sulrich/gist.nvim',
+    -- branch = 'set-split-direction',
     cmd = { "GistCreate", "GistCreateFromFile", "GistsList" },
     config = true,
     opts = {

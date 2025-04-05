@@ -1,7 +1,15 @@
-vim.g.mapleader = ' '
-vim.keymap.set('i', 'kj', '<Esc>', {})
+vim.g.mapleader = ' ' vim.keymap.set('i', 'kj', '<Esc>', {})
 
- vim.keymap.set('n', '<leader>w', [[:let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>]], {noremap = true})
+-- strip trailing whitespace from the current file
+vim.keymap.set('n', '<leader>w', [[:let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>]], {noremap = true})
+ 
+-- copy current file path to system clipboard with <leader>yp
+vim.keymap.set('n', '<leader>yp', function()
+    local path = vim.fn.expand('%:p')
+    vim.fn.setreg('+', path)
+    print('copied: ' .. path)
+end, { desc = 'yank file path to clipboard' })
+
 -- spell check mappings.
 -- note: use 'zg' to add the current word to the dictionary
 -- use z= to get a list of the possible spelling suggestions.

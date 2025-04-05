@@ -3,19 +3,6 @@ return {
     { 'bfredl/nvim-miniyank', lazy = false }, -- addresses some visual block pasting oddities
     { 'junegunn/vim-peekaboo', lazy = false },
     {
-      'nvim-telescope/telescope.nvim', tag = '0.1.8',
-      lazy = true,
-      keys = {
-        -- telescope
-        { '<leader>ff', function() require('telescope.builtin').find_files() end },
-        { '<leader>fg', function() require('telescope.builtin').live_grep() end },
-        { '<leader>fb', function() require('telescope.builtin').buffers() end },
-        { '<leader>fh', function() require('telescope.builtin').help_tags() end },
-        { '<leader>gf', function() require('telescope.builtin').git_files() end },
-      },
-      dependencies = { 'nvim-lua/plenary.nvim' }
-    },
-    {
       'dhruvasagar/vim-table-mode',
       lazy = true,
       init = function()

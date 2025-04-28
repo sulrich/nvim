@@ -6,7 +6,7 @@ local is_right_host = vim.uv.os_gethostname() == "waffletron" or vim.uv.os_getho
 return {
   "yetone/avante.nvim",
   event = "VeryLazy",
-  enabled = is_right_host,
+  enabled = false,
   -- lazy = false,
   version = false, -- set this if you want to always pull the latest change
   opts = {

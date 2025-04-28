@@ -19,7 +19,7 @@ require('config.lazy') -- get plugins loaded via lazy.nvim
 require('keybindings') -- load non-plugin-specific keybindings
 require('config.system_theme').setup({check_interval = 3 * 60 * 1000}) -- check system theme every 3 minutes
 
--- disable unused providers
+-- disable unused nvim providers
 vim.g.loaded_perl_provider = 0 
 vim.g.loaded_ruby_provider = 0 
 vim.g.loaded_node_provider = 0
@@ -48,6 +48,7 @@ vim.o.laststatus = 3  -- recommended for avante operation
 vim.o.ruler = true    -- show line # info, etc.
 vim.o.showmode = true -- show the mode in the status line
 vim.o.showcmd = true  -- show selection info
+vim.o.conceallevel = 2
 
 
 vim.o.wildmode = "longest:full"

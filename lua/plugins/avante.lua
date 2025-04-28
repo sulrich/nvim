@@ -17,13 +17,18 @@ return {
       max_tokens = 20480,
       -- reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
       -- the following should only be enabled when i'm using claude
-      behaviour = {
-        enable_cursor_planning_mode = true,
-        enable_claude_text_editor_tool_mode = true,
-      },
+      -- behaviour = {
+      --   enable_cursor_planning_mode = true,
+      --   enable_claude_text_editor_tool_mode = true,
+      -- },
     },
     gemini = {
       model = "gemini-2.5-pro-exp-03-25",
+      max_tokens = 20480,
+      -- reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
+    },
+    openai = {
+      model = "gpt-4.1-mini",
       max_tokens = 20480,
       -- reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
     },

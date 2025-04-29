@@ -10,11 +10,6 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
--- set augment working directories
-vim.g.augment_workspace_folders = {
-  HOME .. '/src/nexthop/hopperhelper',
-}
-
 require('config.lazy') -- get plugins loaded via lazy.nvim
 require('keybindings') -- load non-plugin-specific keybindings
 require('config.system_theme').setup({check_interval = 3 * 60 * 1000}) -- check system theme every 3 minutes

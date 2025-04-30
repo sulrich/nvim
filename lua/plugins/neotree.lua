@@ -17,43 +17,14 @@ return {
       "git_status",
       "document_symbols",
     },
+    close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
+    popup_border_style = "NC", -- or "" to use 'winborder' on Neovim v0.11+
+    enable_git_status = true,
+    enable_diagnostics = true,
+    open_files_do_not_replace_types = { "terminal", "trouble", "qf" },
+    source_selector = {
+      winbar = true,
+      statusline = false
+    }
   },
-  config = function()
-    require('neo-tree').setup({
-      filesystem = {
-        commands = {
-          avante_add_files = function(state)
-            local node = state.tree:get_node()
-            local filepath = node:get_id()
-            local relative_path = require('avante.utils').relative_path(filepath)
-
-            -- first open the sidebar if it's not already open
-            local avante_api = require('avante.api')
-            avante_api.ask()
-
-            -- get the sidebar after it's fully initialized
-            local sidebar = require('avante').get()
-
-            -- now the sidebar should have a file_selector
-            if sidebar and sidebar.file_selector then
-              sidebar.file_selector:add_selected_file(relative_path)
-
-              -- remove neo-tree buffer from selection if it was automatically added
-              if vim.bo.filetype == "neo-tree" then
-                sidebar.file_selector:remove_selected_file('neo-tree filesystem [1]')
-              end
-            else
-              -- if for some reason file_selector is still not available
-              vim.notify("avante sidebar does not have file_selector available", vim.log.levels.ERROR)
-            end
-          end,
-        },
-        window = {
-          mappings = {
-            ['oa'] = 'avante_add_files',
-          },
-        },
-      },
-    })
-  end,
 }

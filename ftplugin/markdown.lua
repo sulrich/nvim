@@ -10,5 +10,5 @@ for i = #sources, 1, -1 do
 end
 cmp.setup.buffer({ sources = sources })
 
-# this is to address markdown "markup" being hidden
+-- this is to address markdown "markup" being hidden
 vim.opt_local.conceallevel= 0

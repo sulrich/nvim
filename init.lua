@@ -1,7 +1,7 @@
 HOME = os.getenv("HOME")
 TMPDIR = os.getenv("TMPDIR")
 
--- disable netrw at the very start of your init.lua 
+-- disable netrw at the very start of your init.lua
 -- this is in the service of nvim-tree.lua (see lua/plugings/net-tree.lua)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -15,8 +15,8 @@ require('keybindings') -- load non-plugin-specific keybindings
 require('config.system_theme').setup({check_interval = 3 * 60 * 1000}) -- check system theme every 3 minutes
 
 -- disable unused nvim providers
-vim.g.loaded_perl_provider = 0 
-vim.g.loaded_ruby_provider = 0 
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
 vim.g.loaded_node_provider = 0
 
 -- interface elements
@@ -45,7 +45,6 @@ vim.o.showmode = true -- show the mode in the status line
 vim.o.showcmd = true  -- show selection info
 vim.o.conceallevel = 2
 
-
 vim.o.wildmode = "longest:full"
 vim.o.wildignore = "*.o,*~,.lo" -- ignore object files
 vim.o.wildmenu = true  -- menu has tab completion
@@ -55,12 +54,12 @@ vim.o.clipboard = "unnamed"
 
 -- delay before swap is written to the disk (100ms)
 vim.o.updatetime = 100
-vim.o.ttimeout = true 
+vim.o.ttimeout = true
 vim.o.ttimeoutlen = 100
 
 -- split preferences
-vim.o.splitbelow = true 
-vim.o.splitright = true 
+vim.o.splitbelow = true
+vim.o.splitright = true
 
 -- search settings
 -- ---------------------------------------------------------------------------
@@ -83,11 +82,11 @@ vim.o.undodir = HOME .. "/.config/nvim/undo//"
 
 -- mode specific settings below
 -- ---------------------------------------------------------------------------
--- filetype: json 
+-- filetype: json
 -- disable quote concealing in json files
 vim.g.vim_json_conceal=0
 
--- filetype: markdown 
+-- filetype: markdown
 vim.g.markdown_folding = 1
 vim.g.markdown_enable_folding = 1
 vim.g.markdown_fenced_languages = {'html', 'python', 'javascript', 'bash=sh', 'shell=sh'}
@@ -111,7 +110,15 @@ vim.cmd([[
 
 -- diff settings
 vim.o.diffopt = "filler,iwhite"     -- ignore all whitespace and sync
-vim.g.EditorConfig_exclude_patterns = {'fugitive://.*', 'scp://.*', 'gitcommit'}
+
+-- disable editorconfig for gitcommit buffers
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "gitcommit",
+  callback = function()
+    vim.b.editorconfig = false
+  end,
+  desc = "disable editorconfig for gitcommit buffers"
+})
 
 -- autocommand group settings
 vim.api.nvim_create_augroup("nvim_ghost_user_autocommands", { clear = true })
@@ -133,12 +140,3 @@ vim.api.nvim_create_autocmd("User", {
   command = "setfiletype markdown | set spell",
   group = "nvim_ghost_user_autocommands",
 })
-
--- start: imported vimrc
-vim.cmd([[
-" plugin config/remappings below
-" --------------------------------------------------------------------------
-" editorconfig
-autocmd FileType gitcommit let b:EditorConfig_disable = 1
-
-]])

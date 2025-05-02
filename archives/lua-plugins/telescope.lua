@@ -2,6 +2,7 @@ return {
   {
     'nvim-telescope/telescope.nvim', 
     lazy = true,
+    enabled = false,
     keys = {
       -- telescope
       { '<leader>ff', function() require('telescope.builtin').find_files() end },

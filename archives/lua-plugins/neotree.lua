@@ -1,5 +1,6 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
+  enabled = false,
   lazy = false,
   dependencies = {
     "nvim-lua/plenary.nvim",
@@ -8,7 +9,7 @@ return {
     -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
   },
   keys = {
-    { "<leader>tt", "<Cmd>Neotree<cr>" },
+    { "<leader>tt", "<Cmd>Neotree toggle<cr>" },
   },
   opts = {
     sources = {

@@ -1,7 +1,6 @@
 -- classic vim plugins
 return {
     { 'bfredl/nvim-miniyank', lazy = false }, -- addresses some visual block pasting oddities
-    { 'junegunn/vim-peekaboo', lazy = false },
     {
       'dhruvasagar/vim-table-mode',
       lazy = true,
@@ -19,15 +18,6 @@ return {
       'godlygeek/tabular', 
       lazy = true,
       cmd = "Tabularize",
-    },
-    {
-      'mzlogin/vim-markdown-toc',
-      ft = "markdown",
-      lazy = true,
-      init = function()
-        vim.g.vmt_dont_insert_fence = 1
-        vim.g.vmt_list_item_char = "-"
-      end,
     },
     {
       'nathanalderson/yang.vim',

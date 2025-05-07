@@ -1,5 +1,5 @@
 return {
-  -- note: http://www.lazyvim.org/plugins/treesitter - has some ineresting bits
+  -- note: http://www.lazyvim.org/plugins/treesitter - has some interesting bits
   -- for configuration of treesitter under lazy.nvim.  check this if running
   -- into issues.
   "nvim-treesitter/nvim-treesitter",
@@ -7,34 +7,44 @@ return {
   lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
   cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
   opts = {
+    indent = { enable = true },
     -- a list of parser names, or "all" (the listed parsers must always be installed)
     ensure_installed = {
       "bash",
       "c",
+      -- "css",              -- snacks.image
       "csv",
       "diff",
       "dockerfile",
-      "javascript",
-      "json",
       "go",
       "html",
+      "javascript",
+      "json",
+      -- "latex",            -- snacks.image
       "lua",
       "markdown",
       "markdown_inline",
+      -- "norg",             -- snacks.image
       "proto",
       "python",
       "query",
+      "regex",
       "rust",
+      -- "scss",             -- snacks.image
       "sql",
+      -- "svelte",           -- snacks.image
       "toml",
-      "yaml",
-      "yang",
+      -- "tsx",              -- snacks.image
+      -- "typst",            -- snacks.image
       "vim",
       "vimdoc",
+      -- "vue",              -- snacks.image
+      "yaml",
+      "yang",
     },
 
     -- install parsers synchronously (only applied to `ensure_installed`)
-    sync_install = false,
+    sync_install = true,
 
     -- automatically install missing parsers when entering buffer
     -- recommendation: set to false if you don't have `tree-sitter` cli installed locally
@@ -68,4 +78,7 @@ return {
       additional_vim_regex_highlighting = false,
     },
   },
+  config = function(_, opts)
+    require("nvim-treesitter.configs").setup(opts)
+  end,
 }

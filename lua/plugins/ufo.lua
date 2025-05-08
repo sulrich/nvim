@@ -27,7 +27,8 @@ return {
     config = function()
       local ftMap = {
         vim = 'indent',
-        python = {'treesitter', 'indent'},
+        -- python = {'treesitter', 'indent'},
+        -- python = {'indent'},
         markdown = {'indent'},
         git = ''
       }

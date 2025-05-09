@@ -20,6 +20,7 @@ uv venv  # this creates $CWD/.venv
 source .venv/bin/activate
 uv pip install neovim 
 uv pip install pynvim
+uv pip install pyright
 uv pip install ruff 
 ```
 

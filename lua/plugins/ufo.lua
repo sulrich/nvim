@@ -2,14 +2,15 @@ return {
   {
     'kevinhwang91/nvim-ufo',
     lazy = true,
+    event = 'BufReadPost', -- load when a buffer is read
     dependencies = { 'kevinhwang91/promise-async' },
-    -- folding plugin setup 
+    -- folding plugin setup
     init = function()
       -- ref: https://github.com/kevinhwang91/nvim-ufo#minimal-configuration
       -- tell the sever the capability of foldingRange
-      vim.o.foldcolumn = "5"      -- 2 lines of column for fold showing, always
-      vim.o.foldlevel = 99        -- nvim.ufo needs a large value
-      vim.o.foldlevelstart = 99   -- 
+      vim.o.foldcolumn = "5"    -- 2 lines of column for fold showing, always
+      vim.o.foldlevel = 99      -- nvim.ufo needs a large value
+      vim.o.foldlevelstart = 99 --
       vim.o.foldenable = true
       vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
@@ -26,18 +27,18 @@ return {
     end,
     config = function()
       local ftMap = {
-        vim = 'indent',
-        -- python = {'treesitter', 'indent'},
-        -- python = {'indent'},
-        markdown = {'indent'},
-        git = ''
+        vim = { 'indent' },
+        python = { 'lsp', 'indent' },
+        markdown = { 'indent' },
+        lua = { 'lsp', 'indent' },
+        git = {},
       }
       require('ufo').setup({
         open_fold_hl_timeout = 150,
-        close_fold_kinds_for_ft = {'imports', 'comment'},
+        close_fold_kinds_for_ft = { 'imports', 'comment' },
         preview = {
           win_config = {
-            border = {'', '─', '', '', '', '─', '', ''},
+            border = { '', '─', '', '', '', '─', '', '' },
             winhighlight = 'Normal:Folded',
             winblend = 0
           },
@@ -49,11 +50,10 @@ return {
         provider_selector = function(bufnr, filetype, buftype)
           -- if you prefer treesitter provider rather than lsp,
           -- return ftMap[filetype] or {'treesitter', 'indent'}
-          return ftMap[filetype]
+          return ftMap[filetype] or { 'indent' }
           -- refer to ./doc/example.lua for detail
         end
       })
     end
   }
 }
-

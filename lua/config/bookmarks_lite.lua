@@ -1,0 +1,41 @@
+-- bookmarks-lite
+local M = {}
+
+function M.setup()
+  for i = 1, 9 do
+    local mark_char = string.char(64 + i) -- A=65, B=66, etc.
+    vim.keymap.set("n", "<leader>" .. i, function()
+      local mark_pos = vim.api.nvim_get_mark(mark_char, {})
+      if mark_pos[1] == 0 then
+        vim.cmd("normal! gg")
+        vim.cmd("mark " .. mark_char)
+        vim.cmd("normal! ``") -- jump back to where we were
+      else
+        vim.cmd("normal! `" .. mark_char) -- jump to the bookmark
+        vim.cmd('normal! `"') -- jump to the last cursor position before leaving
+      end
+    end, { desc = "toggle mark " .. mark_char })
+  end
+
+  -- delete mark from current buffer
+  vim.keymap.set("n", "<leader>bd", function()
+    for i = 1, 9 do
+      local mark_char = string.char(64 + i)
+      local mark_pos = vim.api.nvim_get_mark(mark_char, {})
+
+      -- Check if mark is in current buffer
+      if mark_pos[1] ~= 0 and vim.api.nvim_get_current_buf() == mark_pos[3] then
+        vim.cmd("delmarks " .. mark_char)
+      end
+    end
+  end, { desc = "delete mark" })
+
+  -- list bookmarks
+  local function list_bookmarks()
+    local snacks = require("snacks")
+    return snacks.picker.marks({ filter_marks = "A-I" })
+  end
+  vim.keymap.set("n", "<leader>bb", list_bookmarks, { desc = "list bookmarks" })
+
+end
+return M

@@ -27,6 +27,7 @@ return {
         buffers, 
         files,
         grep,
+				marks,  -- see config/bookmarks.lua
         explorer = {
           cycle = true,
           auto_close = true,
@@ -40,6 +41,15 @@ return {
         layout = { preset = "vscode" },
         confirm = "put",
       },
+			marks = {
+				transform = function(item)
+					if item.label and item.label:match("^[A-I]$") and item then
+						item.label = "" .. string.byte(item.label) - string.byte("A") + 1 .. ""
+						return item
+					end
+					return false
+				end,
+			},
     }, -- end: snacks.picker()
   }, -- end: opts
 

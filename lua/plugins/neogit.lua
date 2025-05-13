@@ -3,7 +3,7 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",         -- required
     "sindrets/diffview.nvim",        -- optional - diff integration
-    "nvim-telescope/telescope.nvim", -- optional
+    "folke/snacks.nvim",
   },
   config = true
 }

@@ -33,9 +33,12 @@ return {
           adapter = "anthropic",
         },
       },
-      opts = {
-        -- Set debug logging
-        log_level = "DEBUG",
+      -- set debug logging
+      log_level = "DEBUG",
+      extensions = {
+        vectorcode = {
+          opts = { add_tool = true, add_slash_command = true, tool_opts = {} },
+        },
       },
       display = {
         action_palette = {
@@ -62,14 +65,14 @@ return {
             pinned_buffer = " ",
             watched_buffer = "👀 ",
           },
-          -- Alter the sizing of the debug window
+          -- alter the sizing of the debug window
           debug_window = {
             ---@return number|fun(): number
             width = vim.o.columns - 5,
             ---@return number|fun(): number
             height = vim.o.lines - 2,
           },
-          -- Options to customize the UI of the chat buffer
+          -- options to customize the ui of the chat buffer
           window = {
             layout = "horizontal", -- float|vertical|horizontal|buffer
             position = bottom, -- left|right|top|bottom (nil will default depending on vim.opt.plitright|vim.opt.splitbelow)

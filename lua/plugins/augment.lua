@@ -1,10 +1,13 @@
+local is_mac = vim.loop.os_uname().sysname == "Darwin"
 -- local is_right_host = vim.uv.os_gethostname() == "waffletron"
+
 return {
   {
     'augmentcode/augment.vim',
     cmd = { "Augment", },
     -- cond = is_right_host,
     lazy = true,
+    cond = is_mac,
     enabled = false,
     keys = {
       { "<leader>ac", ":Augment chat<CR>", mode = "n", noremap = true, silent = true },

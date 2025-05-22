@@ -9,11 +9,6 @@ return {
         vim.g.table_mode_corner='|'
       end,
     },
-    -- { 
-    --   'fatih/vim-go', 
-    --   ft = "go",
-    --   lazy = true 
-    -- },
     { 
       'godlygeek/tabular', 
       lazy = true,
@@ -29,19 +24,6 @@ return {
     keys = {
       { '<leader>d', '<Plug>DashSearch' },
     },
-  },
-  { 
-    'echasnovski/mini.comment', 
-    version = '*',
-    event = 'BufWinEnter',
-    opts = {},
-  },
-  { 
-    'echasnovski/mini.surround', 
-    version = '*',
-    lazy = true,
-    event = 'BufWinEnter',
-    opts = {},
   },
   { 'axieax/urlview.nvim', 
     lazy = true,

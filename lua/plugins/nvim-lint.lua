@@ -5,9 +5,10 @@ return {
     local lint = require("lint")
 
     lint.linters_by_ft = {
-      markdown = { 'markdownlint', 'vale' },
+      markdown = { 'markdownlint', },
       python = { 'ruff' },
       proto = { 'protolint'},
+      -- yaml.ansible = { 'ansible_lint' },
     }
 
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })

@@ -1,14 +1,13 @@
 local is_mac = vim.loop.os_uname().sysname == "Darwin"
-local is_gui = vim.fn.has("gui_running") == 1
 
-return { 
+return {
   {
-    "catppuccin/nvim", 
-    name = "catppuccin", 
+    "catppuccin/nvim",
+    name = "catppuccin",
     priority = 1000,
     lazy = false,
     -- this should only be enabled on macos (guis)
-    cond = (is_mac and is_gui),
+    enabled = is_mac,
     dependencies = { 'nvim-lualine/lualine.nvim' },
     config = function()
       require("catppuccin").setup({
@@ -30,7 +29,7 @@ return {
       vim.cmd("colorscheme catppuccin")
     end
   },
-  {  
+  {
     'nvim-lualine/lualine.nvim',
     lazy = false,
     dependencies = { 'nvim-tree/nvim-web-devicons' },

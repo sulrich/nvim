@@ -9,11 +9,11 @@ return {
         vim.g.table_mode_corner='|'
       end,
     },
-    { 
-      'fatih/vim-go', 
-      ft = "go",
-      lazy = true 
-    },
+    -- { 
+    --   'fatih/vim-go', 
+    --   ft = "go",
+    --   lazy = true 
+    -- },
     { 
       'godlygeek/tabular', 
       lazy = true,
@@ -30,13 +30,22 @@ return {
       { '<leader>d', '<Plug>DashSearch' },
     },
   },
-  { 'tpope/vim-commentary', lazy = true },
-  {
-    'tpope/vim-surround',
+  { 
+    'echasnovski/mini.comment', 
+    version = '*',
+    event = 'BufWinEnter',
+    opts = {},
+  },
+  { 
+    'echasnovski/mini.surround', 
+    version = '*',
     lazy = true,
     event = 'BufWinEnter',
+    opts = {},
   },
-  { 'axieax/urlview.nvim', lazy = true }, -- enables urls within a buffer
+  { 'axieax/urlview.nvim', 
+    lazy = true,
+  }, -- enables urls within a buffer
   {
     'lewis6991/gitsigns.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },

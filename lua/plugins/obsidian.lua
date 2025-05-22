@@ -1,10 +1,11 @@
-HOME = os.getenv("HOME")
+local is_mac = vim.loop.os_uname().sysname == "Darwin"
 
+HOME = os.getenv("HOME")
 return {
   {
     "obsidian-nvim/obsidian.nvim",
     version = "*", -- recommended, use latest release instead of latest commit
-    enabled = true,
+    enabled = is_mac,
     lazy = true,
     -- ft = "markdown",
     -- replace the above line with this if you only want to load obsidian.nvim for

@@ -10,15 +10,14 @@ return {
       "nvim-neotest/neotest-python",
       "nvim-neotest/neotest-go",
     },
-    opts = {
-      adapters = {
-        -- see: https://github.com/nvim-neotest/neotest-python for options
-        -- check on configuration options
-        "neotest-python",
-        -- see: https://github.com/nvim-neotest/neotest-go for options
-        "neotest-go",
-      },
-    }, -- end: plugin opts
+    config = function()
+      require("neotest").setup({
+        adapters = {
+          require("neotest-python"),
+          require("neotest-go")
+        },
+      })
+    end,
     -- note the following came from https://www.lazyvim.org/extras/test/core
     keys = {
       {"<leader>t", "", desc = "+test"},
@@ -32,8 +31,14 @@ return {
       { "<leader>tS", function() require("neotest").run.stop() end, desc = "Stop (Neotest)" },
       { "<leader>tw", function() require("neotest").watch.toggle(vim.fn.expand("%")) end, desc = "Toggle Watch (Neotest)" },
     },
+    -- neotest plugins / runners
   },
-  -- neotest plugins / runners
-  { "nvim-neotest/neotest-python" },
-  { "nvim-neotest/neotest-go" },
+  { 
+    "nvim-neotest/neotest-python", 
+    enabled = true, 
+  },
+  { 
+    "nvim-neotest/neotest-go",
+    enabled = true,
+  },
 }

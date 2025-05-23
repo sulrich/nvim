@@ -1,5 +1,6 @@
 return {
   {
+    -- https://github.com/nvim-neotest/neotest
     "nvim-neotest/neotest",
     enabled = true,
     dependencies = {
@@ -8,37 +9,36 @@ return {
       "antoinemadec/FixCursorHold.nvim",
       "nvim-treesitter/nvim-treesitter",
       "nvim-neotest/neotest-python",
-      "nvim-neotest/neotest-go",
+      "fredrikaverpil/neotest-golang",
     },
     config = function()
       require("neotest").setup({
         adapters = {
+          -- https://github.com/nvim-neotest/neotest-python
           require("neotest-python"),
-          require("neotest-go")
+          -- https://fredrikaverpil.github.io/neotest-golang/
+          require("neotest-golang")
         },
       })
     end,
     -- note the following came from https://www.lazyvim.org/extras/test/core
+    -- TODO(sulrich): it would be nice to have the trbouel/quickfix integration
+    -- that they show here in the LazyVim spec - it's the trouble integration
+    -- that's particularly appealing 
     keys = {
       {"<leader>t", "", desc = "+test"},
-      -- { "<leader>tt", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Run File (Neotest)" },
-      { "<leader>tT", function() require("neotest").run.run(vim.uv.cwd()) end, desc = "Run All Test Files (Neotest)" },
-      { "<leader>tr", function() require("neotest").run.run() end, desc = "Run Nearest (Neotest)" },
-      { "<leader>tl", function() require("neotest").run.run_last() end, desc = "Run Last (Neotest)" },
-      { "<leader>ts", function() require("neotest").summary.toggle() end, desc = "Toggle Summary (Neotest)" },
-      { "<leader>to", function() require("neotest").output.open({ enter = true, auto_close = true }) end, desc = "Show Output (Neotest)" },
-      { "<leader>tO", function() require("neotest").output_panel.toggle() end, desc = "Toggle Output Panel (Neotest)" },
-      { "<leader>tS", function() require("neotest").run.stop() end, desc = "Stop (Neotest)" },
-      { "<leader>tw", function() require("neotest").watch.toggle(vim.fn.expand("%")) end, desc = "Toggle Watch (Neotest)" },
+      { "<leader>tf", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "run file (neotest)" },
+      { "<leader>tT", function() require("neotest").run.run(vim.uv.cwd()) end, desc = "run all test files (neotest)" },
+      { "<leader>tr", function() require("neotest").run.run() end, desc = "run nearest (neotest)" },
+      { "<leader>tl", function() require("neotest").run.run_last() end, desc = "run last (neotest)" },
+      { "<leader>ts", function() require("neotest").summary.toggle() end, desc = "toggle summary (neotest)" },
+      { "<leader>to", function() require("neotest").output.open({ enter = true, auto_close = true }) end, desc = "show output (neotest)" },
+      { "<leader>tO", function() require("neotest").output_panel.toggle() end, desc = "toggle output panel (neotest)" },
+      { "<leader>tS", function() require("neotest").run.stop() end, desc = "stop (neotest)" },
+      { "<leader>tw", function() require("neotest").watch.toggle(vim.fn.expand("%")) end, desc = "toggle watch (neotest)" },
     },
-    -- neotest plugins / runners
   },
-  { 
-    "nvim-neotest/neotest-python", 
-    enabled = true, 
-  },
-  { 
-    "nvim-neotest/neotest-go",
-    enabled = true,
-  },
+  -- neotest plugins / runners
+  { "nvim-neotest/neotest-python", enabled = true, },
+  { "fredrikaverpil/neotest-golang",enabled = true, },
 }

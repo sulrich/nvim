@@ -38,8 +38,43 @@ return {
       log_level = "DEBUG",
       extensions = {
         vectorcode = {
-          opts = { add_tool = true, add_slash_command = true, tool_opts = {} },
+          opts = {
+            add_tool = true,
+            add_slash_command = true,
+            tool_opts = {}
+          },
         },
+        history = {
+          enabled = true,
+          opts = {
+            -- keymap to open history from chat buffer (default: gh)
+            keymap = "gh",
+            -- keymap to save the current chat manually (when auto_save is disabled)
+            save_chat_keymap = "sc",
+            -- save all chats by default (disable to save only manually using 'sc')
+            auto_save = true,
+            -- number of days after which chats are automatically deleted (0 to disable)
+            expiration_days = 0,
+            -- Picker interface ("telescope" or "snacks" or "fzf-lua" or "default")
+            picker = "snacks",
+            -- automatically generate titles for new chats
+            auto_generate_title = true,
+            title_generation_opts = {
+              -- adapter for generating titles (defaults to current chat adapter)
+              adapter = nil, -- "copilot"
+              -- model for generating titles (defaults to current chat model)
+              model = nil, -- "gpt-4o"
+            },
+            -- on exiting and entering neovim, loads the last chat on opening chat
+            continue_last_chat = false,
+            -- when chat is cleared with `gx` delete the chat from history
+            delete_on_clearing_chat = false,
+            -- directory path to save the chats
+            dir_to_save = vim.fn.stdpath("data") .. "/codecompanion-history",
+            -- enable detailed logging for history extension
+            enable_logging = false,
+          }
+        }
       },
       display = {
         action_palette = {
@@ -100,7 +135,11 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
-      { 'echasnovski/mini.diff', version = false },
+      "ravitemer/codecompanion-history.nvim",
+      {
+        'echasnovski/mini.diff',
+        version = false
+      },
     },
   },
 }

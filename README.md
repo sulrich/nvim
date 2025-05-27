@@ -18,10 +18,10 @@ follows. (from this directory)
 ```shell
 uv venv  # this creates $CWD/.venv
 source .venv/bin/activate
-uv pip install neovim 
-uv pip install pynvim
-uv pip install pyright
-uv pip install ruff 
+uv pip install neovim --upgrade
+uv pip install pynvim --upgrade
+uv pip install pyright --upgrade
+uv pip install ruff --upgrade
 ```
 
 as there is a need to add python modules, etc. for packages, this virtual env

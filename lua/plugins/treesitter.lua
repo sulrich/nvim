@@ -7,7 +7,12 @@ return {
   lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
   cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
   opts = {
-    indent = { enable = true },
+    indent = { 
+      enable = true, -- by default enable
+      disable = {
+        "markdown",  -- somehow, it makes markdown worse
+      },
+    },
     -- a list of parser names, or "all" (the listed parsers must always be installed)
     ensure_installed = {
       "bash",

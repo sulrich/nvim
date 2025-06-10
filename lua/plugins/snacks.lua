@@ -25,7 +25,9 @@ return {
       layout = { preset = "ivy" },
       sources = {
         buffers, 
-        files,
+        files = {
+          hidden = true,
+        },
         grep,
 				marks,  -- see config/bookmarks.lua
         explorer = {

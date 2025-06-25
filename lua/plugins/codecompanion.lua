@@ -66,7 +66,7 @@ return {
               model = nil, -- "gpt-4o"
             },
             -- on exiting and entering neovim, loads the last chat on opening chat
-            continue_last_chat = false,
+            continue_last_chat = true,
             -- when chat is cleared with `gx` delete the chat from history
             delete_on_clearing_chat = false,
             -- directory path to save the chats
@@ -110,8 +110,8 @@ return {
           },
           -- options to customize the ui of the chat buffer
           window = {
-            layout = "horizontal", -- float|vertical|horizontal|buffer
-            position = bottom, -- left|right|top|bottom (nil will default depending on vim.opt.plitright|vim.opt.splitbelow)
+            layout = "vertical", -- float|vertical|horizontal|buffer
+            position = right, -- left|right|top|bottom (nil will default depending on vim.opt.plitright|vim.opt.splitbelow)
             border = "single",
             height = 0.5,
             width = 0.45,

@@ -1,7 +1,36 @@
 {
   "mmtg": {
     "prefix": "mmtg",
-    "body": ["## ${CURRENT_YEAR}${CURRENT_MONTH}${CURRENT_DATE}\n\n### attendees\n\n\n- XXX:\n- nexthop:\n- location: [ in-person | hangout | zoom ]\n\n### discussion notes\n\n-\n\n### action items / next steps\n\n-\n\n### tags\n\n  #notes #nexthop"],
+    "body": [
+      "## ${CURRENT_YEAR}${CURRENT_MONTH}${CURRENT_DATE}",
+      "### attendees",
+      "- XXX:",
+      "- nexthop:",
+      "- location: [ in-person | hangout | zoom ]",
+      "",
+      "### discussion notes",
+      "",
+      "- ${1}",
+      "",
+      "### action items / next steps",
+      "- [ ]",
+      "- [ ]",
+      "",
+      "### tags",
+      "",
+      "#notes #nexthop",
+      "${0}"
+    ],
     "description": "stub meeting notes"
+  },
+  "glossary-entry": {
+    "prefix": "gloss-entry",
+    "body": [
+      "#### ${1: word}",
+      "",
+      "**Definition:** ${2: definition}",
+      "${0}"
+    ],
+    "description": "glossary entry"
   }
 }

@@ -45,6 +45,7 @@ return {
       per_filetype = {
         -- only enable snippets in markdown
         markdown = { 'snippets' },
+        codecompanion = { "codecompanion" },
       }
     },
 

@@ -7,7 +7,7 @@ return {
   ---@type snacks.Config
   opts = {
 
-    explorer = { enabled = true, },
+    -- explorer = { enabled = true, },
     indent = { enabled = true, },
     input = { enabled = true },
     notifier = { enabled = true },
@@ -26,10 +26,15 @@ return {
       sources = {
         buffers, 
         files = {
-          hidden = true,
+          hidden = true,  -- enables dotfiles to be accessed
         },
         grep,
 				marks,  -- see config/bookmarks.lua
+        git_branches,
+        git_diff,
+        git_files,
+        git_status,
+
         explorer = {
           cycle = true,
           auto_close = true,

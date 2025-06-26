@@ -6,7 +6,9 @@ return {
   opts = {
     servers = {
       gopls = {},
-      -- marksman = {},  -- markdown lsp
+      marksman = {  -- markdown lsp
+        on_attach = on_attach,
+      },
       pyright = {
         on_attach = on_attach,
         settings = {

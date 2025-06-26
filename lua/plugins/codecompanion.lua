@@ -43,7 +43,7 @@ return {
             add_slash_command = true,
             tool_opts = {}
           },
-        },
+        }, -- end: vectorcode extension
         history = {
           enabled = true,
           opts = {
@@ -74,7 +74,15 @@ return {
             -- enable detailed logging for history extension
             enable_logging = false,
           }
-        }
+        }, -- end: history extension
+        mcphub = {
+          callback = "mcphub.extensions.codecompanion",
+          opts = {
+            show_result_in_chat = true,  -- show mcp tool results in chat
+            make_vars = true,            -- convert resources to #variables
+            make_slash_commands = true,  -- add prompts as /slash commands
+          }
+        } -- end: mcphub extension
       },
       display = {
         action_palette = {
@@ -140,6 +148,13 @@ return {
         'echasnovski/mini.diff',
         version = false
       },
+      {
+        "ravitemer/mcphub.nvim",
+        build = "npm install -g mcp-hub@latest",
+        config = function()
+          require("mcphub").setup()
+        end
+      }
     },
   },
 }

@@ -103,12 +103,7 @@ vim.g.python3_host_prog = HOME .. "/.config/nvim/.venv/bin/python3"
 -- spell check configuration
 vim.o.spelllang = "en_us"
 vim.o.spellcapcheck = ""       -- ignore capitalization
--- personal word list
--- vim.opt.spellfile = HOME .. "/iCloud/src/configs/aspell/aspell.en.pws"
-vim.cmd([[
-" this seems to cause problems when moved to lua native config
-" set spellfile = "~/iCloud/src/configs/aspell/aspell.en.pws"
-]])
+-- vim.opt.spellfile = HOME .. "/iCloud/src/configs/aspell/aspell.en.pws"`
 
 -- diff settings
 vim.o.diffopt = "filler,iwhite"     -- ignore all whitespace and sync

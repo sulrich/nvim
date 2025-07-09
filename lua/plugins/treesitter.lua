@@ -25,6 +25,7 @@ return {
       "html",
       "javascript",
       "json",
+      "jsonc",
       -- "latex",            -- snacks.image
       "lua",
       "markdown",

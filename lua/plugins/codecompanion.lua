@@ -1,4 +1,5 @@
 local is_mac = vim.loop.os_uname().sysname == "Darwin"
+
 return {
   {
     "olimorris/codecompanion.nvim",
@@ -34,8 +35,9 @@ return {
           adapter = "anthropic",
         },
       },
+
       -- set debug logging
-      log_level = "DEBUG",
+      log_level = "INFO",
       extensions = {
         vectorcode = {
           opts = {
@@ -61,14 +63,14 @@ return {
             auto_generate_title = true,
             title_generation_opts = {
               -- adapter for generating titles (defaults to current chat adapter)
-              adapter = nil, -- "copilot"
+              adapter = anthropic, -- "copilot"
               -- model for generating titles (defaults to current chat model)
               model = nil, -- "gpt-4o"
             },
             -- on exiting and entering neovim, loads the last chat on opening chat
-            continue_last_chat = true,
+            continue_last_chat = false,
             -- when chat is cleared with `gx` delete the chat from history
-            delete_on_clearing_chat = false,
+            delete_on_clearing_chat = true,
             -- directory path to save the chats
             dir_to_save = vim.fn.stdpath("data") .. "/codecompanion-history",
             -- enable detailed logging for history extension
@@ -150,6 +152,9 @@ return {
       },
       {
         "ravitemer/mcphub.nvim",
+        dependencies = {
+          "nvim-lua/plenary.nvim",
+        },
         build = "npm install -g mcp-hub@latest",
         config = function()
           require("mcphub").setup()

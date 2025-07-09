@@ -1,8 +1,9 @@
 return {
   "folke/snacks.nvim",
-  enabled = true,
-  lazy = false,
-  priority = 1000,
+  -- enabled = true,
+  -- lazy = false,
+  -- priority = 1000,
+  event = "VeryLazy",
 
   ---@type snacks.Config
   opts = {

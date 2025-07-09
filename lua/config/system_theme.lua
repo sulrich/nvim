@@ -44,23 +44,15 @@ function M.setup(opts)
       vim.defer_fn(M.check_system_theme, 10)
     end,
   })
-  
-  -- check periodically using cursorhold event
-  vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-    group = augroup,
-    callback = function()
+
+  -- set up a timer to check periodically
+  if not M.theme_check_timer then
+    M.theme_check_timer = vim.uv.new_timer()
+    M.theme_check_timer:start(check_interval, check_interval, function()
       M.check_system_theme()
-    end,
-  })
-  
-  -- preserve original updatetime value
-  local original_updatetime = vim.o.updatetime
-  
-  -- set updatetime to control check frequency, but only if the current value
-  -- is higher (we don't want to override more aggressive updatetime settings)
-  if original_updatetime > check_interval then
-    vim.o.updatetime = check_interval
+    end)
   end
+  
 end
 
 return M

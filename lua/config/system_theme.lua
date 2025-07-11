@@ -10,13 +10,16 @@ function M.check_system_theme()
     local result = handle:read("*a")
     handle:close()
     
-    if result:match("Dark") then
-      -- system is in dark mode
-      vim.o.background = "dark"
-    else
-      -- system is in light mode (command returns nothing or error)
-      vim.o.background = "light"
-    end
+    -- schedule the background change to avoid fast event context issues
+    vim.schedule(function()
+      if result:match("Dark") then
+        -- system is in dark mode
+        vim.o.background = "dark"
+      else
+        -- system is in light mode (command returns nothing or error)
+        vim.o.background = "light"
+      end
+    end)
   end
 end
 

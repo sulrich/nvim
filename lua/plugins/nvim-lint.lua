@@ -8,6 +8,7 @@ return {
       markdown = { 'markdownlint', },
       python = { 'ruff' },
       proto = { 'protolint'},
+      yaml = { 'yamllint'},
       -- yaml.ansible = { 'ansible_lint' },
     }
 

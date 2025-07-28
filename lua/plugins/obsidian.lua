@@ -23,6 +23,9 @@ return {
       "nvim-lua/plenary.nvim",
     },
     opts = {
+      picker = {
+        name = "snacks.pick",
+      },
       ui = {
         enable = false,
       },
@@ -42,7 +45,7 @@ return {
         -- enables completion using blink.cmp
         blink = true,
         -- trigger completion at 2 chars.
-        min_chars = 2,
+        min_chars = 4,
       },
       new_notes_location = "notes_subdir",
     },

@@ -2,7 +2,7 @@ vim.g.mapleader = ' ' vim.keymap.set('i', 'kj', '<Esc>', {})
 
 -- strip trailing whitespace from the current file
 vim.keymap.set('n', '<leader>w', [[:let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>]], {noremap = true})
- 
+
 -- copy current file path to system clipboard with <leader>yp
 vim.keymap.set('n', '<leader>yp', function()
     local path = vim.fn.expand('%:p')
@@ -15,11 +15,13 @@ end, { desc = 'yank file path to clipboard' })
 -- use z= to get a list of the possible spelling suggestions.
 -- --------------------------------------------------------------------
 -- spell check the buffer
-vim.keymap.set('n', '<leader>s', ':set spell!<cr>', {noremap = true, silent = true})
-vim.keymap.set('n', '<leader>S', [[ea<C-X><C-S>]], {noremap = true, silent = true})
+-- vim.keymap.set('n', '<leader>s', ':set spell!<cr>', {noremap = true, silent = true})
+-- vim.keymap.set('n', '<leader>S', [[ea<C-X><C-S>]], {noremap = true, silent = true})
 -- replace the current word with the 1st suggestion.
 -- this works - most of the time
 vim.keymap.set('n', '<leader>r', '1z=', {noremap = true, silent = true})
+-- opportunistically replace the most recent misspelled word with the first
+-- suggestion in the dictionary
 vim.keymap.set('i', '<C-;>','<Esc>[s1z=`]a', {silent = true})
 
 -- clear search highlights
@@ -45,10 +47,16 @@ vim.keymap.set("n", "<leader><down>", ":resize -10<cr>")
 
 -- see: https://github.com/neovim/nvim-lspconfig/tree/54eb2a070a4f389b1be0f98070f81d23e2b1a715#suggested-configuration
 local opts = { noremap=true, silent=true }
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, 
+  { desc = "open diagnostics" }
+)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, 
+  { desc="go to previous diagnostic"}
+)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, 
+  { desc="got to next diagnostic" }
+)
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
 
 -- use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer

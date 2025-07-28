@@ -12,7 +12,6 @@ vim.g.maplocalleader = "\\"
 
 require('config.lazy') -- get plugins loaded via lazy.nvim
 require('keybindings') -- load non-plugin-specific keybindings
-require('config.bookmarks_lite').setup() -- small bookmarking utility
 -- check system theme every 5 minutes
 require('config.system_theme').setup({check_interval = 5 * 60 * 1000}) 
 

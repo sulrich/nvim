@@ -31,6 +31,10 @@ return {
       ui = {
         enable = false,
       },
+      -- this should stop spontaneous task creation
+      checkbox = {
+        create_new = false,
+      },
       workspaces = {
         {
           name = "personal-journal",

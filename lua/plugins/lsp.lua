@@ -9,10 +9,10 @@ return {
       marksman = {  -- markdown lsp
         on_attach = on_attach,
       },
-      pyright = {
+      basedpyright = {
         on_attach = on_attach,
         settings = {
-          pyright = {
+          basedpyright = {
             -- using ruff's import organizer
             disableOrganizeImports = true,
           },

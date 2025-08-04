@@ -12,4 +12,5 @@ return {
     event = 'BufWinEnter',
     opts = {},
   },
+  { 'echasnovski/mini.icons', version = '*' },
 }

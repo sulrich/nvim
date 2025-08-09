@@ -107,6 +107,10 @@ vim.o.spellcapcheck = ""       -- ignore capitalization
 -- diff settings
 vim.o.diffopt = "filler,iwhite"     -- ignore all whitespace and sync
 
+-- explicitly set this to ensure that if there's an editorconfig file in play,
+-- it's honored over anything i might have in ftplugin, etc.
+vim.g.editorconfig = true
+
 -- disable editorconfig for gitcommit buffers
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "gitcommit",

@@ -25,16 +25,10 @@ return {
       "nvim-lua/plenary.nvim",
     },
     opts = {
-      picker = {
-        name = "snacks.pick",
-      },
-      ui = {
-        enable = false,
-      },
+      picker = { name = "snacks.pick", },
+      ui = { enable = false, },
       -- this should stop spontaneous task creation
-      checkbox = {
-        create_new = false,
-      },
+      checkbox = { create_new = false, },
       workspaces = {
         {
           name = "personal-journal",
@@ -54,7 +48,7 @@ return {
       }, -- end: daily_notes config
       -- Optional, completion of wiki links, local markdown links, and tags using nvim-cmp.
       completion = {
-        -- enables completion using nvim_cmp
+        -- disables completion using nvim_cmp
         nvim_cmp = false,
         -- enables completion using blink.cmp
         blink = true,
@@ -66,12 +60,12 @@ return {
         folder = "templates",
         date_format = personal_date_format,
         time_format = "%H:%M",
-        -- A map for custom variables, the key should be the variable and the value a function.
-        -- Functions are called with obsidian.TemplateContext objects as their sole parameter.
-        -- See: https://github.com/obsidian-nvim/obsidian.nvim/wiki/Template#substitutions
+        -- a map for custom variables, the key should be the variable and the value a function.
+        -- functions are called with obsidian.templatecontext objects as their sole parameter.
+        -- see: https://github.com/obsidian-nvim/obsidian.nvim/wiki/Template#substitutions
         substitutions = {},
 
-        -- A map for configuring unique directories and paths for specific templates
+        -- a map for configuring unique directories and paths for specific templates
         --- See: https://github.com/obsidian-nvim/obsidian.nvim/wiki/Template#customizations
         customizations = {},
       },

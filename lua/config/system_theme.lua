@@ -1,4 +1,5 @@
--- system_theme.lua automatically changes neovim background based on macos system theme (dark/light)
+-- system_theme.lua automatically changes neovim background based on macos
+-- system theme (dark/light)
 
 local M = {}
 

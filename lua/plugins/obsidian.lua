@@ -25,6 +25,8 @@ return {
       "nvim-lua/plenary.nvim",
     },
     opts = {
+      -- 
+      legacy_commands = false,
       picker = { name = "snacks.pick", },
       ui = { enable = false, },
       -- this should stop spontaneous task creation

@@ -120,6 +120,14 @@ vim.api.nvim_create_autocmd("FileType", {
   desc = "disable editorconfig for gitcommit buffers"
 })
 
+-- neovide specific settings
+if vim.g.neovide then
+  -- set the font
+  vim.o.guifont = "JetBrainsMono Nerd Font Mono:h13" 
+  -- disable the cursor trail biz
+  vim.g.neovide_cursor_animation_length = 0
+end
+
 -- autocommand group settings
 vim.api.nvim_create_augroup("nvim_ghost_user_autocommands", { clear = true })
 

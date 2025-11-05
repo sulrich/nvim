@@ -24,12 +24,16 @@ return {
       -- required.
       "nvim-lua/plenary.nvim",
     },
+    keys = { 
+      { "<leader>dt", "<cmd>Obsidian today<cr>", desc="open daily note (today)" },
+      { "<leader>tt", "<cmd>Obsidian toggle_checkbox<cr>", desc="toggle checkbox state" },
+    },
     opts = {
       -- 
       legacy_commands = false,
       picker = { name = "snacks.pick", },
       ui = { enable = false, },
-      -- this should stop spontaneous task creation
+      -- the following should stop spontaneous task creation
       checkbox = { create_new = false, },
       workspaces = {
         {

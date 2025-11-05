@@ -22,7 +22,7 @@ return {
     { 'rizzatti/dash.vim',
     lazy = true,
     keys = {
-      { '<leader>d', '<Plug>DashSearch' },
+      { '<leader>D', '<Plug>DashSearch' },
     },
   },
   { 'axieax/urlview.nvim', 

@@ -70,8 +70,8 @@ return {
     { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
     { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
     { "<leader>n", function() Snacks.picker.notifications() end, desc = "Notification History" },
-    { "<leader>tt", function() Snacks.explorer() end, desc = "File Explorer" },
-    -- find
+    -- TODO(sulrich): remap this to something else, to deconflict w/`Obsidian toggle_checkbox`
+    -- { "<leader>tt", function() Snacks.explorer() end, desc = "File Explorer" },
     { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
     { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
     { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },

@@ -26,6 +26,7 @@ return {
     },
     keys = { 
       { "<leader>dt", "<cmd>Obsidian today<cr>", desc="open daily note (today)" },
+      { "<leader>dl", "<cmd>Obsidian dailies<cr>", desc="open dailies picker" },
       { "<leader>tt", "<cmd>Obsidian toggle_checkbox<cr>", desc="toggle checkbox state" },
     },
     opts = {

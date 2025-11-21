@@ -74,6 +74,14 @@ return {
         -- a map for configuring unique directories and paths for specific templates
         --- See: https://github.com/obsidian-nvim/obsidian.nvim/wiki/Template#customizations
         customizations = {},
+
+        attachments = {
+          img_text_func = function(path)
+            local name = vim.fs.basename(tostring(path))
+            local encoded_name = require("obsidian.util").urlencode(name)
+            return string.format("![%s](%s)", name, encoded_name)
+          end,
+        },
       },
     },
   }

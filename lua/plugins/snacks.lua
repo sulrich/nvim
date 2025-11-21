@@ -13,6 +13,19 @@ return {
     input = { enabled = true },
     notifier = { enabled = true },
 
+    -- https://github.com/folke/snacks.nvim/blob/main/docs/image.md   
+    -- this will likely require a bit of tuning, but seems to work pretty well
+    -- right out of the box
+    image = {
+      enabled = true,
+
+      resolve = function(path, src)
+         if require("obsidian.api").path_is_note(path) then
+            return require("obsidian.api").resolve_image_path(src)
+         end
+      end,
+    },
+
     gitbrowse = {
       remote_patterns = {
         { "^github%-sulrich:/(.+)%.git$", "https://github.com/%1" },

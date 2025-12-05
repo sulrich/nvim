@@ -10,10 +10,18 @@ return {
     cmd = { "GistCreate", "GistCreateFromFile", "GistsList" },
     config = true,
     opts = {
-      -- private = false, -- All gists will be private, you won't be prompted again,
-      -- personally, i like the prompt.
-      -- note that the following 2 options are only available in my fork
-      gh_cmd = "/usr/local/bin/op plugin run -- gh",
+      prompts = {
+        create = {
+          private = true,
+          description = true,
+          confirmation = true,
+        },
+      },
+      platforms = {
+        github = {
+          cmd = "op plugin run -- gh",
+        },
+      },
       split_direction = "horizontal", -- window split direction [vertical | horizontal]
       clipboard = "+", -- The registry to use for copying the Gist URL
       list = {

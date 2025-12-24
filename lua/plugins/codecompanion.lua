@@ -13,7 +13,17 @@ return {
       vim.cmd([[cab cc CodeCompanion]])
     end,
     opts = {
-      strategies = {
+      adapters = {
+        acp = {
+          -- note, currently auggie doesn't support interactive use with our
+          -- licensing
+          -- auggie_cli = function()
+          -- see: https://github.com/olimorris/codecompanion.nvim/blob/main/lua/codecompanion/adapters/acp/auggie_cli.lua
+          -- end,
+
+        },
+      }, -- end: adapters
+      interactions  = {
         -- chat adapter
         chat = {
           adapter = "anthropic",
@@ -34,7 +44,7 @@ return {
         cmd = {
           adapter = "anthropic",
         },
-      },
+      }, -- end: interactions
 
       -- set debug logging
       log_level = "INFO",
@@ -93,7 +103,7 @@ return {
           prompt = "Prompt ", -- Prompt used for interactive LLM calls
           provider = "snacks", -- Can be "default", "telescope", or "mini_pick" or snacks!
           opts = {
-            show_default_actions = true, -- Show the default actions in the action palette?
+            show_preset_actions = true, -- Show the default actions in the action palette?
             show_default_prompt_library = true, -- Show the default prompt library in the action palette?
           },
         },
@@ -139,7 +149,7 @@ return {
               wrap = true,
             },
           },
-        },
+        }, -- end: display.chat.*
       },
     },
     dependencies = {

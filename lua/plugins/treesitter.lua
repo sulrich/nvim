@@ -4,6 +4,7 @@ return {
   -- into issues.
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
+  branch = "main",
   lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
   cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
   opts = {
@@ -85,6 +86,42 @@ return {
     },
   },
   config = function(_, opts)
-    require("nvim-treesitter.configs").setup(opts)
+    local TS = require("nvim-treesitter")
+
+    -- some quick sanity checks
+    if not TS.get_installed then
+      vim.notify("please use `:Lazy` and update `nvim-treesitter`", vim.log.levels.ERROR)
+      return
+    elseif type(opts.ensure_installed) ~= "table" then
+      error("`nvim-treesitter` opts.ensure_installed must be a table")
+      return
+    end
+
+    -- setup treesitter
+    TS.setup(opts)
+
+    -- get currently installed parsers
+    local installed = TS.get_installed()
+    local installed_set = {}
+    for _, lang in ipairs(installed) do
+      installed_set[lang] = true
+    end
+
+    -- install missing parsers
+    local to_install = {}
+    for _, lang in ipairs(opts.ensure_installed or {}) do
+      if not installed_set[lang] then
+        table.insert(to_install, lang)
+      end
+    end
+
+    if #to_install > 0 then
+      vim.notify("installing missing treesitter parsers: " .. table.concat(to_install, ", "), vim.log.levels.INFO)
+      
+      -- install parsers using the lua API
+      vim.schedule(function()
+        TS.install(to_install)
+      end)
+    end
   end,
 }

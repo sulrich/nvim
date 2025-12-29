@@ -9,13 +9,17 @@ return {
       marksman = {  -- markdown lsp
         on_attach = on_attach,
       },
-      basedpyright = {
+      ty = {
         on_attach = on_attach,
+
         settings = {
-          basedpyright = {
-            -- using ruff's import organizer
-            disableOrganizeImports = true,
-          },
+          cmd = { "ty", "server"},
+          filetypes = { "python" },
+          root_markers = { "ty.toml", "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", ".git" },
+          -- ty = {
+          --   -- using ruff's import organizer
+          --   disableOrganizeImports = true,
+          -- },
           python = {
             analysis = {
               -- ignore all files for analysis to exclusively use ruff for linting
@@ -23,7 +27,22 @@ return {
             },
           },
         },
-      }, -- end: pyright
+      },
+      -- basedpyright = {
+      --   on_attach = on_attach,
+      --   settings = {
+      --     basedpyright = {
+      --       -- using ruff's import organizer
+      --       disableOrganizeImports = true,
+      --     },
+      --     python = {
+      --       analysis = {
+      --         -- ignore all files for analysis to exclusively use ruff for linting
+      --         -- ignore = { '*' },
+      --       },
+      --     },
+      --   },
+      -- }, -- end: basedpyright
       ruff = {
         on_attach = on_attach,
         init_options = {
@@ -41,8 +60,8 @@ return {
   config = function(_, opts)
     -- local lspconfig = vim.lsp.config()
     for server, config in pairs(opts.servers) do
-      -- passing config.capabilities to blink.cmp merges with the capabilities in your
-      -- `opts[server].capabilities, if you've defined it
+      -- passing config.capabilities to blink.cmp merges with the capabilities in
+      -- `opts[server].capabilities, if it's been defined
       config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
       vim.lsp.enable(server)
     end

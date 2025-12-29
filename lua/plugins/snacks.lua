@@ -25,13 +25,14 @@ return {
          end
       end,
     },
-
     gitbrowse = {
       remote_patterns = {
         { "^github%-sulrich:/(.+)%.git$", "https://github.com/%1" },
       },
     },
+    gh = { 
 
+    },
     picker = {
       enabled = true,
       -- your picker configuration comes here
@@ -48,7 +49,8 @@ return {
         git_diff,
         git_files,
         git_status,
-
+        gh_issue = {},
+        gh_pr = {},
         explorer = {
           cycle = true,
           auto_close = true,
@@ -99,6 +101,11 @@ return {
     { "<leader>gS", function() Snacks.picker.git_stash() end, desc = "Git Stash" },
     { "<leader>gd", function() Snacks.picker.git_diff() end, desc = "Git Diff (Hunks)" },
     { "<leader>gf", function() Snacks.picker.git_log_file() end, desc = "Git Log File" },
+    -- gh github command line utility
+    { "<leader>gi", function() Snacks.picker.gh_issue() end, desc = "GitHub Issues (open)" },
+    { "<leader>gI", function() Snacks.picker.gh_issue({ state = "all" }) end, desc = "GitHub Issues (all)" },
+    { "<leader>gp", function() Snacks.picker.gh_pr() end, desc = "GitHub Pull Requests (open)" },
+    { "<leader>gP", function() Snacks.picker.gh_pr({ state = "all" }) end, desc = "GitHub Pull Requests (all)" },
     -- grep
     { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
     { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },

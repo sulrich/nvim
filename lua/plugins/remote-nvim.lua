@@ -1,11 +1,10 @@
 -- plugin info: https://github.com/amitds1997/remote-nvim.nvim
 local is_mac = vim.loop.os_uname().sysname == "Darwin"
-local is_right_host = vim.uv.os_gethostname() == "waffletron"
 
 return {
   "amitds1997/remote-nvim.nvim",
   version = "*", -- pin to github releases
-  enabled = is_right_host,
+  enabled = is_mac,
   dependencies = {
     "nvim-lua/plenary.nvim", 
     "MunifTanjim/nui.nvim", -- to build the plugin ui

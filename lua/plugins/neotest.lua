@@ -9,20 +9,18 @@ return {
       "antoinemadec/FixCursorHold.nvim",
       "nvim-treesitter/nvim-treesitter",
       "nvim-neotest/neotest-python",
-      "fredrikaverpil/neotest-golang",
+      -- "fredrikaverpil/neotest-golang",
     },
-    config = function()
-      require("neotest").setup({
-        adapters = {
-          -- https://github.com/nvim-neotest/neotest-python
-          require("neotest-python"),
-          -- https://fredrikaverpil.github.io/neotest-golang/
-          require("neotest-golang")
-        },
-      })
-    end,
+    opts = {
+      adapters = {
+        -- https://github.com/nvim-neotest/neotest-python
+        "neotest-python",
+        -- https://fredrikaverpil.github.io/neotest-golang/
+        -- require("neotest-golang")
+      },
+    },
     -- note the following came from https://www.lazyvim.org/extras/test/core
-    -- TODO(sulrich): it would be nice to have the trbouel/quickfix integration
+    -- TODO(sulrich): it would be nice to have the trouble/quickfix integration
     -- that they show here in the LazyVim spec - it's the trouble integration
     -- that's particularly appealing 
     keys = {
@@ -40,5 +38,5 @@ return {
   },
   -- neotest plugins / runners
   { "nvim-neotest/neotest-python", enabled = true, },
-  { "fredrikaverpil/neotest-golang",enabled = true, },
+  -- { "fredrikaverpil/neotest-golang",enabled = true, },
 }

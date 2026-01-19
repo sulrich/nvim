@@ -26,3 +26,20 @@ uv pip install ruff --upgrade
 
 as there is a need to add python modules, etc. for packages, this virtual env
 should be populated with the relevant modules.
+
+## github
+
+note that a couple of these tokens rely on the availability of the following
+environment variables to play nicely with github and the `gh` commands.
+
+- GH_TOKEN
+- GITHUB_TOKEN
+
+these should be exported via `.envrc` files placed within the respective source
+hierarchies to ensure that the tools have the right token access.  i like
+something along the lines of the following to keep things in check here.
+
+```bash
+export GH_TOKEN={{ op ... path to credential }}
+export GITHUB_TOKEN=${GH_TOKEN}
+```

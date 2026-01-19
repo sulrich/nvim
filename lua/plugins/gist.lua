@@ -10,6 +10,8 @@ return {
     cmd = { "GistCreate", "GistCreateFromFile", "GistsList" },
     config = true,
     opts = {
+      platform = "github",
+      clipboard = "+", -- the registry to use for copying the gist url
       prompts = {
         create = {
           private = true,
@@ -17,14 +19,9 @@ return {
           confirmation = true,
         },
       },
-      platforms = {
-        github = {
-          cmd = "op plugin run -- gh",
-        },
-      },
-      split_direction = "horizontal", -- window split direction [vertical | horizontal]
-      clipboard = "+", -- The registry to use for copying the Gist URL
       list = {
+        -- if tmux is detected do something cool
+        use_multiplexer = true,
         -- If there are multiple files in a gist you can scroll them,
         -- with vim-like bindings n/p next previous
         mappings = {
@@ -32,7 +29,7 @@ return {
           prev_file = "<C-p>"
         }
       }
-    }
+    },
   },
   -- `GistsList` opens the selected gist in a terminal buffer,
   -- nvim-unception uses neovim remote rpc functionality to open the gist in an actual buffer

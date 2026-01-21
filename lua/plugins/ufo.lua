@@ -26,16 +26,18 @@ return {
       end)
     end,
     config = function()
-      local ftMap = {
+      local ft_map = {
         vim = { 'indent' },
         python = { 'lsp', 'indent' },
-        markdown = { 'indent' },
+        markdown = { 'treesitter' },
         lua = { 'lsp', 'indent' },
         git = {},
       }
       require('ufo').setup({
         open_fold_hl_timeout = 150,
-        close_fold_kinds_for_ft = { 'imports', 'comment' },
+        close_fold_kinds_for_ft = {
+          default = { 'imports', 'comment' }
+        },
         preview = {
           win_config = {
             border = { '', '─', '', '', '', '─', '', '' },
@@ -49,8 +51,8 @@ return {
         },
         provider_selector = function(bufnr, filetype, buftype)
           -- if you prefer treesitter provider rather than lsp,
-          -- return ftMap[filetype] or {'treesitter', 'indent'}
-          return ftMap[filetype] or { 'indent' }
+          -- return ft_map[filetype] or {'treesitter', 'indent'}
+          return ft_map[filetype] or { 'indent' }
           -- refer to ./doc/example.lua for detail
         end
       })

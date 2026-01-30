@@ -1,4 +1,5 @@
 local is_mac = vim.loop.os_uname().sysname == "Darwin"
+local is_gui = vim.fn.has("gui_running") == 1
 
 return {
   {
@@ -7,7 +8,8 @@ return {
     priority = 1000,
     lazy = false,
     -- this should only be enabled on macos (guis)
-    enabled = is_mac,
+    -- enabled = is_mac,
+    cond = (is_mac and is_gui), -- this is my mac gui theme
     dependencies = { 'nvim-lualine/lualine.nvim' },
     config = function()
       require("catppuccin").setup({

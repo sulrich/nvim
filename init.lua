@@ -12,8 +12,11 @@ vim.g.maplocalleader = "\\"
 
 require('config.lazy') -- get plugins loaded via lazy.nvim
 require('keybindings') -- load non-plugin-specific keybindings
--- check system theme every 5 minutes
-require('config.system_theme').setup({check_interval = 5 * 60 * 1000}) 
+-- check system theme every 5 minutes (only in GUI mode)
+local is_gui = vim.fn.has("gui_running") == 1
+if is_gui or vim.g.neovide or vim.g.vimr then
+  require('config.system_theme').setup({check_interval = 5 * 60 * 1000})
+end
 
 -- disable unused nvim providers
 vim.g.loaded_perl_provider = 0

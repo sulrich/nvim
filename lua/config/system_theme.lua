@@ -5,6 +5,12 @@ local M = {}
 
 -- function to check system theme and set background accordingly
 function M.check_system_theme()
+  -- only run in GUI mode (match the same check used in catppuccin.lua)
+  local is_gui = vim.fn.has("gui_running") == 1
+  if not is_gui and not vim.g.neovide and not vim.g.vimr then
+    return
+  end
+  
   -- use defaults command to check if macos is in dark mode
   local handle = io.popen("defaults read -g AppleInterfaceStyle 2>/dev/null")
   if handle then
@@ -30,7 +36,8 @@ function M.setup(opts)
   local check_interval = opts.check_interval or 3 * 60 * 1000 -- default: check every 3 minutes (in ms)
   
   -- only setup if in GUI mode (i.e. VimR)
-  if not vim.fn.has('gui_running') and not vim.g.neovide and not vim.g.vimr then
+  local is_gui = vim.fn.has("gui_running") == 1
+  if not is_gui and not vim.g.neovide and not vim.g.vimr then
     return
   end
   

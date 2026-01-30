@@ -6,8 +6,8 @@ return {
     "Tsuzat/NeoSolarized.nvim",
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
-    -- cond = (is_mac and is_not_gui), -- this is my mac terminal theme
-    enabled = false,
+    cond = (is_mac and is_not_gui), -- this is my mac terminal theme
+    -- enabled = false,
     dependencies = { 'nvim-lualine/lualine.nvim' },
     config = function()
       local ok_status, NeoSolarized = pcall(require, "NeoSolarized")

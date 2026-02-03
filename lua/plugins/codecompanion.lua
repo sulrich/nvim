@@ -27,9 +27,11 @@ return {
         -- chat adapter
         chat = {
           adapter = "anthropic",
+          adapter = "auggie_cli",
         },
         inline = {
           adapter = "anthropic",
+          adapter = "auggie_cli",
           keymaps = {
             accept_change = {
               modes = { n = "ga" },

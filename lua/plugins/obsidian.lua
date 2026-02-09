@@ -41,7 +41,7 @@ return {
           name = "personal-journal",
           path = "~/src/personal/obsidian/personal-journal",
           overrides = {
-            notes_subdir = "2025",
+            notes_subdir = "2026",
           },
         }, -- end: workspace definition
       }, -- end: workspaces

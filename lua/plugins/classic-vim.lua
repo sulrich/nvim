@@ -1,14 +1,6 @@
--- classic vim plugins
+-- classic vim plugins - these are typically written in vimscript
 return {
     { 'bfredl/nvim-miniyank', lazy = false }, -- addresses some visual block pasting oddities
-    {
-      'dhruvasagar/vim-table-mode',
-      lazy = true,
-      init = function()
-        -- for vim-table-mode use markdown stule corners
-        vim.g.table_mode_corner='|'
-      end,
-    },
     { 
       'godlygeek/tabular', 
       lazy = true,

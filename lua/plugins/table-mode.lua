@@ -1,5 +1,6 @@
 -- 20260213 (sulrich): this is a classic vim-script plugin.  it has a few quirks
 -- when mapped to lazy.nvim
+-- https://github.com/dhruvasagar/vim-table-mode
 return {
   {
     'dhruvasagar/vim-table-mode',

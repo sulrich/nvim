@@ -20,6 +20,16 @@ return {
           -- auggie_cli = function()
           -- see: https://github.com/olimorris/codecompanion.nvim/blob/main/lua/codecompanion/adapters/acp/auggie_cli.lua
           -- end,
+          gemini_cli = function()
+            return require("codecompanion.adapters").extend("gemini_cli", {
+              defaults = {
+                auth_method = "gemini-api-key", -- "oauth-personal"|"gemini-api-key"|"vertex-ai"
+              },
+              -- env = {
+              --   GEMINI_API_KEY = "cmd:op read op://personal/Gemini_API/credential --no-newline",
+              -- },
+            })
+          end,
 
         },
       }, -- end: adapters
@@ -27,19 +37,17 @@ return {
         -- chat adapter
         chat = {
           adapter = "anthropic",
-          adapter = "auggie_cli",
         },
         inline = {
           adapter = "anthropic",
-          adapter = "auggie_cli",
           keymaps = {
             accept_change = {
               modes = { n = "ga" },
-              description = "Accept the suggested change",
+              description = "accept the suggested change",
             },
             reject_change = {
               modes = { n = "gr" },
-              description = "Reject the suggested change",
+              description = "reject the suggested change",
             },
           },
         },
@@ -75,7 +83,7 @@ return {
             auto_generate_title = true,
             title_generation_opts = {
               -- adapter for generating titles (defaults to current chat adapter)
-              adapter = anthropic, -- "copilot"
+              adapter = "anthropic", -- "copilot"
               -- model for generating titles (defaults to current chat model)
               model = nil, -- "gpt-4o"
             },
@@ -93,7 +101,7 @@ return {
           callback = "mcphub.extensions.codecompanion",
           opts = {
             show_result_in_chat = true,  -- show mcp tool results in chat
-            make_vars = true,            -- convert resources to #variables
+            make_vars = false,           -- disabled: broken in codecompanion v19 (variables key removed)
             make_slash_commands = true,  -- add prompts as /slash commands
           }
         } -- end: mcphub extension
@@ -133,7 +141,7 @@ return {
           -- options to customize the ui of the chat buffer
           window = {
             layout = "vertical", -- float|vertical|horizontal|buffer
-            position = right, -- left|right|top|bottom (nil will default depending on vim.opt.plitright|vim.opt.splitbelow)
+            position = "right", -- left|right|top|bottom (nil will default depending on vim.opt.plitright|vim.opt.splitbelow)
             border = "single",
             height = 0.5,
             width = 0.45,

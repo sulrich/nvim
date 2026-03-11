@@ -6,7 +6,6 @@ return {
 
     lint.linters_by_ft = {
       markdown = { 'markdownlint', },
-      python = { 'ruff' },
       proto = { 'protolint'},
       yaml = { 'yamllint'},
       -- yaml.ansible = { 'ansible_lint' },

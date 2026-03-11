@@ -1,3 +1,5 @@
+local on_attach = require('keybindings').on_attach
+
 return {
   "neovim/nvim-lspconfig",
   event = "BufWinEnter",

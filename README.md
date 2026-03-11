@@ -43,3 +43,31 @@ something along the lines of the following to keep things in check here.
 export GH_TOKEN={{ op ... path to credential }}
 export GITHUB_TOKEN=${GH_TOKEN}
 ```
+
+## 20260311 - codecompanion issue
+
+```text
+- This is a version compatibility issue, not a config error. codecompanion.nvim
+  removed interactions.chat.variables in v19.0.0, but mcphub.nvim still expects it
+  (was written for v18). The variables.lua crashes trying to iterate over a nil
+  table.
+
+  The short-term fix is to disable make_vars in your mcphub opts — that's the
+  feature that calls the broken code path. The tools and slash commands will
+  still work.
+
+⏺ Update(lua/plugins/codecompanion.lua)
+  ⎿  Added 1 line, removed 1 line
+      101            callback = "mcphub.extensions.codecompanion",
+      102            opts = {
+      103              show_result_in_chat = true,  -- show mcp tool results in chat
+      104 -            make_vars = true,            -- convert resources to #variables
+      104 +            make_vars = false,           -- disabled: broken in codecompanion v19 (variables key removed)
+      105              make_slash_commands = true,  -- add prompts as /slash commands
+      106            }
+      107          } -- end: mcphub extension
+
+- This is a mcphub.nvim bug — it hasn't been updated for codecompanion v19. You
+  could watch https://github.com/ravitemer/mcphub.nvim for a v19 compatibility
+  fix. Once they release it, you can re-enable make_vars = true.
+```

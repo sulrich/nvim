@@ -7,6 +7,12 @@ return {
   -- using `opts` for defining servers and complementary config
   opts = {
     servers = {
+      -- https://github.com/joyme123/thrift-ls 
+      -- install this someplace stable (~/.local/bin)
+      thriftls = {
+        cmd = { "thriftls" },
+        filetypes = { "thrift" },
+      },
       gopls = {},
       marksman = {  -- markdown lsp
         on_attach = on_attach,

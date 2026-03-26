@@ -9,7 +9,8 @@ return {
     lazy = false,
     -- this should only be enabled on macos (guis)
     -- enabled = is_mac,
-    cond = (is_mac and is_gui), -- this is my mac gui theme
+    -- cond = (is_mac and is_gui), -- this is my mac gui theme
+    cond = is_mac, -- this is my mac gui theme
     dependencies = { 'nvim-lualine/lualine.nvim' },
     config = function()
       require("catppuccin").setup({

@@ -8,13 +8,16 @@ return {
     priority = 1000,
     lazy = false,
     -- this should only be enabled on macos (guis)
+    -- 20260327(sulrich): using this pretty much everywhere
+    enabled = true,
     -- enabled = is_mac,
     -- cond = (is_mac and is_gui), -- this is my mac gui theme
-    cond = is_mac, -- this is my mac gui theme
+    -- cond = is_mac,
     dependencies = { 'nvim-lualine/lualine.nvim' },
     config = function()
       require("catppuccin").setup({
-        flavour = "auto", -- latte, frappe, macchiato, mocha
+        -- this seems superfluous in my environment
+        -- flavour = "mocha", -- latte, frappe, macchiato, mocha
         background = { -- :h background
           light = "latte",
           dark = "mocha",

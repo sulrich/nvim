@@ -5,7 +5,8 @@ return {
   keys = {
     {
       -- customize or remove this keymap to your liking
-      "<leader>f",
+      -- 20260415(sulrich): key mnemonic: code format
+      "<leader>cf",
       function()
         require("conform").format({ async = true })
       end,

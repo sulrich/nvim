@@ -6,6 +6,9 @@ vim.opt_local.conceallevel= 0
 -- enable spell checking
 vim.opt_local.spell = true
 
+-- don't flag @mentions or #tags as misspelled
+vim.cmd([=[syn match noSpell /[@#]\w\%(\w\|-\)*[[:punct:]]*/  contains=@NoSpell]=])
+
 -- make sure that this is set explicitly
 vim.opt_local.tabstop = 2
 vim.opt_local.shiftwidth = 2

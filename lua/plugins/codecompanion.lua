@@ -20,14 +20,28 @@ return {
           -- auggie_cli = function()
           -- see: https://github.com/olimorris/codecompanion.nvim/blob/main/lua/codecompanion/adapters/acp/auggie_cli.lua
           -- end,
+          -- note: claude code requires installation of the claude-agent-acp
+          -- adapter from https://github.com/agentclientprotocol/claude-agent-acp
+          -- this is done via: npm install -g @agentclientprotocol/claude-agent-acp
+          claude_code = function()
+            return require("codecompanion.adapters").extend("claude_code", {
+              defaults = {
+                mcpServers = "inherit_from_config",
+              },
+              env = {
+                ANTHROPIC_API_KEY = "ANTHROPIC_API_KEY",
+              },
+            })
+          end,
           gemini_cli = function()
             return require("codecompanion.adapters").extend("gemini_cli", {
               defaults = {
                 auth_method = "gemini-api-key", -- "oauth-personal"|"gemini-api-key"|"vertex-ai"
               },
-              -- env = {
-              --   GEMINI_API_KEY = "cmd:op read op://personal/Gemini_API/credential --no-newline",
-              -- },
+              env = {
+                GEMINI_API_KEY = "GEMINI_API_KEY",
+                -- GEMINI_API_KEY = "cmd:op read op://personal/Gemini_API/credential --no-newline",
+              },
             })
           end,
 
@@ -36,7 +50,7 @@ return {
       interactions  = {
         -- chat adapter
         chat = {
-          adapter = "anthropic",
+          adapter = "claude_code",
         },
         inline = {
           adapter = "anthropic",
@@ -51,8 +65,16 @@ return {
             },
           },
         },
-        cmd = {
-          adapter = "anthropic",
+        cli = {
+          agent = "claude_code",
+          agents = {
+            claude_code = {
+              cmd = "claude",
+              args = {},
+              description = "claude code cli",
+              provider = "terminal",
+            },
+          },
         },
       }, -- end: interactions
 
@@ -122,7 +144,7 @@ return {
           close_chat_at = 240, -- Close an open chat buffer if the total columns of your display are less than...
           layout = "vertical", -- vertical|horizontal split for default provider
           opts = { "internal", "filler", "closeoff", "algorithm:patience", "followwrap", "linematch:120" },
-          provider = "mini_diff", -- default|mini_diff
+          -- provider = "mini_diff", -- default|mini_diff
         },
         -- chat settings
         chat = {

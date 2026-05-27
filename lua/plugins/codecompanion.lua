@@ -33,17 +33,28 @@ return {
               },
             })
           end,
-          gemini_cli = function()
-            return require("codecompanion.adapters").extend("gemini_cli", {
+          opencode = function()
+            return require("codecompanion.adapters").extend("opencode", {
               defaults = {
-                auth_method = "gemini-api-key", -- "oauth-personal"|"gemini-api-key"|"vertex-ai"
+                mcpServers = "inherit_from_config",
               },
-              env = {
-                GEMINI_API_KEY = "GEMINI_API_KEY",
-                -- GEMINI_API_KEY = "cmd:op read op://personal/Gemini_API/credential --no-newline",
-              },
+              -- env = {
+              --   ANTHROPIC_API_KEY = "ANTHROPIC_API_KEY",
+              -- },
             })
           end,
+          -- 20260527(sulrich): RIP gemini-cli
+          -- gemini_cli = function()
+          --   return require("codecompanion.adapters").extend("gemini_cli", {
+          --     defaults = {
+          --       auth_method = "gemini-api-key", -- "oauth-personal"|"gemini-api-key"|"vertex-ai"
+          --     },
+          --     env = {
+          --       GEMINI_API_KEY = "GEMINI_API_KEY",
+          --       -- GEMINI_API_KEY = "cmd:op read op://personal/Gemini_API/credential --no-newline",
+          --     },
+          --   })
+          -- end,
 
         },
       }, -- end: adapters
@@ -74,6 +85,12 @@ return {
               description = "claude code cli",
               provider = "terminal",
             },
+            opencode = {
+              cmd = "opencode",
+              args = {},
+              description = "opencode cli",
+              provider = "terminal",
+            },
           },
         },
       }, -- end: interactions
@@ -81,13 +98,6 @@ return {
       -- set debug logging
       log_level = "INFO",
       extensions = {
-        vectorcode = {
-          opts = {
-            add_tool = true,
-            add_slash_command = true,
-            tool_opts = {}
-          },
-        }, -- end: vectorcode extension
         history = {
           enabled = true,
           opts = {
@@ -105,9 +115,9 @@ return {
             auto_generate_title = true,
             title_generation_opts = {
               -- adapter for generating titles (defaults to current chat adapter)
-              adapter = "anthropic", -- "copilot"
+              -- adapter = "anthropic", -- "copilot"
               -- model for generating titles (defaults to current chat model)
-              model = nil, -- "gpt-4o"
+              -- model = nil, -- "gpt-4o"
             },
             -- on exiting and entering neovim, loads the last chat on opening chat
             continue_last_chat = false,
@@ -119,14 +129,6 @@ return {
             enable_logging = false,
           }
         }, -- end: history extension
-        mcphub = {
-          callback = "mcphub.extensions.codecompanion",
-          opts = {
-            show_result_in_chat = true,  -- show mcp tool results in chat
-            make_vars = false,           -- disabled: broken in codecompanion v19 (variables key removed)
-            make_slash_commands = true,  -- add prompts as /slash commands
-          }
-        } -- end: mcphub extension
       },
       display = {
         action_palette = {
@@ -188,20 +190,6 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
       "ravitemer/codecompanion-history.nvim",
-      {
-        'echasnovski/mini.diff',
-        version = false
-      },
-      {
-        "ravitemer/mcphub.nvim",
-        dependencies = {
-          "nvim-lua/plenary.nvim",
-        },
-        build = "npm install -g mcp-hub@latest",
-        config = function()
-          require("mcphub").setup()
-        end
-      }
     },
   },
 }

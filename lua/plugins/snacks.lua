@@ -74,6 +74,42 @@ return {
 				end,
 			},
     }, -- end: snacks.picker()
+    terminal = {
+      bo = {
+        filetype = "snacks_terminal",
+      },
+      wo = {},
+      keys = {
+        q = "hide",
+        gf = function(self)
+          local f = vim.fn.findfile(vim.fn.expand("<cfile>"), "**")
+          if f == "" then
+            Snacks.notify.warn("no file under cursor")
+          else
+            self:hide()
+            vim.schedule(function()
+              vim.cmd("e " .. f)
+            end)
+          end
+        end,
+        term_normal = {
+          "<esc>",
+          function(self)
+            self.esc_timer = self.esc_timer or (vim.uv or vim.loop).new_timer()
+            if self.esc_timer:is_active() then
+              self.esc_timer:stop()
+              vim.cmd("stopinsert")
+            else
+              self.esc_timer:start(200, 0, function() end)
+              return "<esc>"
+            end
+          end,
+          mode = "t",
+          expr = true,
+          desc = "double escape to normal mode",
+        },
+      },
+    }
   }, -- end: opts
 
 
@@ -134,27 +170,28 @@ return {
     { "<leader>su", function() Snacks.picker.undo() end, desc = "Undo History" },
     { "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
     -- LSP
-    { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
-    { "gD", function() Snacks.picker.lsp_declarations() end, desc = "Goto Declaration" },
+    { "gd", function() Snacks.picker.lsp_definitions() end, desc = "goto definition" },
+    { "gD", function() Snacks.picker.lsp_declarations() end, desc = "goto declaration" },
     { "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
-    { "gI", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
-    { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
+    { "gI", function() Snacks.picker.lsp_implementations() end, desc = "goto implementation" },
+    { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "goto t[y]pe definition" },
     { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
     { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
     -- Other
-    { "<leader>z",  function() Snacks.zen() end, desc = "Toggle Zen Mode" },
-    { "<leader>Z",  function() Snacks.zen.zoom() end, desc = "Toggle Zoom" },
-    { "<leader>.",  function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
-    { "<leader>S",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
-    { "<leader>n",  function() Snacks.notifier.show_history() end, desc = "Notification History" },
-    { "<leader>bd", function() Snacks.bufdelete() end, desc = "Delete Buffer" },
-    { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename File" },
-    { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse", mode = { "n", "v" } },
-    { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
-    { "]]",         function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
-    { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
+    { "<leader>z",  function() Snacks.zen() end, desc = "toggle zen mode" },
+    { "<leader>Z",  function() Snacks.zen.zoom() end, desc = "toggle zoom" },
+    { "<leader>.",  function() Snacks.scratch() end, desc = "toggle scratch buffer" },
+    { "<leader>S",  function() Snacks.scratch.select() end, desc = "select scratch buffer" },
+    -- 20260527(sulrich): disabling this - conflicts with the picker binding above.  let's see how this works
+    -- { "<leader>n",  function() Snacks.notifier.show_history() end, desc = "Notification History" },
+    { "<leader>bd", function() Snacks.bufdelete() end, desc = "delete buffer" },
+    { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "rename file" },
+    { "<leader>gB", function() Snacks.gitbrowse() end, desc = "git browse", mode = { "n", "v" } },
+    { "<leader>un", function() Snacks.notifier.hide() end, desc = "dismiss all notifications" },
+    { "]]",         function() Snacks.words.jump(vim.v.count1) end, desc = "next reference", mode = { "n", "t" } },
+    { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "prev reference", mode = { "n", "t" } },
     -- terminal
-    { "<c-/>",      function() Snacks.terminal() end, desc = "Toggle Terminal" },
+    { "<c-/>",      function() Snacks.terminal() end, desc = "toggle terminal" },
     { "<c-_>",      function() Snacks.terminal() end, desc = "which_key_ignore" },
   },
   init = function()
@@ -176,41 +213,4 @@ return {
       end,
     })
   end,
-
-  terminal = {
-    bo = {
-      filetype = "snacks_terminal",
-    },
-    wo = {},
-    keys = {
-      q = "hide",
-      gf = function(self)
-        local f = vim.fn.findfile(vim.fn.expand("<cfile>"), "**")
-        if f == "" then
-          Snacks.notify.warn("No file under cursor")
-        else
-          self:hide()
-          vim.schedule(function()
-            vim.cmd("e " .. f)
-          end)
-        end
-      end,
-      term_normal = {
-        "<esc>",
-        function(self)
-          self.esc_timer = self.esc_timer or (vim.uv or vim.loop).new_timer()
-          if self.esc_timer:is_active() then
-            self.esc_timer:stop()
-            vim.cmd("stopinsert")
-          else
-            self.esc_timer:start(200, 0, function() end)
-            return "<esc>"
-          end
-        end,
-        mode = "t",
-        expr = true,
-        desc = "Double escape to normal mode",
-      },
-    },
-  }
 }

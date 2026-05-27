@@ -11,12 +11,6 @@ return {
       ft = "yang",
       lazy = true
     },
-    { 'rizzatti/dash.vim',
-    lazy = true,
-    keys = {
-      { '<leader>D', '<Plug>DashSearch' },
-    },
-  },
   { 'axieax/urlview.nvim', 
     lazy = true,
   }, -- enables urls within a buffer

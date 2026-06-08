@@ -43,8 +43,12 @@ return {
       default = { 'lsp', 'path', 'snippets', 'buffer' },
 
       per_filetype = {
-        -- only enable snippets in markdown
-        markdown = { 'snippets' },
+        markdown = { 
+          -- only enable snippets in markdown
+          'snippets',
+          -- added LSP at the behest of obsidian.nvim
+          'lsp'
+        },
         codecompanion = { "codecompanion" },
       }
     },

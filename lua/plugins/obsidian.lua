@@ -58,7 +58,7 @@ return {
         -- disables completion using nvim_cmp
         -- nvim_cmp = false,
         -- enables completion using blink.cmp
-        blink = true,
+        -- blink = true,
         -- trigger completion at 2 chars.
         min_chars = 4,
       },

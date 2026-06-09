@@ -1,12 +1,17 @@
+-- https://github.com/NeogitOrg/neogit
 return {
   {
     "NeogitOrg/neogit",
+    lazy = true,
     dependencies = {
-      "nvim-lua/plenary.nvim",         -- required
-      "sindrets/diffview.nvim",        -- optional - diff integration
-      "folke/snacks.nvim",
+      "sindrets/diffview.nvim",  -- diff integration
+      "m00qek/baleia.nvim",      -- optional
+      "folke/snacks.nvim",       -- picker 
     },
-    config = true
+    cmd = "Neogit",
+    keys = {
+      { "<leader>gg", "<cmd>Neogit<cr>", desc = "Show Neogit UI" }
+    }
   }
 }
 

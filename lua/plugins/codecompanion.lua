@@ -1,9 +1,7 @@
-local is_mac = vim.loop.os_uname().sysname == "Darwin"
-
 return {
   {
     "olimorris/codecompanion.nvim",
-    enabled = is_mac,
+    enabled = true,
     -- the claude_code chat adapter (below) shells out to the claude-agent-acp
     -- bridge. install it on plugin setup/update so a fresh machine just works.
     build = "npm install -g @agentclientprotocol/claude-agent-acp",
@@ -18,11 +16,6 @@ return {
     opts = {
       adapters = {
         acp = {
-          -- note, currently auggie doesn't support interactive use with our
-          -- licensing
-          -- auggie_cli = function()
-          -- see: https://github.com/olimorris/codecompanion.nvim/blob/main/lua/codecompanion/adapters/acp/auggie_cli.lua
-          -- end,
           -- note: claude code requires installation of the claude-agent-acp
           -- adapter from https://github.com/agentclientprotocol/claude-agent-acp
           -- this is done via: npm install -g @agentclientprotocol/claude-agent-acp
@@ -46,19 +39,6 @@ return {
               -- },
             })
           end,
-          -- 20260527(sulrich): RIP gemini-cli
-          -- gemini_cli = function()
-          --   return require("codecompanion.adapters").extend("gemini_cli", {
-          --     defaults = {
-          --       auth_method = "gemini-api-key", -- "oauth-personal"|"gemini-api-key"|"vertex-ai"
-          --     },
-          --     env = {
-          --       GEMINI_API_KEY = "GEMINI_API_KEY",
-          --       -- GEMINI_API_KEY = "cmd:op read op://personal/Gemini_API/credential --no-newline",
-          --     },
-          --   })
-          -- end,
-
         },
       }, -- end: adapters
       interactions  = {

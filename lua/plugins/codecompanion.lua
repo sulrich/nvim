@@ -4,6 +4,9 @@ return {
   {
     "olimorris/codecompanion.nvim",
     enabled = is_mac,
+    -- the claude_code chat adapter (below) shells out to the claude-agent-acp
+    -- bridge. install it on plugin setup/update so a fresh machine just works.
+    build = "npm install -g @agentclientprotocol/claude-agent-acp",
     init = function()
       vim.keymap.set({ "n", "v" }, "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
       vim.keymap.set({ "n", "v" }, "<LocalLeader>aa", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })

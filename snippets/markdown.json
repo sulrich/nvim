@@ -23,6 +23,27 @@
     ],
     "description": "stub meeting notes"
   },
+  "marginnote": {
+    "prefix": "marginnote",
+    "body": [
+      "{{< marginnote >}}${0}{{< /marginnote >}}"
+    ],
+    "description": "botufte marginnote - no numbering"
+  },
+  "sidenote": {
+    "prefix": "sidenote",
+    "body": [
+      "{{< sidenote >}}${0}{{< /sidenote >}}"
+    ],
+    "description": "botufte sidenote - numbering"
+  },
+  "marginfigure": {
+    "prefix": "marginfig",
+    "body": [
+      "{{< image src=\"${1:path}\" caption=\"${2:caption}\" margin=\"true\" >}}${0}"
+    ],
+    "description": "botufte marginfigure - no numbering"
+  },
   "glossary-entry": {
     "prefix": "gloss-entry",
     "body": [

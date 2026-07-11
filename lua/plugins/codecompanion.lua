@@ -29,6 +29,13 @@ return {
               },
             })
           end,
+          auggie_cli = function()
+            return require("codecompanion.adapters").extend("auggie_cli", {
+              defaults = {
+                mcpServers = "inherit_from_config",
+              },
+            })
+          end,
           opencode = function()
             return require("codecompanion.adapters").extend("opencode", {
               defaults = {
@@ -74,6 +81,13 @@ return {
               description = "opencode cli",
               provider = "terminal",
             },
+            auggie = {
+              cmd = "auggie",
+              args = {},
+              description = "auggie cli",
+              provider = "terminal",
+
+            }
           },
         },
       }, -- end: interactions

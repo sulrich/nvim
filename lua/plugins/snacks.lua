@@ -39,16 +39,9 @@ return {
       -- or leave it empty to use the default settings
       layout = { preset = "ivy" },
       sources = {
-        buffers, 
         files = {
           hidden = true,  -- enables dotfiles to be accessed
         },
-        grep,
-				marks,  -- see config/bookmarks.lua
-        git_branches,
-        git_diff,
-        git_files,
-        git_status,
         gh_issue = {},
         gh_pr = {},
         explorer = {

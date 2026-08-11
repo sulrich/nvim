@@ -53,15 +53,17 @@ Additional python deps are listed in `pyproject.toml`.
 
 ## Key gotchas
 
-### codecompanion + mcphub compatibility
+### codecompanion
 
-`make_vars = false` is **required** in `lua/plugins/codecompanion.lua:126`. codecompanion v19 removed `interactions.chat.variables`, so mcphub crashes if `make_vars` is enabled. Do not re-enable until mcphub fixes upstream compatibility.
+- All interactions (chat, inline, cli) use ACP CLI adapters (`claude_code`, `opencode`, `auggie_cli`) — **no `ANTHROPIC_API_KEY` is required**. Do not switch any interaction back to the HTTP `anthropic` adapter unless an API key is available.
+- The `claude_code` chat adapter requires `@agentclientprotocol/claude-agent-acp`, installed globally via the plugin's `build` step (npm).
+- Command-line abbreviation is `Cc` (not `cc` — that would shadow the built-in quickfix `:cc`).
+- Chat history is provided by `ravitemer/codecompanion-history.nvim`; saved chats never expire (`expiration_days = 0`).
+- mcphub is **not** installed — an earlier mcphub compatibility workaround (`make_vars = false`) no longer applies.
 
 ### platform gating
 
-Several plugins are disabled on non-macOS via `enabled = is_mac`:
-- `codecompanion.nvim` (`lua/plugins/codecompanion.lua:6`)
-- `obsidian.nvim` (`lua/plugins/obsidian.lua:10`)
+`obsidian.nvim` is disabled on non-macOS via `enabled = is_mac` (`lua/plugins/obsidian.lua:10`). codecompanion is enabled on all platforms.
 
 System theme detection (`lua/config/system_theme.lua`) uses `defaults read -g AppleInterfaceStyle` and is macOS-only.
 

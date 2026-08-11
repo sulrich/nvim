@@ -6,12 +6,13 @@ return {
     -- bridge. install it on plugin setup/update so a fresh machine just works.
     build = "npm install -g @agentclientprotocol/claude-agent-acp",
     init = function()
-      vim.keymap.set({ "n", "v" }, "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
+      vim.keymap.set({ "n", "v" }, "<leader>ap", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
       vim.keymap.set({ "n", "v" }, "<LocalLeader>aa", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
       vim.keymap.set("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
 
-      -- Expand 'cc' into 'CodeCompanion' in the command line
-      vim.cmd([[cab cc CodeCompanion]])
+      -- Expand 'Cc' into 'CodeCompanion' in the command line
+      -- (not 'cc', which would shadow the built-in quickfix :cc command)
+      vim.cmd([[cab Cc CodeCompanion]])
     end,
     opts = {
       adapters = {
@@ -23,9 +24,6 @@ return {
             return require("codecompanion.adapters").extend("claude_code", {
               defaults = {
                 mcpServers = "inherit_from_config",
-              },
-              env = {
-                ANTHROPIC_API_KEY = "ANTHROPIC_API_KEY",
               },
             })
           end,
@@ -41,9 +39,6 @@ return {
               defaults = {
                 mcpServers = "inherit_from_config",
               },
-              -- env = {
-              --   ANTHROPIC_API_KEY = "ANTHROPIC_API_KEY",
-              -- },
             })
           end,
         },
@@ -54,7 +49,7 @@ return {
           adapter = "claude_code",
         },
         inline = {
-          adapter = "anthropic",
+          adapter = "claude_code",
           keymaps = {
             accept_change = {
               modes = { n = "ga" },
@@ -73,27 +68,22 @@ return {
               cmd = "claude",
               args = {},
               description = "claude code cli",
-              provider = "terminal",
             },
             opencode = {
               cmd = "opencode",
               args = {},
               description = "opencode cli",
-              provider = "terminal",
             },
             auggie = {
               cmd = "auggie",
               args = {},
               description = "auggie cli",
-              provider = "terminal",
-
             }
           },
         },
       }, -- end: interactions
 
-      -- set debug logging
-      log_level = "INFO",
+      log_level = "INFO", -- DEBUG|INFO|WARN|ERROR
       extensions = {
         history = {
           enabled = true,
@@ -129,10 +119,9 @@ return {
       },
       display = {
         action_palette = {
-          width = 95,
-          height = 5,
+          -- note: width/height are ignored by the snacks provider
           prompt = "Prompt ", -- Prompt used for interactive LLM calls
-          provider = "snacks", -- Can be "default", "telescope", or "mini_pick" or snacks!
+          provider = "snacks", -- Can be "default", "telescope", "fzf-lua", "mini_pick" or "snacks"
           opts = {
             show_preset_actions = true, -- Show the default actions in the action palette?
             show_default_prompt_library = true, -- Show the default prompt library in the action palette?

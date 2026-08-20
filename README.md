@@ -44,6 +44,14 @@ export GH_TOKEN={{ op ... path to credential }}
 export GITHUB_TOKEN=${GH_TOKEN}
 ```
 
+## claude authentication with codecompanion
+
+- for work hosts, this is set to pull from 1password with the `cmd` integration
+  in codecompanion pulling from the appropriate credential path in 1password
+  20260820(sulrich)
+- for personal hosts this is adjusted appropriately to reflect the key in use.
+  this should move to use dotenv config in the not too distant future.
+
 ## 20260311 - codecompanion issue
 
 ```text

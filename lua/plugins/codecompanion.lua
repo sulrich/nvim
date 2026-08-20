@@ -25,6 +25,9 @@ return {
               defaults = {
                 mcpServers = "inherit_from_config",
               },
+              env = {
+                CLAUDE_CODE_OAUTH_TOKEN = "cmd:op read op://Private/sulrich-nexthop-claude/credential --no-newline"
+              },
             })
           end,
           auggie_cli = function()

@@ -25,6 +25,9 @@ return {
               defaults = {
                 mcpServers = "inherit_from_config",
               },
+              env = {
+                CLAUDE_CODE_OAUTH_TOKEN = "cmd:op read op://Private/sulrich-nexthop-claude/credential --no-newline"
+              },
             })
           end,
           auggie_cli = function()
@@ -34,13 +37,13 @@ return {
               },
             })
           end,
-          opencode = function()
-            return require("codecompanion.adapters").extend("opencode", {
-              defaults = {
-                mcpServers = "inherit_from_config",
-              },
-            })
-          end,
+          -- opencode = function()
+          --   return require("codecompanion.adapters").extend("opencode", {
+          --     defaults = {
+          --       mcpServers = "inherit_from_config",
+          --     },
+          --   })
+          -- end,
           -- omp adapter - not available from codecompaion
           omp = function()
             local helpers = require("codecompanion.adapters.acp.helpers")
@@ -114,11 +117,11 @@ return {
               args = {},
               description = "claude code cli",
             },
-            opencode = {
-              cmd = "opencode",
-              args = {},
-              description = "opencode cli",
-            },
+            -- opencode = {
+            --   cmd = "opencode",
+            --   args = {},
+            --   description = "opencode cli",
+            -- },
             auggie = {
               cmd = "auggie",
               args = {},

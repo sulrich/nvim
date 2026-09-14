@@ -41,6 +41,51 @@ return {
               },
             })
           end,
+          -- omp adapter - not available from codecompaion
+          omp = function()
+            local helpers = require("codecompanion.adapters.acp.helpers")
+            return {
+              name = "omp",
+              formatted_name = "oh-my-pi",
+              type = "acp",
+              roles = {
+                llm = "assistant",
+                user = "user",
+              },
+              commands = {
+                default = {
+                  "omp",
+                  "acp",
+                },
+              },
+              defaults = {
+                mcpServers = {},
+                timeout = 20000, -- 20 seconds
+              },
+              parameters = {
+                protocolVersion = 1,
+                clientCapabilities = {
+                  fs = { readTextFile = true, writeTextFile = true },
+                },
+                clientInfo = {
+                  name = "CodeCompanion.nvim",
+                  version = "1.0.0",
+                },
+              },
+              handlers = {
+                setup = function(self)
+                  return true
+                end,
+                auth = function(self)
+                  return true
+                end,
+                form_messages = function(self, messages, capabilities)
+                  return helpers.form_messages(self, messages, capabilities)
+                end,
+                on_exit = function(self, code) end,
+              },
+            }
+          end,
         },
       }, -- end: adapters
       interactions  = {

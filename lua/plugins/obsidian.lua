@@ -32,7 +32,7 @@ return {
     opts = {
       -- 
       legacy_commands = false,
-      picker = { name = "snacks.pick", },
+      picker = { name = "snacks.picker", },
       ui = { enable = false, },
       -- the following should stop spontaneous task creation
       checkbox = { create_new = false, },

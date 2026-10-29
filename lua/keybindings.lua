@@ -27,9 +27,6 @@ vim.keymap.set('i', '<C-;>','<Esc>[s1z=`]a', {silent = true})
 -- clear search highlights
 vim.keymap.set('n', '<leader><space>', ':nohlsearch<cr>', {noremap = true, silent = true})
 
--- open markdown files in marked2
-vim.keymap.set('n', '<leader>m', [[:!open -a 'Marked 2.app' "%:p"<cr>]], {noremap = true, silent = true})
-
 -- search for the visual selection with //
 vim.keymap.set('v', '//', [[y/\V<C-R>=escape(@",'/\')<CR><CR>]], {noremap = true, silent = true})
 

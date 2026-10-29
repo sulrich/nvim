@@ -24,3 +24,8 @@ vim.opt_local.smartindent = false
 -- this pattern matches: -, *, +, and numbered lists (1., 2., etc.)
 vim.opt_local.formatlistpat = [[^\s*\%(\d\+\.\|[-*+]\)\s\+]]
 vim.opt_local.formatoptions:append("n")
+
+-- preview the current file in the obsidian app
+vim.keymap.set('n', '<leader>m', function()
+  vim.system({ 'open', '-a', 'Obsidian', vim.api.nvim_buf_get_name(0) })
+end, { buffer = true, silent = true, desc = "preview in obsidian" })

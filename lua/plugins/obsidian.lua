@@ -16,8 +16,10 @@ return {
       -- if you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
       -- e.g. "bufreadpre " .. vim.fn.expand "~" .. "/my-vault/*.md"
       -- refer to `:h file-pattern` for more examples
-      "BufReadPre " .. HOME .. "/src/personal/obsidian/personal-journal/*.md",
-      "BufNewFile " .. HOME .. "/src/personal/obsidian/personal-journal/*.md",
+      "BufReadPre " .. HOME .. "/src/obsidian/personal/*.md",
+      "BufNewFile " .. HOME .. "/src/obsidian/personal/*.md",
+      "BufReadPre " .. HOME .. "/src/obsidian/nexthop/*.md",
+      "BufNewFile " .. HOME .. "/src/obsidian/nexthop/*.md",
       -- "BufNewFile path/to/my-vault/*.md",
     },
     dependencies = {
@@ -38,8 +40,15 @@ return {
       checkbox = { create_new = false, },
       workspaces = {
         {
-          name = "personal-journal",
-          path = "~/src/personal/obsidian/personal-journal",
+          name = "personal",
+          path = "~/src/obsidian/personal",
+          overrides = {
+            notes_subdir = "2026",
+          },
+        }, -- end: workspace definition
+        {
+          name = "nexthop",
+          path = "~/src/obsidian/nexthop",
           overrides = {
             notes_subdir = "2026",
           },

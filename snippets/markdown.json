@@ -37,6 +37,13 @@
     ],
     "description": "botufte sidenote - numbering"
   },
+  "nh-jira-url": {
+    "prefix": "@@jira",
+    "body": [
+      "https://nexthopai.atlassian.net/browse/"
+    ],
+    "description": "nexthop jira url-path"
+  },
   "marginfigure": {
     "prefix": "marginfig",
     "body": [
